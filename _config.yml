@@ -12,3 +12,4 @@ github_username:  OrlandoDevs
 
 # Build settings
 markdown: kramdown
+permalink: pretty
