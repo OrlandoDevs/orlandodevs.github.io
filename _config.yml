@@ -12,4 +12,8 @@ github_username:  OrlandoDevs
 
 # Build settings
 markdown: kramdown
-permalink: pretty
+
+# Outputting
+permalink:     /blog/:title/
+paginate_path: /page:num
+timezone:      null
