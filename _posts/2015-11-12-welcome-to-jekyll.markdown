@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Welcome to Jekyll!"
+author: sergiocruz
 date:   2015-11-12 14:30:39
 categories: jekyll update
 ---

@@ -1,15 +1,44 @@
 ---
 layout: default
 ---
+{% assign author = site.data.authors[page.author] %}
+
 <div class="post">
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if author %} • {{ author.name }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
   </header>
 
   <article class="post-content">
     {{ content }}
   </article>
+  
+  {% if author %}
+  <footer class="post-footer">
+
+    {% if author.name %}
+      <div>{{ author.name }}</div>
+    {% endif %}
+    
+    {% if author.bio %}
+      <div>{{ author.bio }}</div>
+    {% endif %}
+    
+    {% if author.url %}
+      <div><a href="{{ author.url }}">{{ author.url }}</a></div>
+    {% endif %}
+    
+    {% if author.twitter %}
+      <div><a href="{{ author.twitter }}">{{ author.twitter }}</a></div>
+    {% endif %}
+    
+    {% if author.github %}
+      <div><a href="{{ author.github }}">{{ author.github }}</a></div>
+    {% endif %}
+    
+
+  </footer>
+  {% endif %}
 
 </div>
