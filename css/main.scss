@@ -6,7 +6,7 @@
 
 
 // Our variables
-$base-font-family: Helvetica, Arial, sans-serif;
+$base-font-family: Open Sans, Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
@@ -24,6 +24,12 @@ $grey-color-dark:  darken($grey-color, 25%);
 $on-palm:          600px;
 $on-laptop:        800px;
 
+// Man fuck their variables
+$oc-colors: (
+  'primary': #02203C,
+  'primary-light': mix(#02203C, white, 30%),
+  'secondary': #A5C9D9
+);
 
 
 // Using media queries with like this:
