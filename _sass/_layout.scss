@@ -1,13 +1,11 @@
 /**
  * Site header
  */
-.site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
-    min-height: 56px;
-
-    // Positioning context for the mobile navigation icon
-    position: relative;
+.oc-layout-header {
+  background-image: url('/assets/header.gif');
+  background-position: center center;
+  background-size: cover;
+  height: 20vh;
 }
 
 .site-title {
@@ -161,26 +159,71 @@
 /**
  * Page content
  */
-.page-content {
-    padding: $spacing-unit 0;
+.oc-layout-page {
+  padding: 1rem calc((100% - 960px) / 2);
+  min-height: 50vh;
 }
 
-.page-heading {
-    font-size: 20px;
+.oc-content {
+  padding: 1rem;
 }
 
-.post-list {
-    margin-left: 0;
-    list-style: none;
+.oc-posts {
+  margin-left: 0;
+  list-style: none;
+}
 
-    > li {
-        margin-bottom: $spacing-unit;
+.oc-post {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+
+  > .oc-heading {
+    color: map-get($oc-colors, 'primary');
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 10rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    text-align: right;
+    padding: 1rem;
+    background-color: rgba(map-get($oc-colors, 'secondary'), 0.2);
+    margin-bottom: 0;
+
+    > .oc-link {
+      color: currentColor;
     }
+  }
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+
+    > .oc-heading {
+      flex-grow: 1;
+    }
+  }
 }
 
-.post-meta {
-    font-size: $small-font-size;
-    color: $grey-color;
+.oc-link, .oc a {
+  color: map-get($oc-colors, 'primary-light');
+  overflow: hidden;
+  display: inline-block;
+  transition: color 0.3s ease-out;
+
+  &:hover {
+    color: map-get($oc-colors, 'primary');
+  }
+}
+
+.oc-excerpt {
+  padding: 1rem;
+}
+
+.oc-meta {
+  font-size: $small-font-size;
+  color: $grey-color;
+  text-transform: uppercase;
 }
 
 .post-link {

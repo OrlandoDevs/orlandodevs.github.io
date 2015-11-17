@@ -2,22 +2,20 @@
 layout: default
 ---
 
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
+<div class="oc-content">
+  <ul class="oc-posts">
     {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      <li class="oc-post">
+        <h2 class="oc-heading -h2">
+          <a class="oc-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <span class="oc-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
         </h2>
+        <div class="oc-excerpt">
+          <p>{{ post.excerpt }}</p>
+          <a class="oc-link" href="{{ post.url | prepend: site.baseurl }}">Read More</a>
+        </div>
       </li>
     {% endfor %}
   </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 </div>
