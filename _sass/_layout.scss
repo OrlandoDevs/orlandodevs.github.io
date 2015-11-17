@@ -13,13 +13,14 @@
 
 .oc-logo {
   display: block;
+
+  > img {
+    max-width: 85vw;
+    height: auto;
+    width: 400px;
+  }
 }
 
-.oc-logo > img {
-  max-width: 85vw;
-  height: auto;
-  width: 400px;
-}
 
 .site-title {
     font-size: 26px;
