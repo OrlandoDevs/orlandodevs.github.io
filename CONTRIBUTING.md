@@ -14,11 +14,11 @@ Not sure how to fork and clone a GitHub repo? Do some googling, or if now, ask s
 
 Have you ever written an article for our platform? If so, feel free to skip over to the next session.
 
-**Adding your self as an author:**
+### Adding your self as an author:
 
-1. Go to the file `_data/authors.yml`
+**1. Go to the file `_data/authors.yml`**
 
-2. There you will see a list of authors. It should look something like this:
+**2. There you will see a list of authors. It should look something like this:**
 
 ```yml
 atrophius:
@@ -35,7 +35,7 @@ sergiocruz:
     github: http://github.com/sergiocruz
 ```
 
-3. Add your username and subsequent info at the end of the file.
+**3. Add your username and subsequent info at the end of the file.**
 
 At the top, we would like you to use the same `username` as your github account (for example `sergiocruz` is Sergio's my github username). This will allow us to avoid username collisions within our blog.
 
@@ -108,7 +108,7 @@ In this blog we use the `kramdown` flavor of markdown, but it's pretty similar t
 
 **3. Previewing your post**
 
-You'll need to install Jekyll on your machine to preview your blog post. Be sure to preview your post before making a pull request. This is a community-based blog and we expect you to bullet-proof your article before making a pull request. By bullet-proofing we mean making sure that your content is well formatted, etc.
+You'll need to install Jekyll on your machine to preview your blog post. Be sure to preview your post before making a pull request. This is a community-based blog and we expect you to bullet-proof your article before making a pull request. By bullet-proofing we mean making sure that your content is properly formatted, etc.
 
 - Learn how to [install Jekyll](http://jekyllrb.com/docs/installation/)
 
