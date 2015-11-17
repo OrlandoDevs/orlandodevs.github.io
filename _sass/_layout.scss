@@ -2,10 +2,23 @@
  * Site header
  */
 .oc-layout-header {
-  background-image: url('/assets/header.gif');
+  align-items: center;
+  display: flex;
+  background-image: url('/assets/header.jpg');
   background-position: center center;
   background-size: cover;
   height: 20vh;
+  justify-content: center;
+}
+
+.oc-logo {
+  display: block;
+}
+
+.oc-logo > img {
+  max-width: 85vw;
+  height: auto;
+  width: 400px;
 }
 
 .site-title {
