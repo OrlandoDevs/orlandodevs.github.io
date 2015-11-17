@@ -25,14 +25,14 @@ atrophius:
     name: Jeremy Privett
     bio: Here's a bio for me.
     url: http://www.jeremyprivett.com
-    twitter: https://www.twitter.com/Atrophius
+    twitter: Atrophius
 
 sergiocruz:
     name: Sergio Cruz
     bio: Here's a bio for Sergio.
     url: https://sergiocruz.me
-    twitter: https://twitter.com/hashtagserg
-    github: http://github.com/sergiocruz
+    twitter: hashtagserg
+    github: sergiocruz
 ```
 
 **3. Add your username and subsequent info at the end of the file.**
