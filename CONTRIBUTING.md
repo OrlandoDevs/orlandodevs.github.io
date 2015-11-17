@@ -12,7 +12,7 @@ Not sure how to fork and clone a GitHub repo? Do some googling, or if now, ask s
 
 ## Step 2: First-time authors
 
-Have you ever written an article for our platform? If so, feel free to skip over to the next session.
+Have you ever written an article for our platform? If so, feel free to skip over to the next section.
 
 ### Adding your self as an author:
 
