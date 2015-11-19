@@ -293,4 +293,33 @@
             font-size: 18px;
         }
     }
+
+    table {
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all;
+      margin: 0 0 10px 0;
+
+      th {
+        font-weight: bold
+      }
+
+      th,
+      td {
+        padding: 6px 13px;
+        border: 1px solid #ddd
+      }
+
+      tr {
+        background-color: #fff;
+        border-top: 1px solid #ccc
+      }
+
+      tr:nth-child(2n) {
+        background-color: #f8f8f8
+      }
+    }
+
 }
