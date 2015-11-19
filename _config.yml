@@ -6,7 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
   We are an inclusive community, open to everyone who has a passion in software
   development in the Orlando area.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://orlandodevs.com" # the base hostname & protocol for your site
+url: "http://orlandodevs.com" # the base hostname & protocol for your site
 twitter_username: OrlandoDevs
 github_username:  OrlandoDevs
 
