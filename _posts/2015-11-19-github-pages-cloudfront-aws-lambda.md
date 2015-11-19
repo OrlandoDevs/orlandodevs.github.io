@@ -9,7 +9,7 @@ categories:
   - aws lambda
   - jekyll
 ---
-We're proud to announce that the Orlando Devs blog is live! And not only is our blog live, but it is also running really really fast and I would love to give you a rundown on our stack.
+We're proud to announce that the Orlando Devs blog is live! And not only is our blog live, but it is also running really fast and we would love to give you a rundown on how it was built.
 
 ## The Masterplan
 
