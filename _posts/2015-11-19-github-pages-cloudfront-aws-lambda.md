@@ -11,7 +11,11 @@ categories:
 ---
 We're proud to announce that the Orlando Devs blog is live! And not only is our blog live, but it is also running really fast and we would love to give you a rundown on how it was built.
 
-## The Masterplan
+## TL;DR
+
+We launched the official Orlando Devs blog and it's open source! Anyone in the community [is welcome to add new articles](https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md), as we have a fancy way of making sure articles make it into the blog automatically after merging your pull requests :)
+
+## The Master Plan
 
 Our idea was to have an open source blog. We wanted developers within our community to be able to easily contribute to our blog using the whole open source paradigm, including pull requests, reviews, etc.
 
