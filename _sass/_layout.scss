@@ -9,6 +9,10 @@
   background-size: cover;
   height: 20vh;
   justify-content: center;
+
+  @media screen and (min-width: 480px) {
+      min-height: 100px;
+  }
 }
 
 .oc-logo {
@@ -222,7 +226,6 @@
 .oc-link, .oc a {
   color: map-get($oc-colors, 'primary-light');
   overflow: hidden;
-  display: inline-block;
   transition: color 0.3s ease-out;
 
   &:hover {
