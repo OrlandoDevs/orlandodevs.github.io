@@ -3,6 +3,7 @@ layout: post
 title:  "What GitHub Pages, CloudFlare and AWS Lambda have in common"
 author: sergiocruz
 date:   2015-11-12 14:30:39
+comments: true
 categories:
   - github pages
   - cloudflare
@@ -13,7 +14,7 @@ We're proud to announce that the Orlando Devs blog is live! And not only is our 
 
 ## TL;DR
 
-> We launched the official Orlando Devs blog and it's open source! Anyone in the community [is welcome to add new articles](https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md), as we have a fancy way of making sure articles are added to the blog automatically after merging your pull requests :)
+> We launched the official Orlando Devs blog and it's open source! Anyone in the community is welcome to  [add new articles](https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md), as we have a fancy way of making sure articles are added to the blog automatically after merging your pull requests :)
 
 ## The Master Plan
 
