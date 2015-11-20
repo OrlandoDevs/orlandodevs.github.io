@@ -4,10 +4,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    {% if post.excerpt %}
-    <meta name="description" content="{{ post.excerpt }}">
-    {% elsif page.description %}
-    <meta name="description" content="{{ page.description }}">
+    {% if page.description %}
+    <meta name="description" content="{{ post.description }}">
+    {% elsif page.excerpt %}
+    <meta name="description" content="{{ page.excerpt }}">
     {% else %}
     <meta name="description" content="{{ site.description }}">
     {% endif %}
