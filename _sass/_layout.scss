@@ -221,13 +221,13 @@
     }
   }
 
-  @media (max-width: 600px) {
+  // @media (max-width: 600px) {
     flex-wrap: wrap;
 
     > .oc-heading {
       flex-grow: 1;
     }
-  }
+  // }
 }
 
 .oc-link, .oc a {
