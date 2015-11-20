@@ -13,6 +13,9 @@ github_username:  OrlandoDevs
 # Build settings
 markdown: kramdown
 
+kramdown:
+  input: GFM
+
 # Outputting
 permalink:     /blog/:title/
 paginate_path: /page:num
