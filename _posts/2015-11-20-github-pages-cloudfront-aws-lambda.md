@@ -3,6 +3,7 @@ layout: post
 title:  "What GitHub Pages, CloudFlare and AWS Lambda have in common"
 author: sergiocruz
 date:   2015-11-20 18:30:00
+description: The official Orlando Devs blog is live and open sourced! It uses Jekyll, GitHub Pages, CloudFlare and AWS Lambda. Anyone can open pull requests to add new articles.
 comments: true
 categories:
   - github pages
