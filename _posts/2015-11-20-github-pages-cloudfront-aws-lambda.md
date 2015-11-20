@@ -2,7 +2,7 @@
 layout: post
 title:  "What GitHub Pages, CloudFlare and AWS Lambda have in common"
 author: sergiocruz
-date:   2015-11-12 14:30:39
+date:   2015-11-20 18:30:00
 comments: true
 categories:
   - github pages
