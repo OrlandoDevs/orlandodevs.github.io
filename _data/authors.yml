@@ -6,7 +6,10 @@ atrophius:
 
 sergiocruz:
     name: Sergio Cruz
-    bio: Here's a bio for Sergio.
+    bio: > #
+      Sergio is an application developer in Orlando, FL with a huge passion for learning.
+      He also co-organizes a couple of local meetups including OrlandoJS & Orlando Devs.
     url: https://sergiocruz.me
     twitter: hashtagserg
     github: sergiocruz
+    email: hello@sergiocruz.me

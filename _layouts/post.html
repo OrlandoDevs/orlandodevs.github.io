@@ -15,23 +15,25 @@ layout: default
   </article>
 
   {% if author %}
-  <footer class="post-footer">
+  <footer class="post-author">
 
-    {% if author.name %}
-      <div>{{ author.name }}</div>
+    <figure class="post-author-image">
+      <span class="img" style="background-image: url({{ author.email | to_gravatar }})"></span>
+    </figure>
+
+    <div class="post-author-name">
+    {% if author.url %}
+      <a href="{{ author.url }}" target="_blank">{{ author.name }}</a>
+    {% else %}
+      <span>{{ author.name }}</span>
     {% endif %}
+    </div>
 
     {% if author.bio %}
-      <div>{{ author.bio }}</div>
+      <div class="post-author-bio">{{ author.bio }}</div>
     {% endif %}
 
     <ul class="social-media-list">
-
-    {% if author.url %}
-      <li>
-        <a href="{{ author.url }}" target="_blank">{{ author.url }}</a>
-      </li>
-    {% endif %}
 
     {% if author.twitter %}
       <li>
