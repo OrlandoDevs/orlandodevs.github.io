@@ -295,12 +295,13 @@
     }
 
     table {
+      border-spacing: 0;
       display: block;
-      width: 100%;
+      margin: 0 0 10px 0;
       overflow: auto;
       word-break: normal;
       word-break: keep-all;
-      margin: 0 0 10px 0;
+      width: 100%;
 
       th {
         font-weight: bold
