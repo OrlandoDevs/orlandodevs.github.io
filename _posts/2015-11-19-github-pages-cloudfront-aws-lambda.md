@@ -12,9 +12,9 @@ categories:
 ---
 We're proud to announce that the Orlando Devs blog is live! And not only is our blog live, but it is also running really fast and we would love to give you a rundown on how we built it.
 
-## TL;DR
+## TL;DR _(Too long; didn't read):_
 
-> We launched the official Orlando Devs blog and it's open source! Anyone in the community is welcome to  [add new articles](https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md), as we have a fancy way of making sure articles are added to the blog automatically after merging your pull requests :)
+> We launched the official Orlando Devs blog and it's open source! Anyone in the community is welcome to  [add new articles](https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md), as we have a fancy way of adding articles to the blog automatically after merging **your** pull requests :)
 
 ## The Master Plan
 
