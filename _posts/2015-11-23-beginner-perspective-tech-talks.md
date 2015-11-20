@@ -3,12 +3,16 @@ layout: post
 title:  "A Beginner's Perspective on Tech Talks"
 date:   2015-11-23 09:00:00
 author: atrophius
+description: >
+  Doing these kinds of talks, and doing them well, is a fantastic way to catapult yourself into a position of authority on a subject because you're demonstrating your knowledge and ability to communicate that knowledge to your peers. I wanted to take some time to talk about my experience. If you're interested or on the fence about speaking, I hope this insight will guide you.
 categories:
   - professional development
   - public speaking
   - development
   - tech
 ---
+> _This article was originally published on [jeremyprivett.com](http://www.jeremyprivett.com/beginner-perspective-tech-talks.html)._
+
 A month ago, I did a talk at the PHP User Group I organize called "Let's Talk About Money for Developers". It was the most ambitious talk I've ever given to what turned out to be the largest group of people I've spoken in front of, to date. I've done a lot of webinars for the purposes of marketing and sales for my consulting businesses in the past, but I haven't done a ton of in-person speaking to audiences larger than about 5 people.
 
 Getting heavily involved in the local tech community over the last couple of years has had a tremendous ROI for me. Speaking at meetups has been part of my strategy for getting involved. Doing these kinds of talks, and doing them well, is a fantastic way to catapult yourself into a position of authority on a subject because you're demonstrating your knowledge and ability to communicate that knowledge to your peers. I wanted to take some time to talk about my experience. If you're interested or on the fence about speaking, I hope this insight will guide you.
