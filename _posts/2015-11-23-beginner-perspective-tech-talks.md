@@ -118,4 +118,4 @@ Continue the conversation in some way. Direct people to your social media presen
 
 Great. I hope you've learned at least a little about doing tech talks from this. I'm a pretty huge introvert by nature, so if I can somehow do this and people enjoy it, I'm sure others can as well. Practice is a huge part of it and &mdash; like most things &mdash; the more you do it, the better you'll get at it.
 
-If you do decide to do some speaking, I'd be curious to see what you talk about. You're welcome to e-mail me details about what you're speaking on and your slides and I'll give you some feedback. And if you're interested in more content like this, fill out the form below to get on my newsletter.
+If you do decide to do some speaking, I'd be curious to see what you talk about. You're welcome to e-mail me details about what you're speaking on and your slides and I'll give you some feedback. And if you're interested in more content like this, [fill out the form on my site](http://www.jeremyprivett.com) to get on my newsletter.
