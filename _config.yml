@@ -10,6 +10,10 @@ url: "https://orlandodevs.com" # the base hostname & protocol for your site
 twitter_username: OrlandoDevs
 github_username:  OrlandoDevs
 
+# Open Graph meta tags
+og:
+  image: /assets/odevs-helmet.png
+
 # Build settings
 markdown: kramdown
 
