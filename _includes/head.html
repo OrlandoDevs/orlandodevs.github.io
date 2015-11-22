@@ -13,9 +13,9 @@
     <meta name="description" content="{{ site.description }}">
     {% endif %}
 
-    <meta property="og:image" content="{{ '/assets/odevs-helmet.png' | prepend: site.url }}">
+    <meta property="og:image" content="{{ site.og.image | prepend: site.url }}">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}?t={{ site.time | date: '%s' }}">
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 </head>
