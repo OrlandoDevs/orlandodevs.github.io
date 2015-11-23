@@ -1,8 +1,12 @@
 atrophius:
     name: Jeremy Privett
-    bio: Here's a bio for me.
+    bio: >
+      Educator. Community Organizer. Consultant. I teach Developers how to be
+      more effective and Dev Teams how to be more efficient and focus on the
+      right things.
     url: http://www.jeremyprivett.com
-    twitter: atrophius
+    twitter: Atrophius
+    github: Atrophius
 
 sergiocruz:
     name: Sergio Cruz
