@@ -40,12 +40,11 @@ This is what our DNS settings look like:
 
 | Type | Name | Value |
 | ---- | ---- | ----- |
-| A | orlandodevs.com | 192.30.252.153 |
-| A | orlandodevs.com | 192.30.252.154 |
+| CNAME* | orlandodevs.com | orlandodevs.github.io |
 | CNAME | io | orlandodevs.github.io |
 | CNAME | www | orlandodevs.com |
 
-_The IPs next to the `A` records are the GitHub Pages IPs._
+_* We are taking advantage of CloudFlare's CNAME Flattening_
 
 ### CloudFlare Page Rules
 
@@ -55,9 +54,9 @@ We setup two "Page Rules" within CloudFlare:
 This rule forces the site to always use `https`.
 
 **2. Custom Caching**
-Here we forced our site to "Cache everything". This is important because by default <a href="https://support.cloudflare.com/hc/en-us/articles/200168306-Is-there-a-tutorial-for-PageRules-" target="_blank">CloudFlare _does not cache_ HTML and other dynamic pages</a> (as somebody kindly pointed out to us on Hacker News).
+Here we forced our site to "Cache everything". This is important because by default <a href="https://support.cloudflare.com/hc/en-us/articles/200168306-Is-there-a-tutorial-for-PageRules-" target="_blank">CloudFlare _does not cache_ HTML and other dynamic pages</a> (as somebody kindly pointed out to us on Hacker News). Please note that we are talking about Edge Cache here, which is a form of server-side caching that CloudFlare provides (as well as other CDN providers).
 
-Once CloudFlare was configured, we only ran into one problem: **cache invalidation**. Since we set CloudFlare to cache everything for 1 week, how could we make sure the home page was instantly refreshed when we add new articles?
+Once CloudFlare was configured, we only ran into one problem: **Edge cache invalidation**. Since we set CloudFlare to cache everything on the server-side for 1 week, how could we make sure the home page is instantly refreshed when we add new articles?
 
 It turns out that CloudFlare offers an API to purge its cache, so we started investigating on how we could consume this API every time a pull request is merged.
 
@@ -65,16 +64,16 @@ It turns out that CloudFlare offers an API to purge its cache, so we started inv
 
 ## AWS Lambda
 
-We soon learned AWS Lambda is great solution for our cache invalidation problem, as it saves us the headache of setting up a new server. AWS Lambda is inexpensive, so it turned out to be a win-win solution for us.
+We soon learned that AWS Lambda is great solution for our cache invalidation problem, as it saves us the headache of setting up a new server. AWS Lambda is inexpensive, so it turned out to be a win-win solution for us.
 
-Here's how Lambda's billing works: every month, the first 1 million requests are free. If we go over the limit it will cost us 20 cents per each additional million requests. We don't think this we will ever merge anything close to 1 million pull requests a month, so we're good!
+Here's how Lambda's billing works: every month, the first 1 million requests are free. If we go over the limit it will cost us 20 cents per each additional million requests. We don't think we will ever merge anything close to 1 million pull requests a month, so we're good!
 
 Here's how this process went:
 
-1. We signed up for AWS and added a new Lambda function using Node. We named the function `cloudFlareInvalidation`.
+1. We signed up for AWS and added a new Lambda function using `Node.js`. We named the function `cloudFlareInvalidation`.
 
 2. We used the "Upload ZIP File" option to deploy the project.
-_We ran into a little problem while uploading the zip file: We were zipping up the parent directory containing our project, however this didn't work. The zip file uploaded needs to have the entry file (called `app.js` in our project) at the root of the compressed folder._
+_We ran into a little problem while uploading the zip file: We were zipping the parent directory containing our project, however this didn't work. The zip file uploaded needs to have the entry file (called `app.js` in our project) at the root of the compressed folder._
 
 3. We then set up an endpoint for our function using AWS's API Gateway. During this step we were able to point this new API endpoint to the `cloudFlareInvalidation` function.
 
