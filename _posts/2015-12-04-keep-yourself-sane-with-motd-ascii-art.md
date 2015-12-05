@@ -6,7 +6,7 @@ categories: linux motd
 author: admbradford
 ---
 
-While doing server administration 3 AM I've made my fair share of mistakes. Most were a result of being on the wrong server. Serveral years ago, fed up and full of 4 AM fury, I placed Angry Axe Homer into a MOTD file. 
+While doing server administration 3 AM I've made my fair share of mistakes. Most were a result of being on the wrong server. Several years ago, fed up and full of 4 AM fury, I placed Angry Axe Homer into a MOTD file.
 
 A few days later my passion for logging into the wrong server was greeted by:
 
@@ -51,9 +51,9 @@ A few days later my passion for logging into the wrong server was greeted by:
 "This is not the server I'm looking for. Thanks Homer"
 </blockquote>
 
-Updating the MOTD file to include a visual queue has been part of my server setups ever since. It's small tweak, but has prevented serious mistakes. (That and better sleeping habbits)
+Updating the MOTD file to include a visual queue has been part of my server setups ever since. It's small tweak, but has prevented serious mistakes. (That and better sleeping habits)
 
-<h2>Bonus! OrlandoDevs ASCII Art</h2>
+<h2>Bonus! OrlandoDevs Ascii Art</h2>
 
 <pre style="font-family:'Lucida Console', 'Courier New', 'Courier', monospace; font-size:9px; background-color:#000; color:#fff; line-height:1;">
 
