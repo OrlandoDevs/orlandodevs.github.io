@@ -135,6 +135,8 @@ Commit and push your changes to your forked repo. Once those changes are in, go 
 
 Not sure how to do this? Do some googling first, and if no luck just ask somebody on our Slack channel under the #chat channel and we'll be happy to help you out.
 
+In an effort to maintain a clean commit history, if you have more than one commit for a single blog post, please squash them down to a single commit. If you're unsure of how to do this [check out this article](https://github.com/ginatrapani/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit).
+
 When making the pull request please follow these guidelines:
 
 1. Pull request title: `New post: (post name here)`
