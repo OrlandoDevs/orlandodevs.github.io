@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Keep Yourself Sane - Tweak Your MOTD"
+title:  "Tweak Your MOTD & Script Your Logins"
 date:   2015-12-04 21:10:00
 categories: linux motd
 author: admbradford
@@ -52,6 +52,21 @@ A few days later my passion for logging into the wrong server was greeted by:
 </blockquote>
 
 Updating the MOTD file to include a visual queue has been part of my server setups ever since. It's small tweak, but has prevented serious mistakes. (That and better sleeping habits)
+
+<h2>How to Customize MOTD (message of the day)</h2>
+Editing your MOTD file will largely depend on which Linux distribution you're using. /etc/motd is where you'll typically find the MOTD file, but each distrubution has it's own quirks. I primarily use Debian &amp; Ubuntu but will briefly cover a few others.
+
+<h3>Debian</h3>
+In Debian /etc/motd is a symlink to /var/run/motd. At every reboot this file is overwritten, so editing it just wont do. Instead place edits inside of /etc/motd.tail. Reboot and the boot script (/etc/init.d/bootmisc.sh &lt;=lenny, /etc/init.d/bootlogs &gt;= squeeze) will handle the rest. 
+
+If rebooting isn't a option, copy the contents of the motd.tail to motd (cat /etc/motd.tail >> /var/run/motd)
+
+<h3>Ubuntu</h3>
+Ubuntu uses PAM to update the MOTD file and formed by scripts located inside /etc/update-motd.d 
+
+Each file follows a standard naming convention NN-xxxxx. NN is a two digit number defining that scripts order (00 first - 99 last). xxxxx is a relevant name to the output of that script.
+
+
 
 <h2>Bonus! OrlandoDevs Ascii Art</h2>
 
