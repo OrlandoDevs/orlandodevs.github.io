@@ -26,6 +26,7 @@ atrophius:
     bio: Here's a bio for me.
     url: http://www.jeremyprivett.com
     twitter: Atrophius
+    github: Atrophius
 
 sergiocruz:
     name: Sergio Cruz
@@ -53,11 +54,11 @@ Now that your username is under the list of authors, we get to the fun part: add
 
 To get a grasp on we're about to do here, we highly recommend you the [Jekyll docs about Posts](http://jekyllrb.com/docs/posts).
 
-**1. Add a new file to `_posts/` with the `.md` extension following these instructions**
+**1. Add a new file to `_drafts/` with the `.md` extension following these instructions**
 
-- Use this convention when naming your file: `YEAR-MONTH-DAY-title.MARKUP`
+- Use this convention when naming your file: `title.MARKUP`
 
-- Here's an example: `_posts/2015-11-30-i-love-the-odevs.md`
+- Here's an example: `_drafts/i-love-the-odevs.md`
 
 **2. Add content to your newly created file**
 
@@ -68,7 +69,6 @@ Here is an example:
 ---
 layout: post
 title:  "Why you should use Angular"
-date:   2015-11-12 14:30:39
 categories: angular javascript
 author: sergiocruz
 ---
@@ -96,7 +96,6 @@ Be sure to change the information on the header of your post file, it is very im
 
 - layout _(should always be "post")_
 - title: _(your post's title)_
-- date: _(when your article was written)_
 - categories: _(category tags separated by spaces)_
 - author: _(same username used on `_data/authors.yml`, same as your github account)_
 
@@ -112,9 +111,9 @@ You'll need to install Jekyll on your machine to preview your blog post. Be sure
 
 - Learn how to install [Jekyll for GitHug Pages](https://help.github.com/articles/using-jekyll-with-pages)
 
-- Serve Jekyll locally by running this command on your terminal: `jekyll serve`
+- Serve Jekyll locally by running this command on your terminal: `bundle exec jekyll serve --drafts`
 
-The output of `jekyll serve` should look something like this:
+The output of `bundle exec jekyll serve --drafts` should look something like this:
 
 ```
 > jekyll serve
@@ -134,6 +133,8 @@ Configuration file: orlandodevs.github.io/_config.yml
 Commit and push your changes to your forked repo. Once those changes are in, go ahead and make a pull request to the [main blog's repo](https://github.com/OrlandoDevs/orlandodevs.github.io).
 
 Not sure how to do this? Do some googling first, and if no luck just ask somebody on our Slack channel under the #chat channel and we'll be happy to help you out.
+
+In an effort to maintain a clean commit history, if you have more than one commit for a single blog post, please squash them down to a single commit. If you're unsure of how to do this [check out this article](https://github.com/ginatrapani/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit).
 
 When making the pull request please follow these guidelines:
 
