@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Alternatives to Traditional CSS Grids"
+date:   2015-12-11 11:00:00
 author: mcleancode
 comments: true
 description: >
@@ -22,7 +23,7 @@ There was a time when we didn't have CSS3, Sass, or LESS. We were just starting 
 
 This is what Bootstrap uses, and it's a spitting image of what we all think of as the classic grid system.
 
-```html
+{% highlight html %}
 <div class="row">
   <div class="col-md-8">.col-md-8</div>
   <div class="col-md-4">.col-md-4</div>
@@ -36,7 +37,7 @@ This is what Bootstrap uses, and it's a spitting image of what we all think of a
   <div class="col-md-6">.col-md-6</div>
   <div class="col-md-6">.col-md-6</div>
 </div>
-```
+{% endhighlight %}
 
 These kinds of grids had a few problems though.
 
@@ -61,7 +62,7 @@ Here are just a few to give you an idea.
 
 With just two of these, we can make an element act like a grid with semantic classes.
 
-```css
+{% highlight css %}
 section {
   display: flex;
   flex-wrap: wrap;
@@ -81,9 +82,9 @@ section {
 .card.-small { width: 23%; }
 .card.-large { width: 73%; }
 .card.-full  { width: 98%; }
-```
+{% endhighlight %}
 
-```html
+{% highlight html %}
 <section>
   <div class='card -small'>1</div>
   <div class='card -small'>2</div>
@@ -94,11 +95,11 @@ section {
   <div class='card'>7</div>
   <div class='card'>8</div>
 </section>
-```
+{% endhighlight %}
 
 Flexbox also allows us to be a lot more flexible with how our grids work and lets us make changes much more quickly. For example, if there was a client request to organize content by columns instead of in rows, this is all we would have to do.
 
-```css
+{% highlight css %}
 section {
   display: flex;
   flex-wrap: wrap;
@@ -117,9 +118,9 @@ section {
 }
 
 /* No longer need different sized cards */
-```
+{% endhighlight %}
 
-```html
+{% highlight html %}
 <section>
   <div class='card'>1</div>
   <div class='card'>2</div>
@@ -130,7 +131,7 @@ section {
   <div class='card'>7</div>
   <div class='card'>8</div>
 </section>
-```
+{% endhighlight %}
 
 Now, we did have to make some changes, but nothing too drastic. Also, our views only changed in the sense of needing to remove class attributes. The structure of our information didn't change. As far as the CSS goes, we just deleted a few obsolete classes, added a container height, and told everything to act like columns.
 
@@ -148,7 +149,7 @@ If flexbox isn't your cup of tea or the right solution for you, many frameworks 
 
 A Sass mixin is essentially a snippet of CSS you would see yourself using in multiple spots in your app. A common use case would be in wrapping up browser prefixes.
 
-```sass
+{% highlight scss %}
 @mixin column-count($num) {
   -webkit-column-count: $num; /* Chrome, Safari, Opera */
   -moz-column-count: $num; /* Firefox */
@@ -156,7 +157,7 @@ A Sass mixin is essentially a snippet of CSS you would see yourself using in mul
 }
 
 .article { @include column-count(3); }
-```
+{% endhighlight %}
 
 What if a framework stuck all of their grid logic in one of these magic mixins?
 
@@ -164,7 +165,7 @@ What if a framework stuck all of their grid logic in one of these magic mixins?
 
 Simple tiled layouts come with the same benefits of flexbox, in that they are very loosely tied to the markup. We also end up writing significantly less code that's much more readable.
 
-```sass
+{% highlight scss %}
 section {
   @include outer-container();
 }
@@ -176,9 +177,9 @@ section {
   height: 100px;
   background-color: red;
 }
-```
+{% endhighlight %}
 
-```html
+{% highlight html %}
 <section>
   <div class='card'>1</div>
   <div class='card'>2</div>
@@ -189,11 +190,11 @@ section {
   <div class='card'>7</div>
   <div class='card'>8</div>
 </section>
-```
+{% endhighlight %}
 
 However, with libraries like Neat, we lose much of the flexibility that flexbox provides in making "table like" grids. For grid layouts with variable sized inner components, the struggle to minimize the effect of our CSS on our markup continues. This is because we are forced to introduce a new row element and class. Still, we do have the benefit of being able to name our own classes.
 
-```sass
+{% highlight scss %}
 section {
   @include outer-container();
 }
@@ -212,9 +213,9 @@ section {
   &.-large { @include span-columns(9); }
   &.-full  { @include span-columns(12); }
 }
-```
+{% endhighlight %}
 
-```html
+{% highlight html %}
 <section>
   <div class='card-group'>
     <div class='card'>1</div>
@@ -233,7 +234,7 @@ section {
     <div class='card -full'>8</div>
   </div>
 </section>
-```
+{% endhighlight %}
 
 ### A Word On Flexible Public APIs
 
