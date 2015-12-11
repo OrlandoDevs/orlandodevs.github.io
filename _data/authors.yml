@@ -22,8 +22,17 @@ rortega1:
     bio: > #
       Rey is a Co-Founder and CTO at Grata in downtown Orlando, FL.  An application developer
       by trade, Rey - with a passion for business and software development - persued his dream
-      of tech entrepreneurship forming a developer friendly startup servicing companies that 
+      of tech entrepreneurship forming a developer friendly startup servicing companies that
       utilize software for their core business.
     url: http://www.grataonline.com
     twitter: rortega1
     github: rortega1
+
+mcleancode:
+    name: Christopher McLean
+    bio: > #
+      Christopher is a Ruby, JavaScript, and CSS developer in Oviedo, FL who has
+      a passion for design patterns, code quality, and UX.
+    url: http://chris.mcleancode.com
+    twitter: mcleancode
+    github: havok2905
