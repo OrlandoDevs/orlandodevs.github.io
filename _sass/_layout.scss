@@ -200,8 +200,6 @@
 
 .oc-post {
   margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
 
   > .oc-heading {
     color: map-get($oc-colors, 'primary');
@@ -332,6 +330,12 @@
     tr:nth-child(2n) {
       background-color: #f8f8f8
     }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid $grey-color-light;
+    margin: 25px 0;
   }
 }
 
