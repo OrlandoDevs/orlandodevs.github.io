@@ -3,17 +3,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    {% comment %}<!-- Title -->{% endcomment %}
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
 
+    {% comment %}<!-- Description -->{% endcomment %}
     {% if page.description %}
     <meta name="description" content="{{ page.description }}">
+    <meta property="og:description" content="{{ page.description }}" />
+    <meta property="og:type" content="article" />
     {% elsif page.excerpt %}
     <meta name="description" content="{{ page.excerpt | strip_html }}">
+    <meta property="og:description" content="{{ page.excerpt | strip_html }}" />
     {% else %}
     <meta name="description" content="{{ site.description }}">
+    <meta property="og:description" content="{{ site.description }}" />
     {% endif %}
 
+    {% comment %}<!-- Open Graph tags -->{% endcomment %}
     <meta property="og:image" content="{{ site.og.image | prepend: site.url }}">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
