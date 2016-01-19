@@ -12,7 +12,7 @@ categories:
   - developers
 ---
 
-The Orlando Devs Slack group was formed in January of 2015. Soon after its conception, an anonymous survey was sent out to its ~20 members. Fast forward one year and this survey became an yearly tradition. In January of 2016 we had a second iteration of the survey completed by ~200 developers in Orlando.
+The Orlando Devs Slack group was formed in January of 2015. Soon after its conception, an anonymous survey was sent out to its ~20 members. Fast forward one year and this survey became a yearly tradition. In January of 2016 we had a second iteration of the survey completed by ~200 developers in Orlando.
 
 ## Average Salary by Experience
 
