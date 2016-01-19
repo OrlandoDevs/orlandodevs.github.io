@@ -171,13 +171,13 @@ We also have one-off events that happen every now and then covering interview pr
 
 ## A big thanks to:
 
-A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (Slack handles, in alphabetic order):
+A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (in alphabetic order):
 
+- Brandon Groves ([GitHub](https://github.com/DFieldFL))
 - Bruno Genaro ([Twitter](https://twitter.com/bfgenaro) / [Blog](https://medium.com/@brunogenaro))
+- Jacques Fu ([Twitter](https://twitter.com/JacquesKFu) / [Blog](https://medium.com/startups-with-kids))
 - Jeremy Privett ([Twitter](https://twitter.com/Atrophius) / [Website](http://www.jeremyprivett.com))
 - Matt Mazur ([Twitter](https://twitter.com/mhmazur) / [Website](http://mattmazur.com))
-- Brandon Groves ([GitHub](https://github.com/DFieldFL))
-- Jacques Fu ([Twitter](https://twitter.com/JacquesKFu) / [Blog](https://medium.com/startups-with-kids))
 - Ravel Antunes ([Twitter](https://twitter.com/ravelantunes) / [Website](http://ravelantunes.com))
 - Sergio Cruz ([Twitter](https://twitter.com/hashtagserg) / [Website](https://sergiocruz.me))
 
