@@ -319,7 +319,7 @@
     th,
     td {
       padding: 6px 13px;
-      border: 1px solid #ddd
+      border: 1px solid #ddd;
     }
 
     tr {
@@ -340,13 +340,9 @@
 
   img {
 
-    @include media-query($on-palm) {
-      max-width: 100%;
-    }
-
     &.img-center {
       display: block;
-      margin: 1rem auto 2rem;
+      margin: 2rem auto;
     }
 
     &.img-large {
@@ -359,6 +355,16 @@
 
     &.img-small {
       max-width: 400px;
+    }
+
+    @include media-query($on-palm) {
+
+      &.img-large,
+      &.img-medium,
+      &.img-small {
+        max-width: 100%;
+      }
+
     }
   }
 }
