@@ -337,6 +337,30 @@
     border-top: 1px solid $grey-color-light;
     margin: 25px 0;
   }
+
+  img {
+
+    @include media-query($on-palm) {
+      max-width: 100%;
+    }
+
+    &.img-center {
+      display: block;
+      margin: 1rem auto 2rem;
+    }
+
+    &.img-large {
+      max-width: 800px;
+    }
+
+    &.img-medium {
+      max-width: 600px;
+    }
+
+    &.img-small {
+      max-width: 400px;
+    }
+  }
 }
 
 .post-author {
@@ -401,4 +425,23 @@
     }
   }
 
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @include media-query($on-palm) {
+    display: block;
+  }
+
+  & > * {
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
 }
