@@ -5,13 +5,15 @@ categories: salary money orlando developers
 author: sergiocruz
 ---
 
-The Orlando Devs Slack group was formed in January of 2015... and soon after its conception, an anonymous survey was sent out to its ~20 members. A year after, we decided to turn this survey into a yearly tradition and in January of 2016 a second iteration of this survey was completed by approximately 200 anonymous developers.
+The Orlando Devs Slack group was formed in January of 2015. Soon after its conception, an anonymous survey was sent out to its ~20 members. Fast forward one year and this survey became an yearly tradition. In January of 2016 we had a second iteration of the survey completed by ~200 developers in Orlando.
 
 ## Average Salary by Experience
 
-In this graph we broke down average salaries by years of experience. We weren't surprised to learn just what we expected: the longer you are in the industry, the more money you make.
+In this graph we broke down average salaries by years of experience. By looking at this graph we learn just what we expected: the longer you are in the industry, the more money you make.
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/salary-by-experience.png" class="img-large img-center" alt="Salaries by programming language in Orlando" />
+
+_Results filtered to full time employees only._
 
 **What this means to you:** Focus on perfecting your skills; the money will follow.
 
@@ -19,13 +21,15 @@ In this graph we broke down average salaries by years of experience. We weren't 
 
 ## Average Salary by College Degree
 
-A big question that generally comes up by many individuals is, "Does having a college degree make a difference in our field?" By taking a look at this next graph we'll see that it is possible to make a decent living in our industry by being a self-taught developer. Within are community however, those who did get a Computer Science degree are generally earning more than those who didn't get a degree.
+A question that often comes up is: “Does having a college degree make a difference in our field?” This next graph shows us that it is possible to make a decent living by being a self-taught developer. Our graph shows though that individuals with a Computer Science degree are making more.
 
-_A word of warning here:_ this graph isn't completely fair by its nature since it doesn't control for experience. As we've seen above, experience is a much stronger defining factor as far as income is concerned. This graph may be biased against those who completed Coding Bootcamps either since the sample size is very small, and those who filled out this survey have not been in the industry for a very long time (again, the graph doesn't account for experience).
+_A word of warning here:_ this graph isn’t completely fair as it does not have an experience break down by degree. As seen above, experience is a much stronger defining factor as far as income is concerned. Also, this graph is biased against those who graduated from Coding Bootcamps. This happened because our sample size is tiny (only three responses). On top of that, the Bootcampers who filled out this survey have joined the workforce recently.
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/salary-by-degree.png" class="img-large img-center" alt="Salaries by programming language in Orlando" />
 
-**What this means to you:** Getting a college degree is definitely helpful and shouldn't be quickly dismissed. Most developers who filled out this survey however, have not completed a degree related to our industry and are doing pretty well as the graph shows. We would recommend getting a degree only if you find value in the education and intend to maximize, otherwise your mileage may vary.
+_Results filtered to full time employees only._
+
+**What this means to you:** Getting a college degree is definitely helpful. It shouldn’t be quickly dismissed. However most developers who filled out this survey do not  have a degree in this field and are doing very well. We would recommend getting a degree only if you find value in the education and intend to maximize; otherwise your mileage may vary.
 
 <hr />
 
@@ -39,15 +43,17 @@ What I mean is this: knowing HTML & CSS alone will probably not guarantee you th
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/salary-by-language.png" class="img-large img-center" alt="Salaries by programming languages in Orlando" />
 
-**What this means to you:** Having a diverse knowledge of languages and programming paradigms is still the most effective way of making a good living in our industry. Learning a bit of Java & Python doesn't hurt either ;)
+_Results filtered to full time employees only._
+
+**What this means to you:** Having a diverse technical knowledge is still the most effective way of making a good living in our industry. Learning a bit of Java & Python doesn’t hurt either ;)
 
 <hr />
 
-## Impacts of the choice of a primary stack
+## Impacts of the Choice of a Primary Stack
 
-This next graph show the impacts of the choice of a developer's primary stack on their income and PTO. Income and PTO appears to be highly correlated, meaning more pay also comes with more PTO (conversely that means PTO isn't really used to offset pay).
+This next graph shows the impacts of the choice of a developer’s primary stack on their income and PTO. Income and PTO appears to be highly correlated, meaning more pay also comes with more PTO. Conversely that means PTO isn’t really used to offset pay.
 
-Much like the graph above, this graph appears to indicate that Java, Ruby and C# are among the most well compensated. Objective-C / Swift developers appear to be a little bit of an outlier, and while they're paid similarly to their C# and Ruby peers, they have less favorable PTO policies on average.
+Much like the graph above, this graph appears to indicate that Java, Ruby and C# are among the most well compensated. Objective-C / Swift developers appear to be a little bit of an outlier, and while they’re paid similarly to their C# and Ruby peers, they have less favorable PTO policies on average.
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/stack-income-pto.png" class="img-medium img-center" alt="Income and PTO ratio by programming stack" />
 
@@ -55,9 +61,9 @@ Much like the graph above, this graph appears to indicate that Java, Ruby and C#
 
 <hr />
 
-## Satisfaction by company type
+## Satisfaction by Company Type
 
-A huge part of this survey is assessing developers' satisfaction in a established company versus a startup. In this following graph we'll look not only at how satisfied they are in each company type, as well as which programming languages they're using while their at it.
+A huge part of this survey is assessing developers’ satisfaction in a Established Company versus a Startup. This next graph includes the satisfaction rate by company type and programming languages used.
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/satisfaction-by-company-and-language.png" class="img-large img-center" alt="Satisfaction by programming languages and company types" />
 
@@ -71,7 +77,7 @@ Visually, we can make a hypothesis that people are happier at startups because m
 
 #### Java and C#: the strange outliers
 
-People are really satisfied while writing Java in a established company (gree square on the left), however they're a bit miserable writing Java in a startup (red square on the right). Our sample size here isn't massive, it could just be an outlier.
+People are really satisfied while writing Java in a established company (green square on the left), however they're a bit miserable writing Java in a startup (red square on the right). Our sample size here isn't massive, it could just be an outlier.
 
 C# on the other hand is the quite the opposite. People are much more satisfied writing C# at a startup than they are at an established company.
 
@@ -150,9 +156,15 @@ Similarly to a graph above, this graph does not take experience into considerati
 
 ## I'm way underpaid, now what?
 
-Our goal for the [Orlando Devs monthly meetup](https://www.meetup.com/OrlandoDevs) is to make better developers here in Orlando. Our monthly meetings cover technical skills so you can stay on top of your game, as well as soft skills such as salary negotiation, project estimation, etc.
+No need to panic, patience is key when pursuing a greater income. Keep in mind that these are just averages. By nature the data does not measure an individual's set of skills and their ability to negotiate. Selling one's skills to current and prospective employers is crucial.
 
-We also have one-off events that happen every now and then covering interview preps and such. Follow us on Twitter (link below) to find out more about these events.
+With this in mind, our goal for the [Orlando Devs monthly meetup](https://www.meetup.com/OrlandoDevs) is to make better developers here in Orlando. Our monthly meetings cover diversified technical skills so you can stay on top of your game, as well as soft skills such as salary negotiation, project estimation, etc.
+
+We also have one-off events that happen every now and then covering interview preps and such. Follow us on Twitter (link below) to learn more about these events.
+
+## A big thanks to:
+
+A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (Slack handles, in alphabetic order): @atrophius, @dfieldfl, @fu, @mhmazur, @ravelantunes, @sergiocruz.
 
 ## Got questions?
 
