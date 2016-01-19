@@ -171,11 +171,19 @@ We also have one-off events that happen every now and then covering interview pr
 
 ## A big thanks to:
 
-A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (Slack handles, in alphabetic order): @atrophius, @brunogenaro, @dfieldfl, @fu, @mhmazur, @ravelantunes, @sergiocruz.
+A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (Slack handles, in alphabetic order):
+
+- Bruno Genaro ([Twitter](https://twitter.com/bfgenaro) / [Blog](https://medium.com/@brunogenaro))
+- Jeremy Privett ([Twitter](https://twitter.com/Atrophius) / [Website](http://www.jeremyprivett.com))
+- Matt Mazur ([Twitter](https://twitter.com/mhmazur) / [Website](http://mattmazur.com))
+- Brandon Groves ([GitHub](https://github.com/DFieldFL))
+- Jacques Fu ([Twitter](https://twitter.com/JacquesKFu) / [Blog](https://medium.com/startups-with-kids))
+- Ravel Antunes ([Twitter](https://twitter.com/ravelantunes) / [Website](http://ravelantunes.com))
+- Sergio Cruz ([Twitter](https://twitter.com/hashtagserg) / [Website](https://sergiocruz.me))
 
 ## Got questions?
 
-If you're curious to see any other potential correlations we might have left behind, or just want to chat about data, please feel free to contact us:
+If you're curious to see any other potential correlations we might have left behind, or just want to chat about this data, please feel free to contact us:
 
 By Twitter: [@OrlandoDevs](https://twitter.com/OrlandoDevs)
 By Email: [orlandodevcommunity@gmail.com](mailto:orlandodevcommunity@gmail.com)
