@@ -171,7 +171,7 @@ We also have one-off events that happen every now and then covering interview pr
 
 ## A big thanks to:
 
-A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (Slack handles, in alphabetic order): @atrophius, @dfieldfl, @fu, @mhmazur, @ravelantunes, @sergiocruz.
+A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (Slack handles, in alphabetic order): @atrophius, @brunogenaro, @dfieldfl, @fu, @mhmazur, @ravelantunes, @sergiocruz.
 
 ## Got questions?
 
