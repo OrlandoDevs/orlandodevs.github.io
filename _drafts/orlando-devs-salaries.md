@@ -9,7 +9,7 @@ The Orlando Devs Slack group was formed in January of 2015... and soon after its
 
 ## Average Salary by Experience
 
-In this graph we broke down average salaries by years of experience. We were surprised to learn just what we expected: the longer you are in the industry, the more money you make.
+In this graph we broke down average salaries by years of experience. We weren't surprised to learn just what we expected: the longer you are in the industry, the more money you make.
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/salary-by-experience.png" class="img-large img-center" alt="Salaries by programming language in Orlando" />
 
@@ -19,13 +19,13 @@ In this graph we broke down average salaries by years of experience. We were sur
 
 ## Average Salary by College Degree
 
-A big question that generally comes up by many individuals is if having a college degree is really worth it in our field. By taking a look at this next graph we'll see that it is possible to make a decent living in our industry by being a self-taught developer. Within are community however, those who did get a Computer Science degree are generally earning more than those who didn't get a degree.
+A big question that generally comes up by many individuals is, "Does having a college degree make a difference in our field?" By taking a look at this next graph we'll see that it is possible to make a decent living in our industry by being a self-taught developer. Within are community however, those who did get a Computer Science degree are generally earning more than those who didn't get a degree.
 
-_A word of warning here:_ this graph isn't completely fair by its nature since it doesn't account for experience. As we've seen above, experience is a much stronger defining factor as far as income is concerned. This graph isn't completely fair to those who completed Coding Bootcamps either since the sample size is very small, and those who filled out this survey have not been in the industry for a very long time (again, the graph doesn't account for experience).
+_A word of warning here:_ this graph isn't completely fair by its nature since it doesn't control for experience. As we've seen above, experience is a much stronger defining factor as far as income is concerned. This graph may be biased against those who completed Coding Bootcamps either since the sample size is very small, and those who filled out this survey have not been in the industry for a very long time (again, the graph doesn't account for experience).
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/salary-by-degree.png" class="img-large img-center" alt="Salaries by programming language in Orlando" />
 
-**What this means to you:** Getting a college degree is definitely helpful and shouldn't be quickly dismissed. Most developers who filled out this survey however, have not completed a degree related to our industry and are doing pretty well as the graph shows.
+**What this means to you:** Getting a college degree is definitely helpful and shouldn't be quickly dismissed. Most developers who filled out this survey however, have not completed a degree related to our industry and are doing pretty well as the graph shows. We would recommend getting a degree only if you find value in the education and intend to maximize, otherwise your mileage may vary.
 
 <hr />
 
@@ -61,7 +61,7 @@ A huge part of this survey is assessing developers' satisfaction in a establishe
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/satisfaction-by-company-and-language.png" class="img-large img-center" alt="Satisfaction by programming languages and company types" />
 
-It's important to point out that "Multiple" stands for people writing multiple stacks, while "Other" are people writing less known stacks.
+It's important to point out that "Multiple" stands for people developing on multiple stacks, while "Other" are people working with less popular stacks (popular doesn't mean better in this case).
 
 Also, if you're a _dummy_ like me, you might be having a hard time reading this graph. Let's see if the following conclusions can help:
 
@@ -69,7 +69,7 @@ Also, if you're a _dummy_ like me, you might be having a hard time reading this 
 
 Visually, we can make a hypothesis that people are happier at startups because most of the boxes are green on the right side compared to the left.
 
-#### Java: the strange outlier
+#### Java and C#: the strange outliers
 
 People are really satisfied while writing Java in a established company (gree square on the left), however they're a bit miserable writing Java in a startup (red square on the right). Our sample size here isn't massive, it could just be an outlier.
 
@@ -83,11 +83,11 @@ C# on the other hand is the quite the opposite. People are much more satisfied w
 
 Here we'll explore the average pay rate and overall satisfaction at both established companies and startups with a couple of simpler graphs. Also to be taken with a _grain of salt_ since the amount of responses for startups was much lower than for established companies.
 
-Similarly to a graph above, this graph does not take experience into consideration, it's just an average. This means junior developers probably make less than this average shows, and very senior developer make more.
+Similarly to a graph above, this graph does not take experience into consideration, it's just an average. This means junior developers probably make less than this average shows, and very senior developers make more.
 
 <img src="/assets/authors/sergiocruz/orlando-salaries/satisfaction-income-by-company.png" class="img-large img-center" alt="Satisfaction and Income by Startups vs Established Companies" />
 
-**What this means to you:** Looking to increase your satisfaction or your income? A startup might be what you're looking for, however it does come with some risk. Truth is, it is generally estimated that 80-90% of startups will fail. ([source](http://www.forbes.com/sites/theyec/2015/03/05/the-major-reasons-startups-fail-and-how-you-can-avoid-them))
+**What this means to you:** Looking to increase your satisfaction or your income? A startup might be what you're looking for, however it does come with some risk. Truth is, it is generally estimated that 80-90% of startups will fail. Don't let that completely bias you against startups however, as established companies can also undergo organizational changes without failing. ([source](http://www.forbes.com/sites/theyec/2015/03/05/the-major-reasons-startups-fail-and-how-you-can-avoid-them))
 
 <hr />
 
