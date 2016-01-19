@@ -1,5 +1,20 @@
 ---
 layout: post
+title:  Salaries of Orlando Developers in 2016
+author: sergiocruz
+date:   2016-01-19 11:00:00
+description: An anonymous survey was sent out to around 200 software developers in Orlando. Find out the going average salary for developers in Central Florida. Also learn about their healthcare coverage, PTO and even job satisfaction.
+comments: true
+categories:
+  - salary
+  - money
+  - orlando
+  - developers
+---
+
+
+---
+layout: post
 title:  Salaries of Developers in Orlando
 categories: salary money orlando developers
 author: sergiocruz
