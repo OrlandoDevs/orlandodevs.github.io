@@ -20,6 +20,12 @@ markdown: kramdown
 kramdown:
   input: GFM
 
+# Fetch the latest speaker data from socrata API
+jekyll_get:
+  data: speakers
+  json: 'https://opendata.socrata.com/resource/hzvk-fgsu.json?$order=date%20DESC'
+  cache: true
+
 # Outputting
 permalink:     /blog/:title/
 paginate_path: /page:num
