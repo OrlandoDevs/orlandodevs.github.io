@@ -1,8 +1,11 @@
 ---
 layout: post
-title:  "Decoupling application logic from your framework"
-categories: angular javascript
+title:  Decoupling application logic from your framework
 author: davidbrown
+date:   2016-03-22 16:30:00
+description: How to decouple application logic from your framework to make your angular apps more modular and testable.
+comments: true
+categories: angular javascript
 ---
 In recent years, JavaScript has evolved at a rapid pace. So rapid that any application you're working on as you read this will be nearly deprecated by the time you launch it. Okay, that might be a _bit_ hyperbolic but at the very least something newer and better will be available. This speed has prompted me to think of new ways to approach front-end applications to yield maximum reusability across frameworks by refactoring the core logic of the application into self-contained ES6 modules.
 
