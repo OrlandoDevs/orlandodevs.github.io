@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <title>Coding with the Grip It and Rip It Mentality</title>
+    <meta property="og:title" content="Coding with the Grip It and Rip It Mentality" />
+
+    
+    
+    <meta name="description" content="Though having a full understanding and plan for a software project can be very efficient in theory, sometimes you just have to tear into the code and figure it out as you go.  You can read about some of the benefits of a "Grip It and Rip It" mentality and situations that warrant that methodology. 
+">
+    <meta property="og:description" content="Though having a full understanding and plan for a software project can be very efficient in theory, sometimes you just have to tear into the code and figure it out as you go.  You can read about some of the benefits of a "Grip It and Rip It" mentality and situations that warrant that methodology. 
+" />
+    <meta property="og:type" content="article" />
+    
+
+    
+    <meta property="og:image" content="https://orlandodevs.com/assets/odevs-helmet.png">
+    <meta property="og:url" content="https://orlandodevs.com/blog/grip-it-and-rip-it/" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="https://orlandodevs.com/blog/grip-it-and-rip-it/">
+</head>
+
+
+  <body class="oc">
+
+    
+
+<header class="oc-layout-header">
+  <a href="/" class="oc-logo">
+    <img src="/assets/odevs-logo.png" alt="Orlando Devs" width="600" height="116" />
+  </a>
+</header>
+
+
+    <main class="oc-layout-page">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Coding with the Grip It and Rip It Mentality</h1>
+    <p class="post-meta">Dec 7, 2015 • Rey Ortega</p>
+  </header>
+
+  <article class="post-content">
+    <p>Several years ago I used to play golf on a consistent basis.  My friends and I would head out to the local course, and I would try to imagine myself as a pro golfer - strategizing every shot.  However, my buddy Bill would walk up to the tee on every hole and yell, “Grip it and rip it,” before taking a monstrous backswing and tearing into his top-flite.  It was rather amusing while at the same time annoying.  It wasn’t just his golfing strategy, but how he operated in every-day life.</p>
+
+<p>I mention this story not to tell you about golf, but it’s more to tell you a parable, I think.  You see, as a software developer - term used loosely these days - I took the same approach of meticulously trying to figure out what the final product should be and how I can get there in the most simplest of fashions.  Throughout this process I’d find myself thinking deep into the architecture, coding pattern, etc., and not actually coding the project until I realize the looming deadline is near (like tomorrow).  However, I came to the conclusion that my bud, Bill, may have had the right approach all along.  Maybe some times you just have to roll up your sleeves, grip your keyboard and rip into the code; let the application build organically.  I’ve come across a few reasons why this method was necessary, and I believe this information can help you on your projects moving forward.</p>
+
+<h3 id="reasons">Reasons</h3>
+
+<h4 id="client-doesnt-have-a-clue">Client Doesn’t Have a Clue</h4>
+
+<p>Yes, you read that correctly.  There is a subset of potential customers out there that have money to spend on software development, but don’t have a clue as to what they want or how they want it.  Essentially, they are wanting you (as the expert) to take a handful of fecal matter (known as features), throw it against the wall (known as the end user), and see what sticks (which features their customers will actually use).  Sounds rather exciting if you ask me, but I digress.  It is very difficult to come up with a plan for these types of projects.  It’s the equivalent to telling your waiter, “Surprise Me,” while placing your order at a restaurant.</p>
+
+<p>The key is to gather enough information to get started on the project.  Get into the application’s fundamental goal.  Once you have that, you can start prototyping the concept for your client.     </p>
+
+<p>For example, a client requested an application that allows users to signin to a registration form via mobile devices.  Upon registering, the user’s address information would populate a marker on an interactive map to be displayed on the convention floor.  The purpose was to display the location of interested customers for convention goers to see in real-time.  The client didn’t know what it should look like, how the user would interact with the form, or how the map was to be displayed.</p>
+
+<p>To begin, I opened up my TextMate and began to build a Google Map container with a simple form that would submit the address to the Google Map API and return the longitude and latitude to which a marker populated at the location.  It was as prototypical as it could be; no bells, knobs, and whistles.  This was enough for the client to begin providing more detailed feedback as to what they wanted.  But, once we know what the client truly wants, what technologies do we use to build it?  This leads to my next reason for ripping into the code.</p>
+
+<h4 id="you-dont-have-a-clue">You Don’t Have a Clue</h4>
+
+<p>Seriously!  Unless you’ve predetermined a specific coding language or stack, the reality is you probably don’t have a clue as to how to get to your end game.  If you do, then you’re special like Rain Man.  The fun part of development is figuring out how you get to your end game using a multitude of available tools, libraries, frameworks, etc.  Knowing what to use can be determined by just starting to code out the project using the completed requirements provided by the client.</p>
+
+<p>Returning to the project I mentioned, I originally started with PHP, my preferred language at the time.  I needed to save the data in a database, provide access to the data from multiple platforms and display data in real-time to an interactive map.  I had experience building APIs in PHP, but as I dug further into the code, I realized that the real-time interactivity would be a bit convoluted in PHP.  This discovery led me to look into NodeJS.  However, Node by itself doesn’t provide a RESTful-API-like infrastructure or real-time communication to the browser.  Therefore, adding ExpressJS and SocketIO helped get my Node closer to that goal.  Additionally, I needed Node to communicate with MySQL, which there’s a library for that.  But, piece-mealing all of this together seemed to be a bit daunting, and allowed for more points of failure.  Enter SailsJS.  SailsJS is a Node framework that allows you to build a complete RESTful API in Node with all the components including RESTful routes, SocketIO and built in ORM for database communication.  It’s light weight and allows for extremely rapid development using JavaScript.</p>
+
+<p>Considering SailsJS (Node) as a backend, it only made sense to use JavaScript on the front-end, especially since we needed to incorporate SocketIO.  In the end, we went with AngularJS as it contained libraries for interfacing with Google Maps.</p>
+
+<p>The conclusion of the project was accomplished by ripping into the code and organically figuring out what would work and what wouldn’t.  But there is one more reason you should just start coding.</p>
+
+<h4 id="you-have-too-much-of-a-clue">You Have Too Much of a Clue</h4>
+
+<p>Sorry, I was too lazy to come up with a more catchy subtitle.  The reality is some of you have more experience in different areas and you know exactly what you need to do to complete a project.  You think about the architecture and map it out in your head.  You know the stack you want to use, and you put together the list of libraries that you need.  If you’re like me, you’ve probably completed the project in your head and already have that feeling of accomplishment, but in reality you haven’t started.  Yes, it’s that feeling of, “I got this!” that paralyzes your progress.</p>
+
+<p>The truth of the matter is there’s a term for people like you and me, and it’s called “Analysis Paralysis.”  You’ve planned out everything, but unfortunately, what’s in your head has to make it into your text editor.  If you feel yourself over-thinking to the point of overwhelming, just open up your editor and begin coding.  Once you begin dumping what’s in your head onto a working document, you’ll be surprised as to how less complicated the project may be.  You may not need those libraries you thought about.</p>
+
+<p>Recently, I worked on a project that required a .NET integration from an open source PHP application.  I was thinking in my head about all of the pieces I needed in order to perform the integration.  In .NET, there’s an MVC Framework configuration that allows you to quickly put together a product with minimal effort.  My experience as an API developer pointed me to using this MVC configuration; However, I ran into a game changer.  While building the API, I found that the framework has a configuration called Web API 2.  This configuration, by default, has a very similar infrastructure to that of Symfony (PHP framework) with entity relationships behind an MVC pattern.  Using this configuration saved me a significant amount of time and proved to be a better option to what I initially invisioned.  The reality is, doing the work led me to the right path in completing the work.  So just do it.</p>
+
+<h3 id="do-it">Do It</h3>
+
+<p><img src="/assets/authors/rey/doit.png" alt="&quot;Do It!&quot;" /></p>
+
+<p>I can tell you that starting is one of the hardest steps in developing software even when you have paying clients.  What we do is complex, and requires us to think in ways that surpass the understanding of most of our friends, families, etc.  But, this gift that we possess gives us the power to create things that only others can imagine.  If you find yourself in one of the three scenarios just remember that the key is to “Do It,” and don’t be afraid to “Grip It and Rip It.”</p>
+
+  </article>
+
+  
+<footer class="post-author">
+
+  
+  <figure class="post-author-image">
+    <span class="img" style="background-image: url(https://twitter.com/rortega1/profile_image?size=original)"></span>
+  </figure>
+  
+
+  <div class="post-author-name">
+  
+    <a href="http://www.grataonline.com" target="_blank">Rey Ortega</a>
+  
+  </div>
+
+  
+    <div class="post-author-bio">Rey is a Co-Founder and CTO at Grata in downtown Orlando, FL.  An application developer by trade, Rey - with a passion for business and software development - persued his dream of tech entrepreneurship forming a developer friendly startup servicing companies that utilize software for their core business.
+</div>
+  
+
+  <ul class="social-media-list">
+
+  
+    <li>
+      <a href="https://twitter.com/rortega1" target="_blank">
+        <span class="icon  icon--twitter">
+          <svg viewBox="0 0 16 16">
+            <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+            c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+          </svg>
+        </span>
+
+        <span class="username">rortega1</span>
+      </a>
+    </li>
+  
+
+  
+    <li>
+      <a href="https://github.com/rortega1" target="_blank">
+        <span class="icon  icon--github">
+          <svg viewBox="0 0 16 16">
+            <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+          </svg>
+        </span>
+
+        <span class="username">rortega1</span>
+      </a>
+    </li>
+  
+
+  </ul>
+
+
+</footer>
+
+
+
+</div>
+
+
+      
+
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Orlando Devs</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Orlando Devs</li>
+          <li><a href="mailto:orlandodevcommunity@gmail.com">orlandodevcommunity@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/OrlandoDevs">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">OrlandoDevs</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/OrlandoDevs">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">OrlandoDevs</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Official account for the Orlando Devs Community! We are an inclusive community, open to everyone who has a passion in software development in the Orlando area.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    
+
+  </body>
+
+</html>

@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Orlando Devs</title>
+    <description>Official account for the Orlando Devs Community! We are an inclusive community, open to everyone who has a passion in software development in the Orlando area.
+</description>
+    <link>https://orlandodevs.com/</link>
+    <atom:link href="https://orlandodevs.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 02 May 2016 23:34:52 +0000</pubDate>
+    <lastBuildDate>Mon, 02 May 2016 23:34:52 +0000</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Decoupling application logic from your framework</title>
+        <description>&lt;p&gt;In recent years, JavaScript has evolved at a rapid pace. So rapid that any application you’re working on as you read this will be nearly deprecated by the time you launch it. Okay, that might be a &lt;em&gt;bit&lt;/em&gt; hyperbolic but at the very least something newer and better will be available. This speed has prompted me to think of new ways to approach front-end applications to yield maximum reusability across frameworks by refactoring the core logic of the application into self-contained ES6 modules.&lt;/p&gt;
+
+&lt;p&gt;A goal in writing any application should be to write the application logic outside the framework then within your framework write a wrapper to use your module. This facilitates the migration process between frameworks and versions.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-why&quot;&gt;The Why&lt;/h2&gt;
+
+&lt;h4 id=&quot;more-testable-code&quot;&gt;More testable code&lt;/h4&gt;
+&lt;p&gt;When the logic is separated into it’s own pure JavaScript module instead of defined in the framework, the tests can be run on just the module without the overhead of the framework. For example, with Angular, the controller functions can be split into their own modules so that when the tests are run, only the controller function is being tested. This keeps the framework out of the tests which makes the test cleaner, easier to run and maintain, and yields to my next point of modularity and reusability.&lt;/p&gt;
+
+&lt;h4 id=&quot;modularity-and-maintainability&quot;&gt;Modularity and maintainability&lt;/h4&gt;
+&lt;p&gt;One issue that the JavaScript community suffers from, is a proclivity to reinvention of the wheel. Try to find a modal library - there are dozens of them. This approach lets you (or another developer if you open source it - and you should open source your modules when applicable) reuse it in future projects. These modules should be small enough to allow other developers to easily contribute to your module. This modularity promotes an easier path for migrations to new frameworks as well.&lt;/p&gt;
+
+&lt;h4 id=&quot;migration-path&quot;&gt;Migration path&lt;/h4&gt;
+
+&lt;p&gt;The examples below suggests that you can inject your framework-specific libraries into your extracted module. You &lt;em&gt;can&lt;/em&gt; do this but I would suggest against it in place of using another framework-agnostic library from the start and locking the version of the dependency. Then during a migration, you can run your tests to verify that it still works and refactor if not. There will be times when you will have to fix the module upon migration to allow for an updated injected library since updating libraries during a migration is an opportune time to do so. In most cases, fixing a module is a lot easier than re-writing the whole module.&lt;/p&gt;
+
+&lt;p&gt;Even better than injecting libraries, I suggest using built in browser functions. In the case of Angular’s &lt;code&gt;$http&lt;/code&gt;, I suggest using the browser’s &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API&quot;&gt;&lt;code&gt;fetch()&lt;/code&gt;&lt;/a&gt; function (and Github’s &lt;a href=&quot;https://github.com/github/fetch&quot;&gt;fetch polyfill&lt;/a&gt; for not yet supported browsers). Then when the module is used elsewhere, it works exactly as it did to begin with because it has no reliance on a specific framework.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-how&quot;&gt;The How&lt;/h2&gt;
+
+&lt;p&gt;Let’s say we are building an Angular app with a controller named BusinessCtrl and we want to integrate a pure JavaScript BusinessLogic module. Here are a few ways to do this which allow easier migrations to Angular 2 (using &lt;a href=&quot;https://toddmotto.com/digging-into-angulars-controller-as-syntax/&quot;&gt;controller-as syntax&lt;/a&gt; in the 1.x examples). The following examples are not just limited to exported classes but can also be used when exporting a function from a module.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Defining your module - BusinessLogic.js&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// you could import alternatives to framework-specific libraries here&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;cm&quot;&gt;/* injected libraries here */&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;doLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ..&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;one-approach&quot;&gt;One approach:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Defining the controller&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./BusinessLogic&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyCtrl&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;angular&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;your-module&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;MyCtrl&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyCtrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;a-better-approach-by-skipping-the-boilerplate&quot;&gt;A better approach by skipping the boilerplate:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./BusinessLogic&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;angular&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;your-module&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;MyCtrl&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;using-your-module-with-directives-or-angular-15s-components&quot;&gt;Using your module with directives or Angular 1.5’s components:&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./BusinessLogic&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// return a newly instantiated module in the controller of your returned object&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// better approach (less boilerplate)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BusinessLogic&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now let’s compare this to the &lt;a href=&quot;http://learnangular2.com/components/&quot;&gt;component syntax for Angular 2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;angular2/angular2&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;my-component&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;div&amp;gt;Hello my name is . &amp;lt;button (click)=&amp;quot;sayMyName()&amp;quot;&amp;gt;Say my name&amp;lt;/button&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyComponent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Max&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;sayMyName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;My name is&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll notice that the MyComponent class looks an awful lot like the BusinessLogic class in the first example. This creates the reusability factor mentioned in the beginning of this article and makes migrations from framework to framework (or updated versions of your framework) that much easier.&lt;/p&gt;
+
+&lt;p&gt;One caveat to the approach for modularity is that you end up with multiple instances of your module. Behind the scenes each time it’s being called, it’s instantiating a new object. To avoid this you could use a &lt;a href=&quot;https://en.wikipedia.org/wiki/Singleton_pattern&quot;&gt;singleton&lt;/a&gt; (&lt;a href=&quot;http://amanvirk.me/singleton-classes-in-es6/&quot;&gt;example in ES6&lt;/a&gt;). Be careful when using singletons though as they are considered an &lt;a href=&quot;https://en.wikipedia.org/wiki/Anti-pattern&quot;&gt;anti-pattern&lt;/a&gt; and generally considered poor practice to use.&lt;/p&gt;
+
+&lt;p&gt;Another caveat is when you have to call &lt;code&gt;$scope.$apply()&lt;/code&gt;. In this case, you will need to inject &lt;code&gt;$scope&lt;/code&gt; into your module to allow you to run this. This is an easy refactor when migrating though because it is easy to find and remove these calls.&lt;/p&gt;
+
+&lt;p&gt;I hope I’ve inspired you to think more critically about the way you approach your applications. I would thoroughly enjoy hearing your thoughts on this pattern as well as suggestions for improvement.&lt;/p&gt;
+
+&lt;h4 id=&quot;tldr&quot;&gt;tl;dr&lt;/h4&gt;
+&lt;p&gt;Writing your modules outside the framework lets you test them easier, creates more modular/reusable code, and yields to easier migrations from framework to framework and updating versions of a framework.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 22 Mar 2016 16:30:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/decoupling-application-logic-from-your-framework/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/decoupling-application-logic-from-your-framework/</guid>
+        
+        
+        <category>angular</category>
+        
+        <category>javascript</category>
+        
+      </item>
+    
+      <item>
+        <title>Salaries of Orlando Developers in 2016</title>
+        <description>&lt;p&gt;The Orlando Devs Slack group was formed in January of 2015. Soon after its conception, an anonymous survey was sent out to its ~20 members. Fast forward one year and this survey became a yearly tradition. In January of 2016 we had a second iteration of the survey completed by ~200 developers in Orlando.&lt;/p&gt;
+
+&lt;h2 id=&quot;average-salary-by-experience&quot;&gt;Average Salary by Experience&lt;/h2&gt;
+
+&lt;p&gt;In this graph we broke down average salaries by years of experience. By looking at this graph we learn just what we expected: the longer you are in the industry, the more money you make.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/salary-by-experience.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Salaries by programming language in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Results filtered to full time employees only.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What this means to you:&lt;/strong&gt; Focus on perfecting your skills; the money will follow.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;average-salary-by-college-degree&quot;&gt;Average Salary by College Degree&lt;/h2&gt;
+
+&lt;p&gt;A question that often comes up is: “Does having a college degree make a difference in our field?” This next graph shows us that it is possible to make a decent living by being a self-taught developer. Our graph shows though that individuals with a Computer Science degree are making more.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;A word of warning here:&lt;/em&gt; this graph isn’t completely fair as it does not have an experience break down by degree. As seen above, experience is a much stronger defining factor as far as income is concerned. Also, this graph is biased against those who graduated from Coding Bootcamps. This happened because our sample size is tiny (only three responses). On top of that, the Bootcampers who filled out this survey have joined the workforce recently.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/salary-by-degree.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Salaries by programming language in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Results filtered to full time employees only.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What this means to you:&lt;/strong&gt; Getting a college degree is definitely helpful. It shouldn’t be quickly dismissed. However most developers who filled out this survey do not  have a degree in this field and are doing very well. We would recommend getting a degree only if you find value in the education and intend to maximize; otherwise your mileage may vary.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;average-salary-by-programming-languages&quot;&gt;Average Salary by Programming Languages&lt;/h2&gt;
+
+&lt;p&gt;Here we picked the top programming languages within our group. Do look at these numbers with a &lt;em&gt;grain of salt&lt;/em&gt; though because of the way this question was asked. Let me explain: We asked individuals to select the programming languages they use daily.&lt;/p&gt;
+
+&lt;p&gt;Most individuals in our group selected multiple languages when answering this question. Those who focus on web development for example, may have selected a backend language (ie. Ruby, Java, PHP, etc) in conjunction with HTML, CSS and JavaScript. With this, our average gets a bit more spread out.&lt;/p&gt;
+
+&lt;p&gt;What I mean is this: knowing HTML &amp;amp; CSS alone will probably not guarantee you the ~$80K you see in this graph. Also individuals who &lt;em&gt;only&lt;/em&gt; do JavaScript daily had an average of ~$97K which is higher than what you see in this graph.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/salary-by-language.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Salaries by programming languages in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Results filtered to full time employees only.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What this means to you:&lt;/strong&gt; Having a diverse technical knowledge is still the most effective way of making a good living in our industry. Learning a bit of Java &amp;amp; Python doesn’t hurt either ;)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;impacts-of-the-choice-of-a-primary-stack&quot;&gt;Impacts of the Choice of a Primary Stack&lt;/h2&gt;
+
+&lt;p&gt;This next graph shows the impacts of the choice of a developer’s primary stack on their income and PTO. Income and PTO appears to be highly correlated, meaning more pay also comes with more PTO. Conversely that means PTO isn’t really used to offset pay.&lt;/p&gt;
+
+&lt;p&gt;Much like the graph above, this graph appears to indicate that Java, Ruby and C# are among the most well compensated. Objective-C / Swift developers appear to be a little bit of an outlier, and while they’re paid similarly to their C# and Ruby peers, they have less favorable PTO policies on average.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/stack-income-pto.png&quot; class=&quot;img-medium img-center&quot; alt=&quot;Income and PTO ratio by programming stack&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What this means to you:&lt;/strong&gt; It means you should learn Java. Just playing… well kind of. No seriously, keep negotiating for more PTO along with better salaries as you progress through your career, and keep an eye on these top languages.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;satisfaction-by-company-type&quot;&gt;Satisfaction by Company Type&lt;/h2&gt;
+
+&lt;p&gt;A huge part of this survey is assessing developers’ satisfaction in a Established Company versus a Startup. This next graph includes the satisfaction rate by company type and programming languages used.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/satisfaction-by-company-and-language.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Satisfaction by programming languages and company types&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s important to point out that “Multiple” stands for people developing on multiple stacks, while “Other” are people working with less popular stacks (popular doesn’t mean better in this case).&lt;/p&gt;
+
+&lt;p&gt;Also, if you’re a &lt;em&gt;dummy&lt;/em&gt; like me, you might be having a hard time reading this graph. Let’s see if the following conclusions can help:&lt;/p&gt;
+
+&lt;h4 id=&quot;developers-are-generally-happier-at-startups&quot;&gt;Developers are generally happier at startups&lt;/h4&gt;
+
+&lt;p&gt;Visually, we can make a hypothesis that people are happier at startups because most of the boxes are green on the right side compared to the left.&lt;/p&gt;
+
+&lt;h4 id=&quot;java-and-c-the-strange-outliers&quot;&gt;Java and C#: the strange outliers&lt;/h4&gt;
+
+&lt;p&gt;People are really satisfied while writing Java in a established company (green square on the left), however they’re a bit miserable writing Java in a startup (red square on the right). Our sample size here isn’t massive, it could just be an outlier.&lt;/p&gt;
+
+&lt;p&gt;C# on the other hand is the quite the opposite. People are much more satisfied writing C# at a startup than they are at an established company.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What this means to you:&lt;/strong&gt; Are you unsatisfied at your current position? You might want to consider joining a startup to shake things up a little. It’s generally riskier, but comes with an overall higher satisfaction rate (as we’ll see in the next few graphs).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;established-companies-vs-startups&quot;&gt;Established Companies vs. Startups&lt;/h2&gt;
+
+&lt;p&gt;Here we’ll explore the average pay rate and overall satisfaction at both established companies and startups with a couple of simpler graphs. Also to be taken with a &lt;em&gt;grain of salt&lt;/em&gt; since the amount of responses for startups was much lower than for established companies.&lt;/p&gt;
+
+&lt;p&gt;Similarly to a graph above, this graph does not take experience into consideration, it’s just an average. This means junior developers probably make less than this average shows, and very senior developers make more.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/satisfaction-income-by-company.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Satisfaction and Income by Startups vs Established Companies&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What this means to you:&lt;/strong&gt; Looking to increase your satisfaction or your income? A startup might be what you’re looking for, however it does come with some risk. Truth is, it is generally estimated that 80-90% of startups will fail. Don’t let that completely bias you against startups however, as established companies can also undergo organizational changes without failing. (&lt;a href=&quot;http://www.forbes.com/sites/theyec/2015/03/05/the-major-reasons-startups-fail-and-how-you-can-avoid-them&quot;&gt;source&lt;/a&gt;)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;finally-the-results-for-each-question&quot;&gt;Finally: the results for each question&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 1:&lt;/strong&gt; What type of work do you do?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-1.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Type of work&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 2:&lt;/strong&gt; Do you have a degree in this field?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-2.png&quot; class=&quot;img-medium img-center&quot; alt=&quot;Developers with college degrees in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 3:&lt;/strong&gt; What programming languages do you work with on a day to day basis?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-3.png&quot; class=&quot;img-medium img-center&quot; alt=&quot;Programming languages used in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 4:&lt;/strong&gt; Where do you work?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-4.png&quot; class=&quot;img-large img-center&quot; alt=&quot;Where developers work in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 5:&lt;/strong&gt; For how many years have you been a professional developer in the workplace?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-5.png&quot; class=&quot;img-small img-center&quot; alt=&quot;Professional experience in years&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 6:&lt;/strong&gt; Would you say you work at a startup or at an established company?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-6.png&quot; class=&quot;img-small img-center&quot; alt=&quot;Developers work in Startup vs Established companies in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 7:&lt;/strong&gt; How satisfied are you at your current position?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-7.png&quot; class=&quot;img-medium img-center&quot; alt=&quot;How satisfied developers are in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 8:&lt;/strong&gt; For how long have you worked at your current company?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-8.png&quot; class=&quot;img-small img-center&quot; alt=&quot;How long developers worked for in their companies in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 9:&lt;/strong&gt; At your current pay, how much do you expect to earn in 2016?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-9.png&quot; class=&quot;img-large img-center&quot; alt=&quot;How much developers get paid in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 10:&lt;/strong&gt; How much health care coverage do you get at your current position?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-10.png&quot; class=&quot;img-small img-center&quot; alt=&quot;How much healthcare coverage developers get in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 11:&lt;/strong&gt; How much PTO (paid time off) do you receive yearly?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-11.png&quot; class=&quot;img-small img-center&quot; alt=&quot;How much PTO developers get in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 12:&lt;/strong&gt; Does your company offer equity as part of your compensation package? (stock options, etc)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-12.png&quot; class=&quot;img-small img-center&quot; alt=&quot;How much company equity developers get in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question 13:&lt;/strong&gt; When was the last time you got a raise at your current job?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/sergiocruz/orlando-salaries/survey-question-13.png&quot; class=&quot;img-small img-center&quot; alt=&quot;Last time developers got raises in Orlando&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;im-way-underpaid-now-what&quot;&gt;I’m way underpaid, now what?&lt;/h2&gt;
+
+&lt;p&gt;No need to panic, patience is key when pursuing a greater income. Keep in mind that these are just averages. By nature the data does not measure an individual’s set of skills and their ability to negotiate. Selling one’s skills to current and prospective employers is crucial.&lt;/p&gt;
+
+&lt;p&gt;With this in mind, our goal for the &lt;a href=&quot;https://www.meetup.com/OrlandoDevs&quot;&gt;Orlando Devs monthly meetup&lt;/a&gt; is to make better developers here in Orlando. Our monthly meetings cover diversified technical skills so you can stay on top of your game, as well as soft skills such as salary negotiation, project estimation, etc.&lt;/p&gt;
+
+&lt;p&gt;We also have one-off events that happen every now and then covering interview preps and such. Follow us on Twitter (link below) to learn more about these events.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-big-thanks-to&quot;&gt;A big thanks to:&lt;/h2&gt;
+
+&lt;p&gt;A huge thanks goes to everyone who participated in this survey. Also a huge thanks to the data crunching team who worked tirelessly to come up with these graphs (in alphabetic order):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Brandon Groves (&lt;a href=&quot;https://github.com/DFieldFL&quot;&gt;GitHub&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Bruno Genaro (&lt;a href=&quot;https://twitter.com/bfgenaro&quot;&gt;Twitter&lt;/a&gt; / &lt;a href=&quot;https://medium.com/@brunogenaro&quot;&gt;Blog&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Jacques Fu (&lt;a href=&quot;https://twitter.com/JacquesKFu&quot;&gt;Twitter&lt;/a&gt; / &lt;a href=&quot;https://medium.com/startups-with-kids&quot;&gt;Blog&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Jeremy Privett (&lt;a href=&quot;https://twitter.com/Atrophius&quot;&gt;Twitter&lt;/a&gt; / &lt;a href=&quot;http://www.jeremyprivett.com&quot;&gt;Website&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Matt Mazur (&lt;a href=&quot;https://twitter.com/mhmazur&quot;&gt;Twitter&lt;/a&gt; / &lt;a href=&quot;http://mattmazur.com&quot;&gt;Website&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Ravel Antunes (&lt;a href=&quot;https://twitter.com/ravelantunes&quot;&gt;Twitter&lt;/a&gt; / &lt;a href=&quot;http://ravelantunes.com&quot;&gt;Website&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Sergio Cruz (&lt;a href=&quot;https://twitter.com/hashtagserg&quot;&gt;Twitter&lt;/a&gt; / &lt;a href=&quot;https://sergiocruz.me&quot;&gt;Website&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;got-questions&quot;&gt;Got questions?&lt;/h2&gt;
+
+&lt;p&gt;If you’re curious to see any other potential correlations we might have left behind, or just want to chat about this data, please feel free to contact us:&lt;/p&gt;
+
+&lt;p&gt;By Twitter: &lt;a href=&quot;https://twitter.com/OrlandoDevs&quot;&gt;@OrlandoDevs&lt;/a&gt;&lt;br /&gt;
+By Email: &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#111;&amp;#114;&amp;#108;&amp;#097;&amp;#110;&amp;#100;&amp;#111;&amp;#100;&amp;#101;&amp;#118;&amp;#099;&amp;#111;&amp;#109;&amp;#109;&amp;#117;&amp;#110;&amp;#105;&amp;#116;&amp;#121;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;&amp;#111;&amp;#114;&amp;#108;&amp;#097;&amp;#110;&amp;#100;&amp;#111;&amp;#100;&amp;#101;&amp;#118;&amp;#099;&amp;#111;&amp;#109;&amp;#109;&amp;#117;&amp;#110;&amp;#105;&amp;#116;&amp;#121;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 19 Jan 2016 11:00:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/orlando-devs-salaries-in-2016/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/orlando-devs-salaries-in-2016/</guid>
+        
+        
+        <category>salary</category>
+        
+        <category>money</category>
+        
+        <category>orlando</category>
+        
+        <category>developers</category>
+        
+      </item>
+    
+      <item>
+        <title>Unit Testing with Mockito for Android</title>
+        <description>&lt;p&gt;Every developer knows that testing software can take a lot of time.  Being the brilliant industrious individuals that we are, engineers invented multiple ways to test software.  Unit testing is just one part among others such as functional testing, integration testing, and acceptance testing.&lt;/p&gt;
+
+&lt;p&gt;In this blog, we will go over how to write unit tests for Android using the latest tools and libraries.  In this example, I am leveraging &lt;a href=&quot;http://junit.org/&quot;&gt;JUnit4&lt;/a&gt; and &lt;a href=&quot;http://mockito.org/&quot;&gt;Mockito&lt;/a&gt;.  &lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-unit-testing&quot;&gt;What is Unit Testing?&lt;/h2&gt;
+&lt;p&gt;Tests the smallest functionality of a feature.  This is generally a function with a single responsibility.  Unit tests shouldn’t be concerned with outside dependancies and if they exist in the code, they should be mocked or stubbed.  You generally test the public interface of your code which should call on any and all unaccessible implementation hidden within the class.&lt;/p&gt;
+
+&lt;p&gt;The goal is to create a test that is relatively simple, easy to debug, fast to execute, and validates that your unit of functionality works within it’s own encapsulation before it is used by another object.&lt;/p&gt;
+
+&lt;h2 id=&quot;example--buying-a-drink&quot;&gt;Example : Buying a Drink&lt;/h2&gt;
+
+&lt;h3 id=&quot;scenario&quot;&gt;Scenario&lt;/h3&gt;
+&lt;p&gt;We have a &lt;code&gt;Patron&lt;/code&gt;, Matt, who enters a cafe and buys a cold, refreshing Nuka Cola.  To unit test the functionality of buying a drink, we will mock both the &lt;code&gt;Cafe&lt;/code&gt; and &lt;code&gt;DrinkInterface&lt;/code&gt; because the implementation of these objects are largely irrelevant to testing the &lt;code&gt;Patron&lt;/code&gt; class.  &lt;/p&gt;
+
+&lt;h4 id=&quot;patron-abridged&quot;&gt;Patron (abridged)&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Patron&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mCash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Cafe&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mCurrentCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mDrinksInPossession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Patron&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cashAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;setCash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cashAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mDrinksInPossession&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;enterCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Cafe&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addNewCustomer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mCurrentCafe&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;purchaseDrinkFromCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NotEnoughMoneyException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drink&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mCurrentCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDrink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mCash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;mCash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newDrink&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mCurrentCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sellDrink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;drink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mDrinksInPossession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newDrink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;drinkinterface&quot;&gt;DrinkInterface&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSizeInOz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCopy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;setup&quot;&gt;Setup&lt;/h3&gt;
+&lt;p&gt;We create Matt to test the &lt;code&gt;Patron&lt;/code&gt; class.  &lt;br /&gt;
+&lt;code&gt;PatronHelper&lt;/code&gt; is a child of the &lt;code&gt;Patron&lt;/code&gt; class which helps reveal unaccesable properties for our tests.  &lt;br /&gt;
+We also create a mocked &lt;code&gt;Cafe&lt;/code&gt; object.  It emulates the class without knowing about the implementation.&lt;/p&gt;
+
+&lt;p&gt;@Before is called before every test.  &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SetUp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mMatt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;PatronHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Matt&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mCafe&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Cafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;creating-a-mocked-drink&quot;&gt;Creating a mocked Drink&lt;/h3&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getMockedDrink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//Creates the mocked object based on the class&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//when getCost is called on the object, return&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Creates a mocked or dummy &lt;code&gt;DrinkInterface&lt;/code&gt; object without copying any of the functionality.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When getCost is called, it will return the value of cost.  &lt;br /&gt;
+When getName is called, it will return the value of targetDrinkName.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;all-together-now&quot;&gt;All Together Now&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;This creates a Nuka Cola mocked drink.  &lt;/li&gt;
+  &lt;li&gt;Makes sure the mocked cafe returns Nuka Cola.  &lt;/li&gt;
+  &lt;li&gt;Check if Matt has a Nuka Cola soft drink.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;BuyDrinkWithEnoughMoney&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Patron&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;NotEnoughMoneyException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//create mocked drink&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Nuka Cola&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;DrinkInterface&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getMockedDrink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sellDrink&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;thenReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;mMatt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;enterCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mMatt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;purchaseDrinkFromCafe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;targetDrinkName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;assertFalse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mMatt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mDrinksInPossession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;assertTrue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mMatt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mDrinksInPossession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nukaColaMock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;learn-more&quot;&gt;Learn more&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Checkout more examples on my &lt;a href=&quot;https://github.com/JohnLeeroy/AndroidUnitTestExamples&quot;&gt;github&lt;/a&gt;  &lt;/li&gt;
+  &lt;li&gt;Local Unit Testing &lt;a href=&quot;http://developer.android.com/training/testing/unit-testing/local-unit-tests.html&quot;&gt;Guide&lt;/a&gt; by Google&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 14 Dec 2015 14:00:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/unit-testing-with-mockito/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/unit-testing-with-mockito/</guid>
+        
+        
+        <category>android</category>
+        
+        <category>java</category>
+        
+        <category>unit testing</category>
+        
+        <category>tdd</category>
+        
+        <category>code coverage</category>
+        
+        <category>tech</category>
+        
+      </item>
+    
+      <item>
+        <title>Alternatives to Traditional CSS Grids</title>
+        <description>&lt;p&gt;We’ve all used them. The traditional twelve column grid, popularized through Bootstrap, have been used for years. In this article though, I want to explore some alternatives. Though the traditional 12 column grid is quite powerful, many developers use it as a crutch instead of searching for better solutions.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-before-times&quot;&gt;The Before Times&lt;/h3&gt;
+
+&lt;p&gt;There was a time when we didn’t have CSS3, Sass, or LESS. We were just starting to move away from HTML tables for layout. The development of the grid system was a marvel of its time in the world of CSS. All of a sudden we could achieve the same layouts we were achieving with tables, but with far more control, and developed with web accessibility in mind.&lt;/p&gt;
+
+&lt;p&gt;This is what Bootstrap uses, and it’s a spitting image of what we all think of as the classic grid system.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-4&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-4&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-4&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-4&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;row&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-6&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;col-md-6&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;.col-md-6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;These kinds of grids had a few problems though.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;They were very class heavy.&lt;/li&gt;
+  &lt;li&gt;They encouraged much tighter coupling of information structure and presentation logic.&lt;/li&gt;
+  &lt;li&gt;The responsive breakpoints were baked in and had to be overwritten, often messily.&lt;/li&gt;
+  &lt;li&gt;The classes are not semantically named.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Don’t get me wrong. These grids work and power some of the most powerful and influential web applications in the world. But, we can do better.&lt;/p&gt;
+
+&lt;h3 id=&quot;enter-flexbox&quot;&gt;Enter Flexbox&lt;/h3&gt;
+
+&lt;p&gt;Flexbox is fairly new, but it has one excellent selling point. Your grid system is native CSS. Yup! You can now setup grids with just native code and in about 20 lines of CSS. No Sass, LESS, or heavy framework, which means we can cut back on the number of dependencies in our styles.&lt;/p&gt;
+
+&lt;p&gt;By setting our &lt;code&gt;display&lt;/code&gt; property to &lt;code&gt;flex&lt;/code&gt; we get access to a ton of features built around setting up grids.&lt;/p&gt;
+
+&lt;p&gt;Here are just a few to give you an idea.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;flex-wrap&lt;/code&gt;: Whether content wraps around a page&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;flex-direction&lt;/code&gt;: Whether content is in columns or rows&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;justify-content&lt;/code&gt;: How space around the container’s children is handled&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With just two of these, we can make an element act like a grid with semantic classes.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;direction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.card&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;48%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sizing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.card.-small&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;23%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.card.-large&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;73%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.card.-full&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;98%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -small&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -small&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -large&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -small&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -full&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Flexbox also allows us to be a lot more flexible with how our grids work and lets us make changes much more quickly. For example, if there was a client request to organize content by columns instead of in rows, this is all we would have to do.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;direction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/* Change */&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;500px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/* Change. */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.card&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;48%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sizing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/* No longer need different sized cards */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, we did have to make some changes, but nothing too drastic. Also, our views only changed in the sense of needing to remove class attributes. The structure of our information didn’t change. As far as the CSS goes, we just deleted a few obsolete classes, added a container height, and told everything to act like columns.&lt;/p&gt;
+
+&lt;p&gt;With Bootstrap, this would involve a complete restructure of the HTML, as well as any CSS that may not agree with the new changes. Though still not a drastic change, it’s the far more disruptive scenario between the two.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-catch&quot;&gt;The Catch&lt;/h4&gt;
+
+&lt;p&gt;Flexbox still has really spotty support in Internet Explorer, with no support for IE8 and IE9, and partial support for IE10 and IE11. It can be great if your target is modern browsers, but not so much for legacy support.&lt;/p&gt;
+
+&lt;h3 id=&quot;enter-sass-mixins&quot;&gt;Enter Sass Mixins&lt;/h3&gt;
+
+&lt;p&gt;If flexbox isn’t your cup of tea or the right solution for you, many frameworks now include mixins that do most of the heavy lifting of a grid for you. A prime example would be &lt;a href=&quot;http://neat.bourbon.io/&quot;&gt;Neat from Thoughtbot&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;a-sass-mixin&quot;&gt;A Sass Mixin?&lt;/h4&gt;
+
+&lt;p&gt;A Sass mixin is essentially a snippet of CSS you would see yourself using in multiple spots in your app. A common use case would be in wrapping up browser prefixes.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;k&quot;&gt;@mixin&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; column-count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;-webkit-column-count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* Chrome, Safari, Opera */&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;-moz-column-count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* Firefox */&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;column-count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.article&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; column-count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;What if a framework stuck all of their grid logic in one of these magic mixins?&lt;/p&gt;
+
+&lt;h4 id=&quot;grid-time&quot;&gt;Grid Time!&lt;/h4&gt;
+
+&lt;p&gt;Simple tiled layouts come with the same benefits of flexbox, in that they are very loosely tied to the markup. We also end up writing significantly less code that’s much more readable.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; outer-container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.card&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; span-columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; omega&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;However, with libraries like Neat, we lose much of the flexibility that flexbox provides in making “table like” grids. For grid layouts with variable sized inner components, the struggle to minimize the effect of our CSS on our markup continues. This is because we are forced to introduce a new row element and class. Still, we do have the benefit of being able to name our own classes.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;nt&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; outer-container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.card-group&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.card&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; span-columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.-small&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; span-columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.-large&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; span-columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.-full&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; span-columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;section&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card-group&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card-group&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -small&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -small&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card-group&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -large&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;6&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -small&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card-group&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;card -full&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;8&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;a-word-on-flexible-public-apis&quot;&gt;A Word On Flexible Public APIs&lt;/h3&gt;
+
+&lt;p&gt;The main criticism against the traditional grid system is not in it’s power, but in how little control it actually give us. The hidden benefit in flexbox and mixin grid frameworks can be seen in the naming of our classes, allowing us to teat them as public APIs. We can choose to make class names semantic, include custom behavior beyond the scope of griding, and even treat our classes as adapters for third party libraries. The more we lean on native CSS and function/mixin libraries, the more resistant to change our codebase becomes and your fellow programmer will thank you for it.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;In 2015, soon to be 2016, there are more options than just a single framework for building CSS grids. Though each solution has its ups and downs, they all aim to drastically improve the quality of our code. If you have the opportunity on a project, give one of these methods a try!&lt;/p&gt;
+
+&lt;p&gt;Happy Coding!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 11 Dec 2015 11:00:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/alternatives-to-the-traditional-css-grid/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/alternatives-to-the-traditional-css-grid/</guid>
+        
+        
+        <category>css</category>
+        
+        <category>sass</category>
+        
+        <category>bootstrap</category>
+        
+        <category>grids</category>
+        
+      </item>
+    
+      <item>
+        <title>Coding with the Grip It and Rip It Mentality</title>
+        <description>&lt;p&gt;Several years ago I used to play golf on a consistent basis.  My friends and I would head out to the local course, and I would try to imagine myself as a pro golfer - strategizing every shot.  However, my buddy Bill would walk up to the tee on every hole and yell, “Grip it and rip it,” before taking a monstrous backswing and tearing into his top-flite.  It was rather amusing while at the same time annoying.  It wasn’t just his golfing strategy, but how he operated in every-day life.&lt;/p&gt;
+
+&lt;p&gt;I mention this story not to tell you about golf, but it’s more to tell you a parable, I think.  You see, as a software developer - term used loosely these days - I took the same approach of meticulously trying to figure out what the final product should be and how I can get there in the most simplest of fashions.  Throughout this process I’d find myself thinking deep into the architecture, coding pattern, etc., and not actually coding the project until I realize the looming deadline is near (like tomorrow).  However, I came to the conclusion that my bud, Bill, may have had the right approach all along.  Maybe some times you just have to roll up your sleeves, grip your keyboard and rip into the code; let the application build organically.  I’ve come across a few reasons why this method was necessary, and I believe this information can help you on your projects moving forward.&lt;/p&gt;
+
+&lt;h3 id=&quot;reasons&quot;&gt;Reasons&lt;/h3&gt;
+
+&lt;h4 id=&quot;client-doesnt-have-a-clue&quot;&gt;Client Doesn’t Have a Clue&lt;/h4&gt;
+
+&lt;p&gt;Yes, you read that correctly.  There is a subset of potential customers out there that have money to spend on software development, but don’t have a clue as to what they want or how they want it.  Essentially, they are wanting you (as the expert) to take a handful of fecal matter (known as features), throw it against the wall (known as the end user), and see what sticks (which features their customers will actually use).  Sounds rather exciting if you ask me, but I digress.  It is very difficult to come up with a plan for these types of projects.  It’s the equivalent to telling your waiter, “Surprise Me,” while placing your order at a restaurant.&lt;/p&gt;
+
+&lt;p&gt;The key is to gather enough information to get started on the project.  Get into the application’s fundamental goal.  Once you have that, you can start prototyping the concept for your client.     &lt;/p&gt;
+
+&lt;p&gt;For example, a client requested an application that allows users to signin to a registration form via mobile devices.  Upon registering, the user’s address information would populate a marker on an interactive map to be displayed on the convention floor.  The purpose was to display the location of interested customers for convention goers to see in real-time.  The client didn’t know what it should look like, how the user would interact with the form, or how the map was to be displayed.&lt;/p&gt;
+
+&lt;p&gt;To begin, I opened up my TextMate and began to build a Google Map container with a simple form that would submit the address to the Google Map API and return the longitude and latitude to which a marker populated at the location.  It was as prototypical as it could be; no bells, knobs, and whistles.  This was enough for the client to begin providing more detailed feedback as to what they wanted.  But, once we know what the client truly wants, what technologies do we use to build it?  This leads to my next reason for ripping into the code.&lt;/p&gt;
+
+&lt;h4 id=&quot;you-dont-have-a-clue&quot;&gt;You Don’t Have a Clue&lt;/h4&gt;
+
+&lt;p&gt;Seriously!  Unless you’ve predetermined a specific coding language or stack, the reality is you probably don’t have a clue as to how to get to your end game.  If you do, then you’re special like Rain Man.  The fun part of development is figuring out how you get to your end game using a multitude of available tools, libraries, frameworks, etc.  Knowing what to use can be determined by just starting to code out the project using the completed requirements provided by the client.&lt;/p&gt;
+
+&lt;p&gt;Returning to the project I mentioned, I originally started with PHP, my preferred language at the time.  I needed to save the data in a database, provide access to the data from multiple platforms and display data in real-time to an interactive map.  I had experience building APIs in PHP, but as I dug further into the code, I realized that the real-time interactivity would be a bit convoluted in PHP.  This discovery led me to look into NodeJS.  However, Node by itself doesn’t provide a RESTful-API-like infrastructure or real-time communication to the browser.  Therefore, adding ExpressJS and SocketIO helped get my Node closer to that goal.  Additionally, I needed Node to communicate with MySQL, which there’s a library for that.  But, piece-mealing all of this together seemed to be a bit daunting, and allowed for more points of failure.  Enter SailsJS.  SailsJS is a Node framework that allows you to build a complete RESTful API in Node with all the components including RESTful routes, SocketIO and built in ORM for database communication.  It’s light weight and allows for extremely rapid development using JavaScript.&lt;/p&gt;
+
+&lt;p&gt;Considering SailsJS (Node) as a backend, it only made sense to use JavaScript on the front-end, especially since we needed to incorporate SocketIO.  In the end, we went with AngularJS as it contained libraries for interfacing with Google Maps.&lt;/p&gt;
+
+&lt;p&gt;The conclusion of the project was accomplished by ripping into the code and organically figuring out what would work and what wouldn’t.  But there is one more reason you should just start coding.&lt;/p&gt;
+
+&lt;h4 id=&quot;you-have-too-much-of-a-clue&quot;&gt;You Have Too Much of a Clue&lt;/h4&gt;
+
+&lt;p&gt;Sorry, I was too lazy to come up with a more catchy subtitle.  The reality is some of you have more experience in different areas and you know exactly what you need to do to complete a project.  You think about the architecture and map it out in your head.  You know the stack you want to use, and you put together the list of libraries that you need.  If you’re like me, you’ve probably completed the project in your head and already have that feeling of accomplishment, but in reality you haven’t started.  Yes, it’s that feeling of, “I got this!” that paralyzes your progress.&lt;/p&gt;
+
+&lt;p&gt;The truth of the matter is there’s a term for people like you and me, and it’s called “Analysis Paralysis.”  You’ve planned out everything, but unfortunately, what’s in your head has to make it into your text editor.  If you feel yourself over-thinking to the point of overwhelming, just open up your editor and begin coding.  Once you begin dumping what’s in your head onto a working document, you’ll be surprised as to how less complicated the project may be.  You may not need those libraries you thought about.&lt;/p&gt;
+
+&lt;p&gt;Recently, I worked on a project that required a .NET integration from an open source PHP application.  I was thinking in my head about all of the pieces I needed in order to perform the integration.  In .NET, there’s an MVC Framework configuration that allows you to quickly put together a product with minimal effort.  My experience as an API developer pointed me to using this MVC configuration; However, I ran into a game changer.  While building the API, I found that the framework has a configuration called Web API 2.  This configuration, by default, has a very similar infrastructure to that of Symfony (PHP framework) with entity relationships behind an MVC pattern.  Using this configuration saved me a significant amount of time and proved to be a better option to what I initially invisioned.  The reality is, doing the work led me to the right path in completing the work.  So just do it.&lt;/p&gt;
+
+&lt;h3 id=&quot;do-it&quot;&gt;Do It&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/authors/rey/doit.png&quot; alt=&quot;&amp;quot;Do It!&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I can tell you that starting is one of the hardest steps in developing software even when you have paying clients.  What we do is complex, and requires us to think in ways that surpass the understanding of most of our friends, families, etc.  But, this gift that we possess gives us the power to create things that only others can imagine.  If you find yourself in one of the three scenarios just remember that the key is to “Do It,” and don’t be afraid to “Grip It and Rip It.”&lt;/p&gt;
+</description>
+        <pubDate>Mon, 07 Dec 2015 10:00:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/grip-it-and-rip-it/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/grip-it-and-rip-it/</guid>
+        
+        
+        <category>professional development</category>
+        
+        <category>development</category>
+        
+        <category>tech</category>
+        
+      </item>
+    
+      <item>
+        <title>A Beginner&#39;s Perspective on Tech Talks</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;This article was originally published on &lt;a href=&quot;http://www.jeremyprivett.com/beginner-perspective-tech-talks.html&quot;&gt;jeremyprivett.com&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A month ago, I did a talk at the PHP User Group I organize called “Let’s Talk About Money for Developers”. It was the most ambitious talk I’ve ever given to what turned out to be the largest group of people I’ve spoken in front of, to date. I’ve done a lot of webinars for the purposes of marketing and sales for my consulting businesses in the past, but I haven’t done a ton of in-person speaking to audiences larger than about 5 people.&lt;/p&gt;
+
+&lt;p&gt;Getting heavily involved in the local tech community over the last couple of years has had a tremendous ROI for me. Speaking at meetups has been part of my strategy for getting involved. Doing these kinds of talks, and doing them well, is a fantastic way to catapult yourself into a position of authority on a subject because you’re demonstrating your knowledge and ability to communicate that knowledge to your peers. I wanted to take some time to talk about my experience. If you’re interested or on the fence about speaking, I hope this insight will guide you.&lt;/p&gt;
+
+&lt;h3 id=&quot;so-why-do-tech-talks&quot;&gt;So, why do tech talks?&lt;/h3&gt;
+
+&lt;p&gt;A primary goal of people who do these talks is to help people understand a subject that the speaker really cares about. In my experience, the preparation that’s required to teach someone else how to do or use something further cements my own knowledge of the subject matter. Teaching can be just as much about your own learning as it is everyone else’s.&lt;/p&gt;
+
+&lt;p&gt;I can say with absolute certainty that if you practice and become effective at communicating ideas within your community, you will quickly be seen as an expert on the topics you speak on. This can do wonderful things for your career trajectory, because you’re proving very publicly that you know your stuff and can also teach others.&lt;/p&gt;
+
+&lt;h3 id=&quot;okay-youre-convincing-me-what-should-i-talk-about&quot;&gt;Okay, you’re convincing me. What should I talk about?&lt;/h3&gt;
+
+&lt;p&gt;Put simply: Any technology you can be animated about. Are you really excited about new functionality in the latest version of [&lt;em&gt;insert your favorite framework here&lt;/em&gt;]? Teach other people how to use that functionality. Explain to them what common use cases for the functionality are and the best ways to take advantage of them.&lt;/p&gt;
+
+&lt;p&gt;The audience will feed off of your passion. They will also be able to tell if you’re forcing things and don’t care about what you’re talking about. You’ll get out of your audience what you put into them, so being energetic in your explanation will command more attention, particularly if you’re not as well-known.&lt;/p&gt;
+
+&lt;h3 id=&quot;cool-ive-got-a-topic-where-do-i-present-and-how&quot;&gt;Cool. I’ve got a topic. Where do I present and how?&lt;/h3&gt;
+
+&lt;p&gt;Get acquainted with your local meetup groups if you haven’t already. Search &lt;a href=&quot;http://www.meetup.com&quot;&gt;meetup.com&lt;/a&gt; for groups that might be interested in the subject you want to speak on. As a meetup organizer, I can tell you that we love to hear from and see new presenters at our events. You also make our lives easier by volunteering to come out and talk. That saves us time in hunting down a speaker for one of our events.&lt;/p&gt;
+
+&lt;p&gt;Let’s talk about format for a second. The talks I’ve personally given have fallen into a few classifications:&lt;/p&gt;
+
+&lt;h4 id=&quot;lightning-talks&quot;&gt;Lightning Talks&lt;/h4&gt;
+
+&lt;p&gt;Lightning Talks are super short, extremely high-level overviews of a subject. They’re usually about 5 - 10 minutes and kind of dense with information. A Lightning Talk is a great way to get started with speaking because it can have a significantly lower barrier to entry than the other formats. It’s a shorter burst of information, doesn’t require quite as much upfront preparation as the other formats, and is often easier to practice.&lt;/p&gt;
+
+&lt;p&gt;The downside to Lightning Talks is that newer speakers tend to ramble. I’m personally guilty of this. It can be hard to fit everything you want to say into a 5 - 10 minute window. Practice is important.&lt;/p&gt;
+
+&lt;h4 id=&quot;short-talks&quot;&gt;Short Talks&lt;/h4&gt;
+
+&lt;p&gt;I consider a talk between 15 - 30-ish minutes to be a “short talk”. These generally have more detailed information, examples, and demos than a Lightning Talk. A lot of meetups will have multiple speakers in a single evening, so this format lends itself well to those groups.&lt;/p&gt;
+
+&lt;h4 id=&quot;long-talks&quot;&gt;Long Talks&lt;/h4&gt;
+
+&lt;p&gt;I consider “long talks” as anything at or beyond 40 minutes. These are very detailed or in-depth looks at a subject. Frequently, they include demos or examples and are the most likely to illicit questions from the audience based on the broader range of subject matter covered. These are usually the length of one-talk-per-meetup group or conference talks.&lt;/p&gt;
+
+&lt;p&gt;My money talk clocked in at about an hour and I still had material left over. I’ll be cutting and editing it down to two separate 30 - 40 minute talks.&lt;/p&gt;
+
+&lt;h3 id=&quot;dont-talks-usually-have-some-kind-of-slides-or-presentation&quot;&gt;Don’t talks usually have some kind of slides or presentation?&lt;/h3&gt;
+
+&lt;p&gt;Yeah, and I’ve seen sort of two approaches in slide style and layout. I don’t necessarily prefer one over the other, so I’ll describe both of them here as best as I can.&lt;/p&gt;
+
+&lt;h4 id=&quot;information-in-slides&quot;&gt;Information in Slides&lt;/h4&gt;
+
+&lt;p&gt;The Information in Slides approach is one where the presenter will try and put relevant information inside of the slides for whatever he’s speaking about at any given moment. This tends to make your slides useful as an overview of the topic you were speaking on, even after the talk has passed.&lt;/p&gt;
+
+&lt;p&gt;Some tips: Try to keep slides from being too wordy. Express clear, concise thoughts. Ideally, a single, short sentence. If you use bullet points, take advantage of fade-in animations to put them on the screen as you talk about them. This keeps people from reading ahead and not listening to what you’re saying.&lt;/p&gt;
+
+&lt;p&gt;Also, try to avoid reading verbatim from your slides. That passion I mentioned earlier? That’s lost in translation when you read to your audience, rather than engaging with them.&lt;/p&gt;
+
+&lt;h4 id=&quot;information-in-you&quot;&gt;Information in You&lt;/h4&gt;
+
+&lt;p&gt;In the Information in You approach, the slides primarily contain imagery that expresses the idea you’re communicating. Maybe very short phrases infrequently. With mostly pictures and no words in the slides, the audience focuses on you and what you’re saying, instead of trying to read and listen at the same time.&lt;/p&gt;
+
+&lt;p&gt;If you use this method, I highly recommend publishing companion content, like a blog post, to explain the details for the people who weren’t present or want to re-review. Recordings of the talk are also highly encouraged for this style.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-do-i-keep-track-of-all-the-info-for-my-talk&quot;&gt;How do I keep track of all the info for my talk?&lt;/h3&gt;
+
+&lt;p&gt;I organize basically my entire life in Trello these days. This includes the talks that I prepare. I put all of my notes and slide info into a Trello board and arrange it how I want. Then I can rapid-fire create slides using the order and contents of the Trello cards as a basis. Information is just a lot easier to move around inside of Trello than a presentation building tool, in my opinion.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/posts/money-talk-trello.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/assets/posts/money-talk-trello.png&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt; &lt;em&gt;(Click for full-size)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;how-do-i-make-sure-im-not-misleading-people&quot;&gt;How do I make sure I’m not misleading people?&lt;/h3&gt;
+
+&lt;p&gt;Research, Research, Research. You need to know your topic sufficiently to speak on it, but you don’t necessarily have to be a multi-year veteran to give a talk on something. I like seeing beginner-level talks on subjects by people who have recently learned the topic and are trying to advance their knowledge.&lt;/p&gt;
+
+&lt;h3 id=&quot;okay-im-ready&quot;&gt;Okay, I’m ready!&lt;/h3&gt;
+
+&lt;p&gt;Hold on. Have you practiced your talk yet?&lt;/p&gt;
+
+&lt;h3 id=&quot;no-i-just-go-through-the-slides-and-talk-right-no-big-deal&quot;&gt;No? I just go through the slides and talk, right? No big deal.&lt;/h3&gt;
+
+&lt;p&gt;Take it from someone who froze up in his first presentation: Practice is crucial and essential to making sure you’re confident in the things you want to say. You don’t want to be standing in front of 20+ people and then forget the subject matter you’re talking about because you were unprepared for all those eyeballs looking at you.&lt;/p&gt;
+
+&lt;p&gt;I’m sure you’re wondering how to practice. It’s definitely going to feel weird to do this, but get up and walk around the room as if you were presenting. Pretend there’s an audience there. Think about how you think they’ll react to the things you say. It also helps to talk at a mirror so you can see how you look when you speak. It takes a long time for this to feel normal or natural, so don’t be discouraged if it feels extremely weird and strange.&lt;/p&gt;
+
+&lt;p&gt;Once you’re feeling good about the presentation, ask some trusted friends to watch you do a run-through of some or all of it and give their thoughts.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-if-i-freeze-up&quot;&gt;What if I freeze up?&lt;/h3&gt;
+
+&lt;p&gt;Okay, so during the presentation, one of the things that’s worked for me to help keep the nerves under control is finding someone in the audience who you can focus on to talk to directly. 1-on-1 conversations are way less intimidating than speaking to a room full of people. Try to let your eyes wander around the room and make eye contact with a lot of people, but if you start to feel yourself get overly nervous or freeze up, you’ve got one person you can come back to and lock on to help calm yourself down.&lt;/p&gt;
+
+&lt;p&gt;I’ve had the good fortune of having friends at my presentations to help with this part. My money talk was crazy stressful because I felt like I hadn’t prepared enough. I had a friend there who I could turn and look at every time I started to feel overwhelmed and I honestly feel like it made a world of difference.&lt;/p&gt;
+
+&lt;p&gt;Your situation might be different, but this worked for me.&lt;/p&gt;
+
+&lt;h3 id=&quot;im-afraid-my-demo-is-going-to-crash-and-burn&quot;&gt;I’m afraid my demo is going to crash and burn.&lt;/h3&gt;
+
+&lt;p&gt;This is a legitimate thing to be afraid of. Even the pros sometimes flub live demos. My recommendation is to record the thing you want to demo ahead of time and embed a gif or a video of it in your presentation. This makes you immune to things like internet failures or other weirdness that can cause a live demo to go off the rails.&lt;/p&gt;
+
+&lt;p&gt;Related to this point: Live coding is extremely impressive but equally risky. If you’re going to do it, &lt;strong&gt;practice the hell out of it&lt;/strong&gt; before it’s time to present it. Treat it like a &lt;a href=&quot;https://en.wikipedia.org/wiki/Kata&quot;&gt;Kata&lt;/a&gt;. Ideally, your live coding exercise shouldn’t have to be thought about and can be mostly muscle memory when it comes time to do it in front of a live audience.&lt;/p&gt;
+
+&lt;h3 id=&quot;will-people-ask-questions&quot;&gt;Will people ask questions?&lt;/h3&gt;
+
+&lt;p&gt;I’ve noticed that people tend to be shy and not very forthcoming with questions at meetups, but you should prepare for them anyway. Try to anticipate what people might ask based on the material. In the moment, if you can’t answer someone’s question, tell them it’s something you’ll research and get back to them. Try to find them after the presentation is over and exchange contact info so you can send along your answer to their question after the fact.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-about-after-the-presentation-is-over&quot;&gt;What about after the presentation is over?&lt;/h3&gt;
+
+&lt;p&gt;Continue the conversation in some way. Direct people to your social media presence or your blog. I recommend posting companion pieces to presentations on your blog so that you can reuse the content. If there’s a recording of the talk, include it there. Definitely include an embedded version or link to the slides that you used.&lt;/p&gt;
+
+&lt;h3 id=&quot;okay-im-gonna-give-this-a-shot&quot;&gt;Okay, I’m gonna give this a shot.&lt;/h3&gt;
+
+&lt;p&gt;Great. I hope you’ve learned at least a little about doing tech talks from this. I’m a pretty huge introvert by nature, so if I can somehow do this and people enjoy it, I’m sure others can as well. Practice is a huge part of it and — like most things — the more you do it, the better you’ll get at it.&lt;/p&gt;
+
+&lt;p&gt;If you do decide to do some speaking, I’d be curious to see what you talk about. You’re welcome to e-mail me details about what you’re speaking on and your slides and I’ll give you some feedback. And if you’re interested in more content like this, &lt;a href=&quot;http://www.jeremyprivett.com&quot;&gt;fill out the form on my site&lt;/a&gt; to get on my newsletter.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 23 Nov 2015 09:00:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/beginner-perspective-tech-talks/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/beginner-perspective-tech-talks/</guid>
+        
+        
+        <category>professional development</category>
+        
+        <category>public speaking</category>
+        
+        <category>development</category>
+        
+        <category>tech</category>
+        
+      </item>
+    
+      <item>
+        <title>What GitHub Pages, CloudFlare and AWS Lambda have in common</title>
+        <description>&lt;p&gt;We’re proud to announce that the Orlando Devs blog is live! And not only is our blog live, but it is also running really fast and we would love to give you a rundown on how we built it.&lt;/p&gt;
+
+&lt;h2 id=&quot;tldr-too-long-didnt-read&quot;&gt;TL;DR &lt;em&gt;(Too long; didn’t read):&lt;/em&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We launched the official Orlando Devs blog and it’s open source! Anyone in the community is welcome to  &lt;a href=&quot;https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md&quot;&gt;add new articles&lt;/a&gt;, as we have a fancy way of adding articles to the blog automatically after merging &lt;strong&gt;your&lt;/strong&gt; pull requests :)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;the-master-plan&quot;&gt;The Master Plan&lt;/h2&gt;
+
+&lt;p&gt;Our idea was to have an open source blog. We wanted developers within our community to contribute to our blog using the &lt;em&gt;whole open source paradigm&lt;/em&gt; (forks, pull request reviews, etc).&lt;/p&gt;
+
+&lt;p&gt;We thought this would be a good way to get people’s names out there and have them show off their skills in a written form, as well as making &lt;em&gt;newer&lt;/em&gt; developers getting used to contributing to open source projects.&lt;/p&gt;
+
+&lt;h2 id=&quot;github-pages&quot;&gt;GitHub Pages&lt;/h2&gt;
+
+&lt;p&gt;From day one we knew that we wanted to host our site on &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. Using &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; was also a no-brainer since GitHub Pages has native integration with it. We &lt;a href=&quot;https://help.github.com/articles/using-jekyll-with-pages&quot;&gt;used a tutorial&lt;/a&gt; and had a prototype running in 5 minutes.&lt;/p&gt;
+
+&lt;p&gt;There was one problem with GitHub Pages though: it doesn’t support &lt;code&gt;https&lt;/code&gt; on custom domain names. So we went on to find a way to fix this.&lt;/p&gt;
+
+&lt;h2 id=&quot;cloudflare&quot;&gt;CloudFlare&lt;/h2&gt;
+
+&lt;p&gt;We decided to use &lt;a href=&quot;https://cloudflare.com&quot;&gt;CloudFlare&lt;/a&gt; to add &lt;code&gt;https&lt;/code&gt; support to our custom domain. We also leveraged CloudFlare’s caching capabilities to speed up our site and the hardest part about this whole integration was getting the correct DNS settings in place.&lt;/p&gt;
+
+&lt;h3 id=&quot;cloudflare-dns-settings&quot;&gt;CloudFlare DNS Settings&lt;/h3&gt;
+
+&lt;p&gt;This is what our DNS settings look like:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CNAME*&lt;/td&gt;
+      &lt;td&gt;orlandodevs.com&lt;/td&gt;
+      &lt;td&gt;orlandodevs.github.io&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CNAME&lt;/td&gt;
+      &lt;td&gt;io&lt;/td&gt;
+      &lt;td&gt;orlandodevs.github.io&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CNAME&lt;/td&gt;
+      &lt;td&gt;www&lt;/td&gt;
+      &lt;td&gt;orlandodevs.com&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;em&gt;* We are taking advantage of CloudFlare’s CNAME Flattening&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;cloudflare-page-rules&quot;&gt;CloudFlare Page Rules&lt;/h3&gt;
+
+&lt;p&gt;We setup two “Page Rules” within CloudFlare:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Always uses &lt;code&gt;https&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt;
+This rule forces the site to always use &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Custom Caching&lt;/strong&gt;&lt;br /&gt;
+Here we forced our site to “Cache everything”. This is important because by default &lt;a href=&quot;https://support.cloudflare.com/hc/en-us/articles/200168306-Is-there-a-tutorial-for-PageRules-&quot; target=&quot;_blank&quot;&gt;CloudFlare &lt;em&gt;does not cache&lt;/em&gt; HTML and other dynamic pages&lt;/a&gt; (as somebody kindly pointed out to us on Hacker News). Please note that we are talking about Edge Cache here, which is a form of server-side caching that CloudFlare provides (as well as other CDN providers).&lt;/p&gt;
+
+&lt;p&gt;Once CloudFlare was configured, we only ran into one problem: &lt;strong&gt;Edge cache invalidation&lt;/strong&gt;. Since we set CloudFlare to cache everything on the server-side for 1 week, how could we make sure the home page is instantly refreshed when we add new articles?&lt;/p&gt;
+
+&lt;p&gt;It turns out that CloudFlare offers an API to purge its cache, so we started investigating on how we could consume this API every time a pull request is merged.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The solution?&lt;/strong&gt; GitHub Webhooks &amp;amp; AWS Lambda.&lt;/p&gt;
+
+&lt;h2 id=&quot;aws-lambda&quot;&gt;AWS Lambda&lt;/h2&gt;
+
+&lt;p&gt;We soon learned that AWS Lambda is great solution for our cache invalidation problem, as it saves us the headache of setting up a new server. AWS Lambda is inexpensive, so it turned out to be a win-win solution for us.&lt;/p&gt;
+
+&lt;p&gt;Here’s how Lambda’s billing works: every month, the first 1 million requests are free. If we go over the limit it will cost us 20 cents per each additional million requests. We don’t think we will ever merge anything close to 1 million pull requests a month, so we’re good!&lt;/p&gt;
+
+&lt;p&gt;Here’s how this process went:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;We signed up for AWS and added a new Lambda function using &lt;code&gt;Node.js&lt;/code&gt;. We named the function &lt;code&gt;cloudFlareInvalidation&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We used the “Upload ZIP File” option to deploy the project.&lt;br /&gt;
+&lt;em&gt;We ran into a little problem while uploading the zip file: We were zipping the parent directory containing our project, however this didn’t work. The zip file uploaded needs to have the entry file (called &lt;code&gt;app.js&lt;/code&gt; in our project) at the root of the compressed folder.&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We then set up an endpoint for our function using AWS’s API Gateway. During this step we were able to point this new API endpoint to the &lt;code&gt;cloudFlareInvalidation&lt;/code&gt; function.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Configured GitHub Webhooks for our blog’s repo using the URL provided by the API Gateway. The only event we needed this Webhook to work was the &lt;code&gt;Page Build&lt;/code&gt; event.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finally, we &lt;a href=&quot;https://github.com/OrlandoDevs/cache-purger&quot;&gt;open sourced the project&lt;/a&gt; (be sure to check it out!)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;booyah&quot;&gt;&lt;em&gt;Booyah&lt;/em&gt;!&lt;/h2&gt;
+
+&lt;p&gt;We now have a whole workflow for &lt;strong&gt;you&lt;/strong&gt; to contribute to our open source blog. All tech-related topics are welcome, although new articles are subject to review by moderators. So please, read our &lt;a href=&quot;https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md&quot;&gt;guide to start contributing&lt;/a&gt; and &lt;a href=&quot;https://github.com/OrlandoDevs/orlandodevs.github.io/compare&quot;&gt;open a pull request&lt;/a&gt; with your brand new article today!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 20 Nov 2015 18:30:00 +0000</pubDate>
+        <link>https://orlandodevs.com/blog/github-pages-cloudfront-aws-lambda/</link>
+        <guid isPermaLink="true">https://orlandodevs.com/blog/github-pages-cloudfront-aws-lambda/</guid>
+        
+        
+        <category>github pages</category>
+        
+        <category>cloudflare</category>
+        
+        <category>aws lambda</category>
+        
+        <category>jekyll</category>
+        
+        <category>javascript</category>
+        
+      </item>
+    
+  </channel>
+</rss>

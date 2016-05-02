@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <title>Alternatives to Traditional CSS Grids</title>
+    <meta property="og:title" content="Alternatives to Traditional CSS Grids" />
+
+    
+    
+    <meta name="description" content="Since its release into the web development world several years ago, the traditional 12 column grid has become the developer's defacto solution to a base UI. But is it the right choice for everything?
+">
+    <meta property="og:description" content="Since its release into the web development world several years ago, the traditional 12 column grid has become the developer's defacto solution to a base UI. But is it the right choice for everything?
+" />
+    <meta property="og:type" content="article" />
+    
+
+    
+    <meta property="og:image" content="https://orlandodevs.com/assets/odevs-helmet.png">
+    <meta property="og:url" content="https://orlandodevs.com/blog/alternatives-to-the-traditional-css-grid/" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="https://orlandodevs.com/blog/alternatives-to-the-traditional-css-grid/">
+</head>
+
+
+  <body class="oc">
+
+    
+
+<header class="oc-layout-header">
+  <a href="/" class="oc-logo">
+    <img src="/assets/odevs-logo.png" alt="Orlando Devs" width="600" height="116" />
+  </a>
+</header>
+
+
+    <main class="oc-layout-page">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Alternatives to Traditional CSS Grids</h1>
+    <p class="post-meta">Dec 11, 2015 • Christopher McLean</p>
+  </header>
+
+  <article class="post-content">
+    <p>We’ve all used them. The traditional twelve column grid, popularized through Bootstrap, have been used for years. In this article though, I want to explore some alternatives. Though the traditional 12 column grid is quite powerful, many developers use it as a crutch instead of searching for better solutions.</p>
+
+<h3 id="the-before-times">The Before Times</h3>
+
+<p>There was a time when we didn’t have CSS3, Sass, or LESS. We were just starting to move away from HTML tables for layout. The development of the grid system was a marvel of its time in the world of CSS. All of a sudden we could achieve the same layouts we were achieving with tables, but with far more control, and developed with web accessibility in mind.</p>
+
+<p>This is what Bootstrap uses, and it’s a spitting image of what we all think of as the classic grid system.</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-8&quot;</span><span class="nt">&gt;</span>.col-md-8<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-4&quot;</span><span class="nt">&gt;</span>.col-md-4<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-4&quot;</span><span class="nt">&gt;</span>.col-md-4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-4&quot;</span><span class="nt">&gt;</span>.col-md-4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-4&quot;</span><span class="nt">&gt;</span>.col-md-4<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>.col-md-6<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>.col-md-6<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
+<p>These kinds of grids had a few problems though.</p>
+
+<ol>
+  <li>They were very class heavy.</li>
+  <li>They encouraged much tighter coupling of information structure and presentation logic.</li>
+  <li>The responsive breakpoints were baked in and had to be overwritten, often messily.</li>
+  <li>The classes are not semantically named.</li>
+</ol>
+
+<p>Don’t get me wrong. These grids work and power some of the most powerful and influential web applications in the world. But, we can do better.</p>
+
+<h3 id="enter-flexbox">Enter Flexbox</h3>
+
+<p>Flexbox is fairly new, but it has one excellent selling point. Your grid system is native CSS. Yup! You can now setup grids with just native code and in about 20 lines of CSS. No Sass, LESS, or heavy framework, which means we can cut back on the number of dependencies in our styles.</p>
+
+<p>By setting our <code>display</code> property to <code>flex</code> we get access to a ton of features built around setting up grids.</p>
+
+<p>Here are just a few to give you an idea.</p>
+
+<ul>
+  <li><code>flex-wrap</code>: Whether content wraps around a page</li>
+  <li><code>flex-direction</code>: Whether content is in columns or rows</li>
+  <li><code>justify-content</code>: How space around the container’s children is handled</li>
+</ul>
+
+<p>With just two of these, we can make an element act like a grid with semantic classes.</p>
+
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">section</span> <span class="p">{</span>
+  <span class="k">display</span><span class="o">:</span> <span class="n">flex</span><span class="p">;</span>
+  <span class="n">flex</span><span class="o">-</span><span class="n">wrap</span><span class="o">:</span> <span class="n">wrap</span><span class="p">;</span>
+  <span class="n">flex</span><span class="o">-</span><span class="k">direction</span><span class="o">:</span> <span class="n">row</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.card</span> <span class="p">{</span>
+  <span class="k">height</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">48%</span><span class="p">;</span>
+  <span class="k">margin</span><span class="o">:</span> <span class="m">1%</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="n">box</span><span class="o">-</span><span class="n">sizing</span><span class="o">:</span> <span class="k">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.card.-small</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">23%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.card.-large</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">73%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.card.-full</span>  <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">98%</span><span class="p">;</span> <span class="p">}</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;section&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -small&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -small&#39;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -large&#39;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -small&#39;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -full&#39;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span></code></pre></div>
+
+<p>Flexbox also allows us to be a lot more flexible with how our grids work and lets us make changes much more quickly. For example, if there was a client request to organize content by columns instead of in rows, this is all we would have to do.</p>
+
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">section</span> <span class="p">{</span>
+  <span class="k">display</span><span class="o">:</span> <span class="n">flex</span><span class="p">;</span>
+  <span class="n">flex</span><span class="o">-</span><span class="n">wrap</span><span class="o">:</span> <span class="n">wrap</span><span class="p">;</span>
+  <span class="n">flex</span><span class="o">-</span><span class="k">direction</span><span class="o">:</span> <span class="n">column</span><span class="p">;</span> <span class="c">/* Change */</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="k">height</span><span class="o">:</span> <span class="m">500px</span><span class="p">;</span> <span class="c">/* Change. */</span>
+<span class="p">}</span>
+
+<span class="nc">.card</span> <span class="p">{</span>
+  <span class="k">height</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="k">width</span><span class="o">:</span> <span class="m">48%</span><span class="p">;</span>
+  <span class="k">margin</span><span class="o">:</span> <span class="m">1%</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="n">box</span><span class="o">-</span><span class="n">sizing</span><span class="o">:</span> <span class="k">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* No longer need different sized cards */</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;section&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span></code></pre></div>
+
+<p>Now, we did have to make some changes, but nothing too drastic. Also, our views only changed in the sense of needing to remove class attributes. The structure of our information didn’t change. As far as the CSS goes, we just deleted a few obsolete classes, added a container height, and told everything to act like columns.</p>
+
+<p>With Bootstrap, this would involve a complete restructure of the HTML, as well as any CSS that may not agree with the new changes. Though still not a drastic change, it’s the far more disruptive scenario between the two.</p>
+
+<h4 id="the-catch">The Catch</h4>
+
+<p>Flexbox still has really spotty support in Internet Explorer, with no support for IE8 and IE9, and partial support for IE10 and IE11. It can be great if your target is modern browsers, but not so much for legacy support.</p>
+
+<h3 id="enter-sass-mixins">Enter Sass Mixins</h3>
+
+<p>If flexbox isn’t your cup of tea or the right solution for you, many frameworks now include mixins that do most of the heavy lifting of a grid for you. A prime example would be <a href="http://neat.bourbon.io/">Neat from Thoughtbot</a>.</p>
+
+<h4 id="a-sass-mixin">A Sass Mixin?</h4>
+
+<p>A Sass mixin is essentially a snippet of CSS you would see yourself using in multiple spots in your app. A common use case would be in wrapping up browser prefixes.</p>
+
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="k">@mixin</span><span class="nf"> column-count</span><span class="p">(</span><span class="nv">$num</span><span class="p">)</span> <span class="p">{</span>
+  <span class="na">-webkit-column-count</span><span class="o">:</span> <span class="nv">$num</span><span class="p">;</span> <span class="cm">/* Chrome, Safari, Opera */</span>
+  <span class="na">-moz-column-count</span><span class="o">:</span> <span class="nv">$num</span><span class="p">;</span> <span class="cm">/* Firefox */</span>
+  <span class="na">column-count</span><span class="o">:</span> <span class="nv">$num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.article</span> <span class="p">{</span> <span class="k">@include</span><span class="nd"> column-count</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="p">}</span></code></pre></div>
+
+<p>What if a framework stuck all of their grid logic in one of these magic mixins?</p>
+
+<h4 id="grid-time">Grid Time!</h4>
+
+<p>Simple tiled layouts come with the same benefits of flexbox, in that they are very loosely tied to the markup. We also end up writing significantly less code that’s much more readable.</p>
+
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">section</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> outer-container</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nc">.card</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="k">@include</span><span class="nd"> omega</span><span class="p">(</span><span class="mi">2</span><span class="kt">n</span><span class="p">);</span>
+
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;section&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span></code></pre></div>
+
+<p>However, with libraries like Neat, we lose much of the flexibility that flexbox provides in making “table like” grids. For grid layouts with variable sized inner components, the struggle to minimize the effect of our CSS on our markup continues. This is because we are forced to introduce a new row element and class. Still, we do have the benefit of being able to name our own classes.</p>
+
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">section</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> outer-container</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nc">.card-group</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> row</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nc">.card</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+
+  <span class="k">&amp;</span><span class="nc">.-small</span> <span class="p">{</span> <span class="k">@include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="p">}</span>
+  <span class="k">&amp;</span><span class="nc">.-large</span> <span class="p">{</span> <span class="k">@include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span> <span class="p">}</span>
+  <span class="k">&amp;</span><span class="nc">.-full</span>  <span class="p">{</span> <span class="k">@include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;section&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card-group&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card-group&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -small&#39;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -small&#39;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card&#39;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card-group&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -large&#39;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -small&#39;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card-group&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;card -full&#39;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span></code></pre></div>
+
+<h3 id="a-word-on-flexible-public-apis">A Word On Flexible Public APIs</h3>
+
+<p>The main criticism against the traditional grid system is not in it’s power, but in how little control it actually give us. The hidden benefit in flexbox and mixin grid frameworks can be seen in the naming of our classes, allowing us to teat them as public APIs. We can choose to make class names semantic, include custom behavior beyond the scope of griding, and even treat our classes as adapters for third party libraries. The more we lean on native CSS and function/mixin libraries, the more resistant to change our codebase becomes and your fellow programmer will thank you for it.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>In 2015, soon to be 2016, there are more options than just a single framework for building CSS grids. Though each solution has its ups and downs, they all aim to drastically improve the quality of our code. If you have the opportunity on a project, give one of these methods a try!</p>
+
+<p>Happy Coding!</p>
+
+  </article>
+
+  
+<footer class="post-author">
+
+  
+  <figure class="post-author-image">
+    <span class="img" style="background-image: url(https://twitter.com/mcleancode/profile_image?size=original)"></span>
+  </figure>
+  
+
+  <div class="post-author-name">
+  
+    <a href="http://chris.mcleancode.com" target="_blank">Christopher McLean</a>
+  
+  </div>
+
+  
+    <div class="post-author-bio">Christopher is a Ruby, JavaScript, and CSS developer for UniKey Technologies who has a passion for design patterns, code quality, and UX.
+</div>
+  
+
+  <ul class="social-media-list">
+
+  
+    <li>
+      <a href="https://twitter.com/mcleancode" target="_blank">
+        <span class="icon  icon--twitter">
+          <svg viewBox="0 0 16 16">
+            <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+            c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+          </svg>
+        </span>
+
+        <span class="username">mcleancode</span>
+      </a>
+    </li>
+  
+
+  
+    <li>
+      <a href="https://github.com/havok2905" target="_blank">
+        <span class="icon  icon--github">
+          <svg viewBox="0 0 16 16">
+            <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+          </svg>
+        </span>
+
+        <span class="username">havok2905</span>
+      </a>
+    </li>
+  
+
+  </ul>
+
+
+</footer>
+
+
+
+</div>
+
+
+      
+
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Orlando Devs</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Orlando Devs</li>
+          <li><a href="mailto:orlandodevcommunity@gmail.com">orlandodevcommunity@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/OrlandoDevs">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">OrlandoDevs</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/OrlandoDevs">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">OrlandoDevs</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Official account for the Orlando Devs Community! We are an inclusive community, open to everyone who has a passion in software development in the Orlando area.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    
+
+  </body>
+
+</html>

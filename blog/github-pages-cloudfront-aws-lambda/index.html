@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <title>What GitHub Pages, CloudFlare and AWS Lambda have in common</title>
+    <meta property="og:title" content="What GitHub Pages, CloudFlare and AWS Lambda have in common" />
+
+    
+    
+    <meta name="description" content="The official Orlando Devs blog is live and open sourced! It uses Jekyll, GitHub Pages, CloudFlare and AWS Lambda. Anyone can open pull requests to add new articles.">
+    <meta property="og:description" content="The official Orlando Devs blog is live and open sourced! It uses Jekyll, GitHub Pages, CloudFlare and AWS Lambda. Anyone can open pull requests to add new articles." />
+    <meta property="og:type" content="article" />
+    
+
+    
+    <meta property="og:image" content="https://orlandodevs.com/assets/odevs-helmet.png">
+    <meta property="og:url" content="https://orlandodevs.com/blog/github-pages-cloudfront-aws-lambda/" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="https://orlandodevs.com/blog/github-pages-cloudfront-aws-lambda/">
+</head>
+
+
+  <body class="oc">
+
+    
+
+<header class="oc-layout-header">
+  <a href="/" class="oc-logo">
+    <img src="/assets/odevs-logo.png" alt="Orlando Devs" width="600" height="116" />
+  </a>
+</header>
+
+
+    <main class="oc-layout-page">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">What GitHub Pages, CloudFlare and AWS Lambda have in common</h1>
+    <p class="post-meta">Nov 20, 2015 • Sergio Cruz</p>
+  </header>
+
+  <article class="post-content">
+    <p>We’re proud to announce that the Orlando Devs blog is live! And not only is our blog live, but it is also running really fast and we would love to give you a rundown on how we built it.</p>
+
+<h2 id="tldr-too-long-didnt-read">TL;DR <em>(Too long; didn’t read):</em></h2>
+
+<blockquote>
+  <p>We launched the official Orlando Devs blog and it’s open source! Anyone in the community is welcome to  <a href="https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md">add new articles</a>, as we have a fancy way of adding articles to the blog automatically after merging <strong>your</strong> pull requests :)</p>
+</blockquote>
+
+<h2 id="the-master-plan">The Master Plan</h2>
+
+<p>Our idea was to have an open source blog. We wanted developers within our community to contribute to our blog using the <em>whole open source paradigm</em> (forks, pull request reviews, etc).</p>
+
+<p>We thought this would be a good way to get people’s names out there and have them show off their skills in a written form, as well as making <em>newer</em> developers getting used to contributing to open source projects.</p>
+
+<h2 id="github-pages">GitHub Pages</h2>
+
+<p>From day one we knew that we wanted to host our site on <a href="https://pages.github.com/">GitHub Pages</a>. Using <a href="https://jekyllrb.com">Jekyll</a> was also a no-brainer since GitHub Pages has native integration with it. We <a href="https://help.github.com/articles/using-jekyll-with-pages">used a tutorial</a> and had a prototype running in 5 minutes.</p>
+
+<p>There was one problem with GitHub Pages though: it doesn’t support <code>https</code> on custom domain names. So we went on to find a way to fix this.</p>
+
+<h2 id="cloudflare">CloudFlare</h2>
+
+<p>We decided to use <a href="https://cloudflare.com">CloudFlare</a> to add <code>https</code> support to our custom domain. We also leveraged CloudFlare’s caching capabilities to speed up our site and the hardest part about this whole integration was getting the correct DNS settings in place.</p>
+
+<h3 id="cloudflare-dns-settings">CloudFlare DNS Settings</h3>
+
+<p>This is what our DNS settings look like:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CNAME*</td>
+      <td>orlandodevs.com</td>
+      <td>orlandodevs.github.io</td>
+    </tr>
+    <tr>
+      <td>CNAME</td>
+      <td>io</td>
+      <td>orlandodevs.github.io</td>
+    </tr>
+    <tr>
+      <td>CNAME</td>
+      <td>www</td>
+      <td>orlandodevs.com</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>* We are taking advantage of CloudFlare’s CNAME Flattening</em></p>
+
+<h3 id="cloudflare-page-rules">CloudFlare Page Rules</h3>
+
+<p>We setup two “Page Rules” within CloudFlare:</p>
+
+<p><strong>1. Always uses <code>https</code></strong><br />
+This rule forces the site to always use <code>https</code>.</p>
+
+<p><strong>2. Custom Caching</strong><br />
+Here we forced our site to “Cache everything”. This is important because by default <a href="https://support.cloudflare.com/hc/en-us/articles/200168306-Is-there-a-tutorial-for-PageRules-" target="_blank">CloudFlare <em>does not cache</em> HTML and other dynamic pages</a> (as somebody kindly pointed out to us on Hacker News). Please note that we are talking about Edge Cache here, which is a form of server-side caching that CloudFlare provides (as well as other CDN providers).</p>
+
+<p>Once CloudFlare was configured, we only ran into one problem: <strong>Edge cache invalidation</strong>. Since we set CloudFlare to cache everything on the server-side for 1 week, how could we make sure the home page is instantly refreshed when we add new articles?</p>
+
+<p>It turns out that CloudFlare offers an API to purge its cache, so we started investigating on how we could consume this API every time a pull request is merged.</p>
+
+<p><strong>The solution?</strong> GitHub Webhooks &amp; AWS Lambda.</p>
+
+<h2 id="aws-lambda">AWS Lambda</h2>
+
+<p>We soon learned that AWS Lambda is great solution for our cache invalidation problem, as it saves us the headache of setting up a new server. AWS Lambda is inexpensive, so it turned out to be a win-win solution for us.</p>
+
+<p>Here’s how Lambda’s billing works: every month, the first 1 million requests are free. If we go over the limit it will cost us 20 cents per each additional million requests. We don’t think we will ever merge anything close to 1 million pull requests a month, so we’re good!</p>
+
+<p>Here’s how this process went:</p>
+
+<ol>
+  <li>
+    <p>We signed up for AWS and added a new Lambda function using <code>Node.js</code>. We named the function <code>cloudFlareInvalidation</code>.</p>
+  </li>
+  <li>
+    <p>We used the “Upload ZIP File” option to deploy the project.<br />
+<em>We ran into a little problem while uploading the zip file: We were zipping the parent directory containing our project, however this didn’t work. The zip file uploaded needs to have the entry file (called <code>app.js</code> in our project) at the root of the compressed folder.</em></p>
+  </li>
+  <li>
+    <p>We then set up an endpoint for our function using AWS’s API Gateway. During this step we were able to point this new API endpoint to the <code>cloudFlareInvalidation</code> function.</p>
+  </li>
+  <li>
+    <p>Configured GitHub Webhooks for our blog’s repo using the URL provided by the API Gateway. The only event we needed this Webhook to work was the <code>Page Build</code> event.</p>
+  </li>
+  <li>
+    <p>Finally, we <a href="https://github.com/OrlandoDevs/cache-purger">open sourced the project</a> (be sure to check it out!)</p>
+  </li>
+</ol>
+
+<h2 id="booyah"><em>Booyah</em>!</h2>
+
+<p>We now have a whole workflow for <strong>you</strong> to contribute to our open source blog. All tech-related topics are welcome, although new articles are subject to review by moderators. So please, read our <a href="https://github.com/OrlandoDevs/orlandodevs.github.io/blob/master/CONTRIBUTING.md">guide to start contributing</a> and <a href="https://github.com/OrlandoDevs/orlandodevs.github.io/compare">open a pull request</a> with your brand new article today!</p>
+
+  </article>
+
+  
+<footer class="post-author">
+
+  
+  <figure class="post-author-image">
+    <span class="img" style="background-image: url(https://twitter.com/hashtagserg/profile_image?size=original)"></span>
+  </figure>
+  
+
+  <div class="post-author-name">
+  
+    <a href="https://sergiocruz.me" target="_blank">Sergio Cruz</a>
+  
+  </div>
+
+  
+    <div class="post-author-bio">Sergio is an application developer in Orlando, FL with a huge passion for learning. He also co-organizes a couple of local meetups including OrlandoJS & Orlando Devs.
+</div>
+  
+
+  <ul class="social-media-list">
+
+  
+    <li>
+      <a href="https://twitter.com/hashtagserg" target="_blank">
+        <span class="icon  icon--twitter">
+          <svg viewBox="0 0 16 16">
+            <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+            c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+          </svg>
+        </span>
+
+        <span class="username">hashtagserg</span>
+      </a>
+    </li>
+  
+
+  
+    <li>
+      <a href="https://github.com/sergiocruz" target="_blank">
+        <span class="icon  icon--github">
+          <svg viewBox="0 0 16 16">
+            <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+          </svg>
+        </span>
+
+        <span class="username">sergiocruz</span>
+      </a>
+    </li>
+  
+
+  </ul>
+
+
+</footer>
+
+
+
+</div>
+
+
+      
+
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Orlando Devs</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Orlando Devs</li>
+          <li><a href="mailto:orlandodevcommunity@gmail.com">orlandodevcommunity@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/OrlandoDevs">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">OrlandoDevs</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/OrlandoDevs">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">OrlandoDevs</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Official account for the Orlando Devs Community! We are an inclusive community, open to everyone who has a passion in software development in the Orlando area.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    
+
+  </body>
+
+</html>
