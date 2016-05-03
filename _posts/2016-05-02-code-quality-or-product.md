@@ -2,6 +2,7 @@
 layout: post
 title: "Code Quality or Product?"
 author: mcleancode
+date:   2016-05-02 16:30:00
 description: As developers we often are drawn into debates of which is more important, code quality or iteration speed. Here I aim to provide some advice of how to account for both.
 comments: true
 categories:
@@ -57,4 +58,4 @@ Now, let's go build something awesome.
 
 ## Resources
 
-[The Magic Tricks of Testing](https://www.youtube.com/watch?v=URSWYvyc42M&feature=youtu.be&t=30m56s)
+<a href="https://www.youtube.com/watch?v=URSWYvyc42M&feature=youtu.be&t=30m56s" target="_blank">The Magic Tricks of Testing</a>
