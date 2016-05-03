@@ -16,6 +16,34 @@
   }
 }
 
+[class^="oc-"] {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.oc-layout-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background: map-get($oc-colors, 'primary-light');
+
+  > .oc-link {
+    text-transform: uppercase;
+    color: white;
+    padding: 0.5rem 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    display: block;
+
+    > .oc-link {
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
 .oc-logo {
   display: block;
 
