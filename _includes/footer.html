@@ -1,19 +1,21 @@
-<footer class="site-footer">
-
+<footer class="oc-footer">
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title }}</h2>
+    <h2 class="oc-footer-heading">{{ site.title }}</h2>
 
-    <div class="footer-col-wrapper">
+    <div class="oc-footer-cols">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li><a href="{{ site.baseurl }}/about">Who are the ODevs?</a></li>
+          <li><a href="{{ site.baseurl }}/code-of-conduct">Code of Conduct</a></li>
+          <li><a href="{{ site.baseurl }}/meetup">ODevs Meetup</a></li>
+          <li><a href="{{ site.baseurl }}/slack">ODevs Slack</a></li>
         </ul>
       </div>
 
       <div class="footer-col  footer-col-2">
         <ul class="social-media-list">
+          <li>ODevs Social Media</li>
           {% if site.github_username %}
           <li>
             <a href="https://github.com/{{ site.github_username }}">
@@ -51,5 +53,4 @@
     </div>
 
   </div>
-
 </footer>

@@ -2,9 +2,28 @@
 layout: default
 ---
 
+<div class="oc-welcome">
+  <div class="wrapper">
+
+    <h1 class="oc-welcome-header">Welcome to <span>Orlando Devs</span></h1>
+
+    <p class="oc-welcome-intro">
+      We are a community of software developers in Orlando, FL.
+      Do you <span class="oc-welcome-love">love</span> writing code, or are just getting started? Then you are welcome here!
+    </p>
+
+    <p class="oc-welcome-btns">
+      <a class="oc-btn oc-btn--light" href="{{ site.baseurl }}/meetup">Join our Meetup</a>
+      <a class="oc-btn oc-btn--light" href="{{ site.baseurl }}/slack">Join our Slack</a>
+      <a class="oc-btn oc-btn--light" href="{{ site.baseurl }}/code-of-conduct">Code of Conduct</a>
+    </p>
+  </div>
+</div>
+
 <div class="oc-content">
-  <ul class="oc-posts">
-    {% for post in site.posts %}
+  <div class="wrapper">
+    <ul class="oc-posts">
+      {% for post in site.posts %}
       <li class="oc-post">
         <h2 class="oc-heading -h2">
           <a class="oc-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
@@ -15,7 +34,7 @@ layout: default
           <a class="oc-link" href="{{ post.url | prepend: site.baseurl }}">Read More</a>
         </div>
       </li>
-    {% endfor %}
-  </ul>
-
+      {% endfor %}
+    </ul>
+  </div>
 </div>
