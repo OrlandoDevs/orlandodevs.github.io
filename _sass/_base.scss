@@ -20,7 +20,7 @@ body {
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
-    font-weight: 300;
+    font-weight: 100;
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
@@ -44,8 +44,14 @@ ul, ol, dl, figure,
  * Images
  */
 img {
-    max-width: 100%;
-    vertical-align: middle;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.img-border {
+  border: 1px solid #ccc;
+  border-radius: .25em;
+  // box-shadow: 1px 1px 1px #999;
 }
 
 
@@ -148,8 +154,9 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(800px - (#{$spacing-unit} * 2));
-    max-width:         calc(800px - (#{$spacing-unit} * 2));
+    max-width: -webkit-calc(960px - (#{$spacing-unit} * 2));
+    max-width:         calc(960px - (#{$spacing-unit} * 2));
+    // max-width: 90vw;
     margin-right: auto;
     margin-left: auto;
     padding-right: $spacing-unit;
@@ -157,8 +164,8 @@ pre {
     @extend %clearfix;
 
     @include media-query($on-laptop) {
-        max-width: -webkit-calc(800px - (#{$spacing-unit}));
-        max-width:         calc(800px - (#{$spacing-unit}));
+        max-width: -webkit-calc(960px - (#{$spacing-unit}));
+        max-width:         calc(960px - (#{$spacing-unit}));
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }
