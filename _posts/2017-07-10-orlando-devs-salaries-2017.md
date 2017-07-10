@@ -34,13 +34,13 @@ The following visualization excludes some outliers, but still tells the same sto
 
 ## Compensation and Gender
 
-The following chart was a pleasant surprise to all of us: **women are starting our in our field with a higher compensation than men**. This was surprising because we constantly hear reports that our industry tends to pay men more than women even when there is a comparable experience; but not in this community. 😊
+The following chart was a pleasant surprise to all of us: **women are starting out in our field with a higher compensation than men**. This was surprising because we constantly hear reports that our industry tends to pay men more than women even when there is a comparable experience level; but not in this community. 😊
 
 The story changes, however, with senior-level jobs as men are still getting paid more for those jobs.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/6-pay-by-exp-and-gender.png" class="img-large img-center" alt="Developers compensation by experience level and gender in Orlando, FL in 2017" />
 
-**What this means to you:** Regardless of gender, **now** is a great time to get started with development.
+**What this means to you:** Regardless of gender, _now_ is a great time to get started with development.
 
 ---
 
@@ -64,7 +64,7 @@ All in all, it's a great time to be alive as an iOS developer, though it makes o
 
 <img src="/assets/authors/sergiocruz/2017-salaries/3-pay-by-language.png" class="img-large img-center" alt="Compensation by programming language in Orlando, FL for software developers in 2017" />
 
-**What this means to you:** There honestly isn't a huge difference of pay between languages. At the end of the day, do what you enjoy as that will have the biggest payout at the end. Also be willing to be flexible and have a diverse background, as being able to where multiple hats will always be super valuable.
+**What this means to you:** There honestly isn't a _huge_ difference of pay between languages. At the end of the day, do what you enjoy and be willing to be flexible and have a diverse background, as being able to where multiple hats will always be super valuable.
 
 ---
 
@@ -74,7 +74,7 @@ Is there a correlation between job satisfaction and compensation? Our next visua
 
 <img src="/assets/authors/sergiocruz/2017-salaries/4-pay-by-satisfaction.png" class="img-large img-center" alt="Correlation between pay and job satisfaction for Orlando, FL developers in 2017" />
 
-**What this means to you:** Although money alone seems to have some influence over how satisfied a developer is with their job, that doesn't seem to be the absolute determining factor. Do things that interest you, as that will have a bigger payout in the feature, for both money and otherwise.
+**What this means to you:** Although money alone seems to have some influence over how satisfied a developer is with their job, that doesn't seem to be the absolute determining factor. Do things that interest you, as that will have a bigger payout in the future.
 
 ---
 
@@ -92,7 +92,7 @@ The other interesting piece of information in this visualization is that people 
 
 ## Compensation and People Management
 
-Is it true that developers need to become managers to finally have a breakthrough in income? According to the following chart, that **does not seem to be the case** in our community.
+Is it true that developers need to become managers to finally have a breakthrough in income? According to the following chart, that does **not** seem to be the case in our community.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/8-pay-and-management.png" class="img-large img-center" alt="Programming language popularity amongst age groups in Orlando, FL in 2017" />
 
@@ -108,20 +108,20 @@ Following are the results for each of the questions asked on our survey.
 
 **Question 1:** Primary Coding Language Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-1.png" class="img-large img-center" alt="Primarty Coding Language Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-1.png" class="img-medium img-center" alt="Primarty Coding Language Used in Orlando FL in 2017" />
 
 **Question 2:** Secondary Coding Language Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-2.png" class="img-large img-center" alt="Secondary Coding Language Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-2.png" class="img-medium img-center" alt="Secondary Coding Language Used in Orlando FL in 2017" />
 
 **Question 3:** Primary Framework/Platform Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-3.png" class="img-large img-center" alt="Primary Framework Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-3.png" class="img-medium img-center" alt="Primary Framework Used in Orlando FL in 2017" />
 
 
 **Question 4:** Secondary Framework/Platform Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-4.png" class="img-large img-center" alt="Secondary Framework Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-4.png" class="img-medium img-center" alt="Secondary Framework Used in Orlando FL in 2017" />
 
 **Question 5:** Which of the following best describe you?
 
@@ -129,57 +129,57 @@ Following are the results for each of the questions asked on our survey.
 
 **Question 6:** Which parts of the Joel Test does your development work environment pass?
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-6.png" class="img-large img-center" alt="Joel Test at Orlando, FL Companies in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-6.png" class="img-medium img-center" alt="Joel Test at Orlando, FL Companies in 2017" />
 
 **Question 7:** Managers: How many direct reports do you have?
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-7.png" class="img-large img-center" alt="How many direct reports" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-7.png" class="img-medium img-center" alt="How many direct reports" />
 
 **Question 8:** Total number of developers at your company
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-8.png" class="img-large img-center" alt="How many direct reports" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-8.png" class="img-medium img-center" alt="How many direct reports" />
 
 **Question 9:** I work X hours per week on average.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-9.png" class="img-large img-center" alt="How many hours software developers work a week in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-9.png" class="img-small img-center" alt="How many hours software developers work a week in Orlando in 2017" />
 
 **Question 10:** I work remotely X days per week on average.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-10.png" class="img-large img-center" alt="How many remote days a week software developers in Orlando work in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-10.png" class="img-medium img-center" alt="How many remote days a week software developers in Orlando work in 2017" />
 
 **Question 11:** My employment status is:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-11.png" class="img-large img-center" alt="Employment status of software developers in Orlando work in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-11.png" class="img-medium img-center" alt="Employment status of software developers in Orlando work in 2017" />
 
 **Question 12:** I am satisfied with my job.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-12.png" class="img-large img-center" alt="Work satisfaction of software developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-12.png" class="img-medium img-center" alt="Work satisfaction of software developers in Orlando in 2017" />
 
 ### Section 2: Developer History (Required)
 
 **Question 13:** Development experience level
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-13.png" class="img-large img-center" alt="Experience level of software developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-13.png" class="img-medium img-center" alt="Experience level of software developers in Orlando in 2017" />
 
 **Question 14:** I have worked for this many years as a developer:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-14.png" class="img-large img-center" alt="Work experience of developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-14.png" class="img-medium img-center" alt="Work experience of developers in Orlando in 2017" />
 
 **Question 15:** Educational background for development (do not count education in other disciplines, choose highest level attained):
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-15.png" class="img-large img-center" alt="Educational background of developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-15.png" class="img-medium img-center" alt="Educational background of developers in Orlando in 2017" />
 
 **Question 16:** If you hold a traditional degree (bachelor, masters or similar) in development, please select the title most similar to your degree:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-16.png" class="img-large img-center" alt="Technical degrees of developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-16.png" class="img-medium img-center" alt="Technical degrees of developers in Orlando in 2017" />
 
 **Question 17:** Do you hold a degree outside the development field?
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-17.png" class="img-large img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-17.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
 
 **Question 18:** Do you hold a degree outside the development field?
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-18.png" class="img-large img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-18.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
 
 **Question 19:** If you answered the previous question, please elaborate on what other field you studied:
 
@@ -189,7 +189,7 @@ _Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
 
 **Question 20:** Are you an hourly or salaried worker?
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-20.png" class="img-large img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-20.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
 
 **Question 21:** I make approximately $X per YEAR (excluding overtime and bonuses):
 
@@ -197,7 +197,7 @@ _Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
 
 **Question 22:** I am eligible for overtime pay at my job:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-22.png" class="img-large img-center" alt="Overtime status of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-22.png" class="img-medium img-center" alt="Overtime status of programmers in Orlando in 2017" />
 
 
 **Question 23:** The last pay increase I got was $X per YEAR (enter 0 if you have NEVER had a pay increase):
@@ -206,27 +206,27 @@ _Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
 
 **Question 24:** The last pay increase I got was $X per YEAR (enter 0 if you have NEVER had a pay increase):
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-24.png" class="img-large img-center" alt="Last pay increase of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-24.png" class="img-medium img-center" alt="Last pay increase of programmers in Orlando in 2017" />
 
 **Question 25:** I got my last pay increase X years ago.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-25.png" class="img-large img-center" alt="When last pay increase happened for programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-25.png" class="img-medium img-center" alt="When last pay increase happened for programmers in Orlando in 2017" />
 
 **Question 26:** Reason for last pay increase
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-26.png" class="img-large img-center" alt="Reason for last pay increase of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-26.png" class="img-medium img-center" alt="Reason for last pay increase of programmers in Orlando in 2017" />
 
 **Question 27:** The company pays for X% of my healthcare premiums:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-27.png" class="img-large img-center" alt="Health care coverage of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-27.png" class="img-medium img-center" alt="Health care coverage of programmers in Orlando in 2017" />
 
 **Question 28:** I have X weeks of vacation per year.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-large img-center" alt="PTO per year of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-medium img-center" alt="PTO per year of programmers in Orlando in 2017" />
 
 **Question 29:** Last year I took X weeks of vacation:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-large img-center" alt="Used PTO of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-medium img-center" alt="Used PTO of programmers in Orlando in 2017" />
 
 **Question 30:** Other benefits I have include:
 
@@ -234,44 +234,44 @@ _Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
 
 **Question 31:** Non-monetary perks at my company include:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-large img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-medium img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
 
 ### Company Details (Required)
 
 **Question 32:** The company I work for is best described as:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-32.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-32.png" class="img-medium img-center" alt="" />
 
 **Question 33:** Total number of employees at company:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-33.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-33.png" class="img-medium img-center" alt="" />
 
 **Question 34:** Remote workers only: Check all that apply.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-34.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-34.png" class="img-medium img-center" alt="" />
 
 **Question 35:** If you are working for a startup, what round are you currently in for funding?
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-35.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-35.png" class="img-medium img-center" alt="" />
 
 ### Demographics (optional)
 
 **Question 36:** Age
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-36.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-36.png" class="img-medium img-center" alt="" />
 
 
 **Question 37:** Gender
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-37.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-37.png" class="img-medium img-center" alt="" />
 
 **Question 38:** Check all that describe you.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-38.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-38.png" class="img-medium img-center" alt="" />
 
 
 **Question 39:** I consider myself a part of the LGBTQ+ Community:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-39.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-39.png" class="img-medium img-center" alt="" />
 
 
 ---
@@ -305,4 +305,5 @@ We'd also like to especially thank the volunteers who took the time to design th
 
 If you’re curious to see any other potential correlations we might have left behind, or just want to chat about this data, please feel free to contact us:
 
-By Twitter: [@OrlandoDevs](https://twitter.com/OrlandoDevs) By Email: [orlandodevcommunity@gmail.com](mailto:orlandodevcommunity@gmail.com)
+By Twitter: [@OrlandoDevs](https://twitter.com/OrlandoDevs)
+By Email: [orlandodevcommunity@gmail.com](mailto:orlandodevcommunity@gmail.com)
