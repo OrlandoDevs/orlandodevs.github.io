@@ -12,31 +12,31 @@ categories:
   - developers
 ---
 
-The Orlando Devs Community exists to improve the quality of life of developers in Orlando. One of the ways that we're able to do that is by informing our community what is a fair wage in our local economy, independent of where one's skillset or years of experience is.
+The Orlando Devs Community exists to improve the quality of life of software developers in Orlando, FL. One of the ways we're able to fulfill that mission is to share an independent annual salary survey that sheds light on the salaries of software developers of various skill levels and years of tenure in our community.
 
-The Orlando Devs Annual Salary Survey has become an yearly tradition, and in 2017 we had 277 developers fill out the survey (a higher number [than our 2016 survey](/blog/orlando-devs-salaries-in-2016/)).
+The Orlando Devs Annual Salary Survey has become an annual tradition, with 277 respondents in 2017 (a nearly 50% increase in responses compared to a higher number [than our 2016 survey](/blog/orlando-devs-salaries-in-2016/).
 
 ---
 
 ## Compensation and Experience
 
-The following charts show us that in average, the longer you've been in our industry, the higher your compensation. It is really encouraging to know that our industry compensates professionals according to their experience and level of contribution they bring to the table.
+As expected, the longer a software developer has been employed, the higher their typical salary. It is encouraging to know that our industry compensates professionals based on their experience and the contributions they bring to various industries.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/1-pay-by-experience-v1.png" class="img-large img-center" alt="Average compensation by years of experience in Orlando, FL for software developers in 2017" />
 
-The following visualization excludes some outliers, but still tells the same story as our previous one: in general the longer you've been around, the more you get paid.
+The following visualization excludes some outliers, but tells the same story as above; in general, the longer you've been around, the more you’ll get paid.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/1-pay-by-experience-v2.png" class="img-large img-center" alt="Average compensation by years of experience in Orlando, FL for software developers in 2017" />
 
-**What this means to you:** The future still looks bright in our industry, given its track record. And that is true if whether you are just starting out or have been in this for a while.
+**What this means to you:** The future still looks bright in our industry for both new and experienced developers.
 
 ---
 
 ## Compensation and Gender
 
-The following chart was a pleasant surprise to all of us: **women are starting out in our field with a higher compensation than men**. This was surprising because we constantly hear reports that our industry tends to pay men more than women even when there is a comparable experience level; but not in this community. 😊
+The following results were a pleasant surprise for all of us! Junior and mid-level female developers are earning similar salaries as their male counterparts in comparable roles! 😊
 
-The story changes, however, with senior-level jobs as men are still getting paid more for those jobs.
+Unfortunately, the story changes in senior-level positions. Men are still getting paid more in those jobs. 
 
 <img src="/assets/authors/sergiocruz/2017-salaries/6-pay-by-exp-and-gender.png" class="img-large img-center" alt="Developers compensation by experience level and gender in Orlando, FL in 2017" />
 
@@ -46,63 +46,63 @@ The story changes, however, with senior-level jobs as men are still getting paid
 
 ## Annual Salary By College Degree
 
-Do developers need a college degree to do well in their careers? The following graph shows that having a degree certainly helps you make more money over time. But it's not a must, as self-taught developers are not too far behind pay-wise.
+Do developers need a college degree to do well in their careers? While this graph certainly shows that having a degree helps you earn more money throughout your career, it’s not a must. Self-taught developers aren’t far behind in average compensation. 
 
-Also, most of our survey respondents do not have a college degree in this field (101 people), followed by Computer Science grads (76 people) and so on.
+On the y-axis, you can see which type of degree was earned and how many respondents there were for each category. For example, most of our survey respondents do not have a college degree in this field (101 people), followed by Computer Science grads (76 people), and so on.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/2-pay-by-degree.png" class="img-large img-center" alt="Average pay of developers by college degree in Orlando, FL in 2017" />
 
-**What this means to you:** If you have the opportunity, then you should certainly pursue a college degree. But developers in our community who do not have one are still doing just fine.
+**What this means to you:** If you have the opportunity, you should pursue a college degree. However, developers in our community who do not have one are still doing just fine.
 
 ---
 
 ## Annual Salary by Primary Coding Language
 
-Does a developer's programming language of choice have an impact on their pay? The following graph shows us that the answer is _yes_ 🎊 🎉.
+Does a developer's primary programming language have an impact on their pay? The following graph shows us that the answer is _yes_ 🎊 🎉.
 
-All in all, it's a great time to be alive as an iOS developer, though it makes one wonder if it's another case of supply & demand since there are only 19 iOS developers (Swift and Objective-C combined) versus say 24 for Java or even 72 for JavaScript.
+All in all, it looks like a great time to be alive for iOS developers! However, it made us wonder if higher salaries for Objective-C and Swift developers were related to the total size of the workforce. There were only 19 iOS developer respondents (Objective-C & Swift combined), whereas Java and JavaScript had 24 and 72 respondents respectively. 
 
 <img src="/assets/authors/sergiocruz/2017-salaries/3-pay-by-language.png" class="img-large img-center" alt="Compensation by programming language in Orlando, FL for software developers in 2017" />
 
-**What this means to you:** There honestly isn't a _huge_ difference of pay between languages. At the end of the day, do what you enjoy and be willing to be flexible and have a diverse background, as being able to where multiple hats will always be super valuable.
+**What this means to you:** There isn't a _huge_ difference in pay between languages. At the end of the day, do what you enjoy, but be willing to be flexible and able to wear multiple hats.
 
 ---
 
 ## Compensation By Satisfaction
 
-Is there a correlation between job satisfaction and compensation? Our next visualization shows us that it seems to be the case, but not by much.
+Is there a correlation between job satisfaction and compensation? Our next visualization shows us that this seems to be the case, but not by much.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/4-pay-by-satisfaction.png" class="img-large img-center" alt="Correlation between pay and job satisfaction for Orlando, FL developers in 2017" />
 
-**What this means to you:** Although money alone seems to have some influence over how satisfied a developer is with their job, that doesn't seem to be the absolute determining factor. Do things that interest you, as that will have a bigger payout in the future.
+**What this means to you:** Although compensation seems to have some influence over how satisfied a developer is with their job, it doesn’t seem to be the only factor. Do things that interest you in your career, as that will ultimately have a bigger payout for you in the future!
 
 ---
 
 ## Popularity of Languages and Satisfaction Amongst Age Groups
 
-Our next chart shows us that JavaScript is the most popular programming language in our community, followed by PHP, C# and so on.
+Our next chart shows us that JavaScript is the most popular programming language in our community, followed by PHP, C#, and so on.
 
-The other interesting piece of information in this visualization is that people in the age group of 26-30 are pretty unhappy no matter what they're working on (millenials, ya know 🙃). Except for Ruby, as it seems to make all age groups happy.
+Another interesting piece of information in this visualization is that people in the 26-30 age range are pretty unhappy no matter what they're working on (millennials, ya know? 🙃). An exception to this are developers working in Ruby, as it seems to make all age groups happy.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/7-satisfaction.png" class="img-large img-center" alt="Programming language popularity amongst age groups in Orlando, FL in 2017" />
 
-**What this means to you:** Age appears to have some influence in the type of stack you'd be happier in. While you can't decide to be a happy 50 year old C# developer, you can avoid being the unhappy 20 year old who wants to learn their first stack by not selecting C# and something that is popular amongst your peers.
+**What this means to you:** Age appears to have some correlation to the type of development stack you'd be happier working with. While you may not yet be able to decide to be a happy 50 year-old C# developer, you may be able to avoid being an unhappy 20-something by not selecting C# as your first development stack and instead choose something more popular among your peers.
 
 ---
 
 ## Compensation and People Management
 
-Is it true that developers need to become managers to finally have a breakthrough in income? According to the following chart, that does **not** seem to be the case in our community.
+Is it true that developers need to become managers to finally have a breakthrough in income? That does not seem to be the case in our community.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/8-pay-and-management.png" class="img-large img-center" alt="Programming language popularity amongst age groups in Orlando, FL in 2017" />
 
-**What this means to you:** Managing people is rewarding in many ways, but one should never do it when just pursuing more money. That doesn't seem to work within our community.
+**What this means to you:** Managing people is rewarding in many ways, but you shouldn’t do it just for a salary increase.
 
 ---
 
 ## Question Results
 
-Following are the results for each of the questions asked on our survey.
+Below are the results of each question asked in this year’s developer survey.
 
 ### Section 1: Developer Current Work Details (Required)
 
@@ -163,11 +163,11 @@ Following are the results for each of the questions asked on our survey.
 
 **Question 14:** I have worked for this many years as a developer:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-14.png" class="img-medium img-center" alt="Work experience of developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-14.png" class="img-large img-center" alt="Work experience of developers in Orlando in 2017" />
 
 **Question 15:** Educational background for development (do not count education in other disciplines, choose highest level attained):
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-15.png" class="img-medium img-center" alt="Educational background of developers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-15.png" class="img-large img-center" alt="Educational background of developers in Orlando in 2017" />
 
 **Question 16:** If you hold a traditional degree (bachelor, masters or similar) in development, please select the title most similar to your degree:
 
@@ -184,6 +184,7 @@ Following are the results for each of the questions asked on our survey.
 **Question 19:** If you answered the previous question, please elaborate on what other field you studied:
 
 _Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
+<br />
 
 ### Salary + Benefits (Required)
 
@@ -278,17 +279,17 @@ _Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
 
 ## Need help?
 
-The Orlando Devs Community exists to improve the quality of life of developers in Orlando and if any of this information was shocking to you, don't worry we are here to help.
+The Orlando Devs Community exists to improve the quality of life of software developers in Orlando, FL. If any of this information was shocking to you, we’re here to help!
 
-We're passionate about helping developers get to where they want to be in their careers, whether they're just starting out or has been in it for a while.
+We're passionate about helping developers get to where they want to be in their careers, whether they're just starting out or have been in the industry for a while.
 
-Be sure to join our meetup, slack channel and take advantage of all other tech-related events in Orlando. Network with others in the field and ask questions. Let's get this dialogue going.
+Be sure to attend our [monthly meetup](http://orlandodevs.com/meetup/), [Slack channel](http://orlandodevs.com/slack/), and take advantage of all of the other tech-related events in Orlando. Network with others in the field and ask questions. Let's get a dialogue going!
 
 ## A Big Thanks To
 
 We'd like express how grateful we are for everyone who took the time to fill out this survey and contribute to the improvement of this community.
 
-We'd also like to especially thank the volunteers who took the time to design the questions of the survey, as well as compile the results, and everything else that goes into it. Below is a non-exhaustive list of people who took their time to help (sorted alphabetically):
+We'd also like to especially thank the volunteers who took the time to design the questions in the survey, compile the results, and everything else that goes into it. Below is a non-exhaustive list of people who took their time to help (sorted alphabetically):
 
 - Bryan Rosander
 - Byron Gardner
@@ -303,7 +304,7 @@ We'd also like to especially thank the volunteers who took the time to design th
 
 ## Got questions?
 
-If you’re curious to see any other potential correlations we might have left behind, or just want to chat about this data, please feel free to contact us:
+If you’d like to share other correlations we might have left out, or just want to chat about this data, please feel free to contact us:
 
 By Twitter: [@OrlandoDevs](https://twitter.com/OrlandoDevs)
 By Email: [orlandodevcommunity@gmail.com](mailto:orlandodevcommunity@gmail.com)
