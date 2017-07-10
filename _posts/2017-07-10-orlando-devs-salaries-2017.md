@@ -70,11 +70,11 @@ All in all, it's a great time to be alive as an iOS developer, though it makes o
 
 ## Compensation By Satisfaction
 
-The <a href="https://www.joelonsoftware.com/2000/08/09/the-joel-test-12-steps-to-better-code/" target="_blank">Joel Test</a> is an assesment to indicate the quality of a software team. The following chart indicates how the teams of our survey respondents are doing as far as the Joel Test is concerned.
+Is there a correlation between job satisfaction and compensation? Our next visualization shows us that it seems to be the case, but not by much.
 
-<img src="../assets/authors/sergiocruz/2017-salaries/4-pay-by-satisfaction.png" class="img-large img-center" alt="Joel Test at Orlando, FL Companies in 2017" />
+<img src="../assets/authors/sergiocruz/2017-salaries/4-pay-by-satisfaction.png" class="img-large img-center" alt="Correlation between pay and job satisfaction for Orlando, FL developers in 2017" />
 
-**What this means to you:** It is in your best interest to either introduce some of these concepts to your team, or join a team that takes advantage of these concepts next time you look for a new job. In theory, the more you take advantage of these practices the better software professional you'll become.
+**What this means to you:** Although money alone seems to have some influence over how satisfied a developer is with their job, that doesn't seem to be the absolute determining factor. Do things that interest you, as that will have a bigger payout in the feature, for both money and otherwise.
 
 ---
 
@@ -108,16 +108,20 @@ Following are the results for each of the questions asked on our survey.
 
 **Question 1:** Primary Coding Language Used
 
-<img src="../assets/authors/sergiocruz/2017-salaries/answer-1.png" class="img-large img-center" alt="Primarty Coding Language Used" />
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-1.png" class="img-large img-center" alt="Primarty Coding Language Used in Orlando FL in 2017" />
 
 **Question 2:** Secondary Coding Language Used
 
-<img src="../assets/authors/sergiocruz/2017-salaries/answer-2.png" class="img-large img-center" alt="Secondary Coding Language Used" />
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-2.png" class="img-large img-center" alt="Secondary Coding Language Used in Orlando FL in 2017" />
 
 **Question 3:** Primary Framework/Platform Used
 
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-3.png" class="img-large img-center" alt="Primary Framework Used in Orlando FL in 2017" />
+
 
 **Question 4:** Secondary Framework/Platform Used
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-4.png" class="img-large img-center" alt="Secondary Framework Used in Orlando FL in 2017" />
 
 **Question 5:** Which of the following best describe you?
 
@@ -133,4 +137,102 @@ Following are the results for each of the questions asked on our survey.
 
 **Question 8:** Total number of developers at your company
 
-<img src="../assets/authors/sergiocruz/2017-salaries/answer-7.png" class="img-large img-center" alt="How many direct reports" />
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-8.png" class="img-large img-center" alt="How many direct reports" />
+
+**Question 9:** I work X hours per week on average.
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-9.png" class="img-large img-center" alt="How many hours software developers work a week in Orlando in 2017" />
+
+**Question 10:** I work remotely X days per week on average.
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-10.png" class="img-large img-center" alt="How many remote days a week software developers in Orlando work in 2017" />
+
+**Question 11:** My employment status is:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-11.png" class="img-large img-center" alt="Employment status of software developers in Orlando work in 2017" />
+
+**Question 12:** I am satisfied with my job.
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-12.png" class="img-large img-center" alt="Work satisfaction of software developers in Orlando in 2017" />
+
+### Section 2: Developer History (Required)
+
+**Question 13:** Development experience level
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-13.png" class="img-large img-center" alt="Experience level of software developers in Orlando in 2017" />
+
+**Question 14:** I have worked for this many years as a developer:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-14.png" class="img-large img-center" alt="Work experience of developers in Orlando in 2017" />
+
+**Question 15:** Educational background for development (do not count education in other disciplines, choose highest level attained):
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-15.png" class="img-large img-center" alt="Educational background of developers in Orlando in 2017" />
+
+**Question 16:** If you hold a traditional degree (bachelor, masters or similar) in development, please select the title most similar to your degree:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-16.png" class="img-large img-center" alt="Technical degrees of developers in Orlando in 2017" />
+
+**Question 17:** Do you hold a degree outside the development field?
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-17.png" class="img-large img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
+
+**Question 18:** Do you hold a degree outside the development field?
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-18.png" class="img-large img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
+
+**Question 19:** If you answered the previous question, please elaborate on what other field you studied:
+
+_Ommitted 93 open answer results (Sergio says too hard to graph hehe)_
+
+### Salary + Benefits (Required)
+
+**Question 20:** Are you an hourly or salaried worker?
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-20.png" class="img-large img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
+
+**Question 21:** I make approximately $X per YEAR (excluding overtime and bonuses):
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-21.png" class="img-large img-center" alt="Compensation of programmers in Orlando in 2017" />
+
+**Question 22:** I am eligible for overtime pay at my job:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-22.png" class="img-large img-center" alt="Overtime status of programmers in Orlando in 2017" />
+
+
+**Question 23:** The last pay increase I got was $X per YEAR (enter 0 if you have NEVER had a pay increase):
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-23.png" class="img-large img-center" alt="Last pay increase of programmers in Orlando in 2017" />
+
+**Question 24:** The last pay increase I got was $X per YEAR (enter 0 if you have NEVER had a pay increase):
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-24.png" class="img-large img-center" alt="Last pay increase of programmers in Orlando in 2017" />
+
+**Question 25:** I got my last pay increase X years ago.
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-25.png" class="img-large img-center" alt="When last pay increase happened for programmers in Orlando in 2017" />
+
+**Question 26:** Reason for last pay increase
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-26.png" class="img-large img-center" alt="Reason for last pay increase of programmers in Orlando in 2017" />
+
+**Question 27:** The company pays for X% of my healthcare premiums:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-27.png" class="img-large img-center" alt="Health care coverage of programmers in Orlando in 2017" />
+
+**Question 28:** I have X weeks of vacation per year.
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-large img-center" alt="PTO per year of programmers in Orlando in 2017" />
+
+**Question 29:** Last year I took X weeks of vacation:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-large img-center" alt="Used PTO of programmers in Orlando in 2017" />
+
+**Question 30:** Other benefits I have include:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-30.png" class="img-large img-center" alt="Other benefits of programmers in Orlando in 2017" />
+
+**Question 31:** Non-monetary perks at my company include:
+
+<img src="../assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-large img-center" alt="Other benefits of programmers in Orlando in 2017" />
+
