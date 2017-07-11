@@ -177,93 +177,89 @@ Below are the results of each question asked in this year’s developer survey.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-17.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
 
-**Question 18:** Do you hold a degree outside the development field?
-
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-18.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
-
 ### Section 3: Salary + Benefits (Required)
 
-**Question 19:** Are you an hourly or salaried worker?
+**Question 18:** Are you an hourly or salaried worker?
 
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-19.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
 
-**Question 20:** I make approximately $X per YEAR (excluding overtime and bonuses):
+**Question 19:** I make approximately $X per YEAR (excluding overtime and bonuses):
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-20.png" class="img-large img-center" alt="Compensation of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-19.png" class="img-large img-center" alt="Compensation of programmers in Orlando in 2017" />
 
-**Question 21:** I am eligible for overtime pay at my job:
+**Question 20:** I am eligible for overtime pay at my job:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-21.png" class="img-medium img-center" alt="Overtime status of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-20.png" class="img-medium img-center" alt="Overtime status of programmers in Orlando in 2017" />
 
 
-**Question 22:** The last pay increase I got was $X per YEAR (enter 0 if you have NEVER had a pay increase):
+**Question 21:** The last pay increase I got was $X per YEAR (enter 0 if you have NEVER had a pay increase):
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-22.png" class="img-large img-center" alt="Last pay increase of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-21.png" class="img-large img-center" alt="Last pay increase of programmers in Orlando in 2017" />
 
-**Question 23:** I got my last pay increase X years ago.
+**Question 22:** I got my last pay increase X years ago.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-23.png" class="img-medium img-center" alt="When last pay increase happened for programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-22.png" class="img-medium img-center" alt="When last pay increase happened for programmers in Orlando in 2017" />
 
-**Question 24:** Reason for last pay increase
+**Question 23:** Reason for last pay increase
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-24.png" class="img-medium img-center" alt="Reason for last pay increase of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-23.png" class="img-medium img-center" alt="Reason for last pay increase of programmers in Orlando in 2017" />
 
-**Question 25:** The company pays for X% of my healthcare premiums:
+**Question 24:** The company pays for X% of my healthcare premiums:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-25.png" class="img-medium img-center" alt="Health care coverage of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-24.png" class="img-medium img-center" alt="Health care coverage of programmers in Orlando in 2017" />
 
-**Question 26:** I have X weeks of vacation per year.
+**Question 25:** I have X weeks of vacation per year.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-26.png" class="img-medium img-center" alt="PTO per year of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-25.png" class="img-medium img-center" alt="PTO per year of programmers in Orlando in 2017" />
 
-**Question 27:** Last year I took X weeks of vacation:
+**Question 26:** Last year I took X weeks of vacation:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-27.png" class="img-medium img-center" alt="Used PTO of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-26.png" class="img-medium img-center" alt="Used PTO of programmers in Orlando in 2017" />
 
-**Question 28:** Other benefits I have include:
+**Question 27:** Other benefits I have include:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-large img-center" alt="Other benefits of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-27.png" class="img-large img-center" alt="Other benefits of programmers in Orlando in 2017" />
 
-**Question 29:** Non-monetary perks at my company include:
+**Question 28:** Non-monetary perks at my company include:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-large img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-large img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
 
 ### Section 4: Company Details (Required)
 
-**Question 30:** The company I work for is best described as:
+**Question 29:** The company I work for is best described as:
+
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-medium img-center" alt="" />
+
+**Question 30:** Total number of employees at company:
 
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-30.png" class="img-medium img-center" alt="" />
 
-**Question 31:** Total number of employees at company:
+**Question 31:** Remote workers only: Check all that apply.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-medium img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-large img-center" alt="" />
 
-**Question 32:** Remote workers only: Check all that apply.
-
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-32.png" class="img-large img-center" alt="" />
-
-**Question 33:** If you are working for a startup, what round are you currently in for funding?
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-33.png" class="img-medium img-center" alt="" />
+**Question 32:** If you are working for a startup, what round are you currently in for funding?
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-32.png" class="img-medium img-center" alt="" />
 
 ### Section 5: Demographics (optional)
 
-**Question 34:** Age
+**Question 33:** Age
+
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-33.png" class="img-medium img-center" alt="" />
+
+
+**Question 34:** Gender
 
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-34.png" class="img-medium img-center" alt="" />
 
+**Question 35:** Check all that describe you.
 
-**Question 35:** Gender
-
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-35.png" class="img-medium img-center" alt="" />
-
-**Question 36:** Check all that describe you.
-
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-36.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-35.png" class="img-large img-center" alt="" />
 
 
-**Question 37:** I consider myself a part of the LGBTQ+ Community:
+**Question 36:** I consider myself a part of the LGBTQ+ Community:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-37.png" class="img-medium img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-36.png" class="img-medium img-center" alt="" />
 
 
 ---
