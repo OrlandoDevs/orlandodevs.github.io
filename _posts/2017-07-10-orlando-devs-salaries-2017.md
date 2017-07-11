@@ -181,7 +181,7 @@ Below are the results of each question asked in this year’s developer survey.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-18.png" class="img-medium img-center" alt="Degrees outside of development fields of programmers in Orlando in 2017" />
 
-### Salary + Benefits (Required)
+### Section 3: Salary + Benefits (Required)
 
 **Question 19:** Are you an hourly or salaried worker?
 
@@ -228,7 +228,7 @@ Below are the results of each question asked in this year’s developer survey.
 
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-medium img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
 
-### Company Details (Required)
+### Section 4: Company Details (Required)
 
 **Question 30:** The company I work for is best described as:
 
@@ -245,7 +245,7 @@ Below are the results of each question asked in this year’s developer survey.
 **Question 33:** If you are working for a startup, what round are you currently in for funding?
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-33.png" class="img-medium img-center" alt="" />
 
-### Demographics (optional)
+### Section 5: Demographics (optional)
 
 **Question 34:** Age
 
