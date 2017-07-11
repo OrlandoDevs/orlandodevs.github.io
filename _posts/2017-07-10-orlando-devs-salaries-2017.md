@@ -108,20 +108,20 @@ Below are the results of each question asked in this year’s developer survey.
 
 **Question 1:** Primary Coding Language Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-1.png" class="img-medium img-center" alt="Primarty Coding Language Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-1.png" class="img-large img-center" alt="Primarty Coding Language Used in Orlando FL in 2017" />
 
 **Question 2:** Secondary Coding Language Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-2.png" class="img-medium img-center" alt="Secondary Coding Language Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-2.png" class="img-large img-center" alt="Secondary Coding Language Used in Orlando FL in 2017" />
 
 **Question 3:** Primary Framework/Platform Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-3.png" class="img-medium img-center" alt="Primary Framework Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-3.png" class="img-large img-center" alt="Primary Framework Used in Orlando FL in 2017" />
 
 
 **Question 4:** Secondary Framework/Platform Used
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-4.png" class="img-medium img-center" alt="Secondary Framework Used in Orlando FL in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-4.png" class="img-large img-center" alt="Secondary Framework Used in Orlando FL in 2017" />
 
 **Question 5:** Which of the following best describe you?
 
@@ -270,9 +270,7 @@ Below are the results of each question asked in this year’s developer survey.
 
 ## Need help?
 
-The Orlando Devs Community exists to improve the quality of life of software developers in Orlando, FL. If any of this information was shocking to you, we’re here to help!
-
-We're passionate about helping developers get to where they want to be in their careers, whether they're just starting out or have been in the industry for a while.
+The Orlando Devs Community exists to improve the quality of life of software developers in Orlando, FL. If any of this information was shocking to you, we’re here to help! We're passionate about helping developers get to where they want to be in their careers, whether they're just starting out or have been in the industry for a while.
 
 Be sure to attend our [monthly meetup](http://orlandodevs.com/meetup/), [Slack channel](http://orlandodevs.com/slack/), and take advantage of all of the other tech-related events in Orlando. Network with others in the field and ask questions. Let's get a dialogue going!
 
