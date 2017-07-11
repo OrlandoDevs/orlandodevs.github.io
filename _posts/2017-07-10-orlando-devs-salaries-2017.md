@@ -291,5 +291,5 @@ We'd also like to especially thank the volunteers who took the time to design th
 
 If you’d like to share other correlations we might have left out, or just want to chat about this data, please feel free to contact us:
 
-By Twitter: [@OrlandoDevs](https://twitter.com/OrlandoDevs)
+By Twitter: [@OrlandoDevs](https://twitter.com/OrlandoDevs)<br />
 By Email: [orlandodevcommunity@gmail.com](mailto:orlandodevcommunity@gmail.com)
