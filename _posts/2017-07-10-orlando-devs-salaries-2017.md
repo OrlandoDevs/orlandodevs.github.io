@@ -14,7 +14,7 @@ categories:
 
 The Orlando Devs Community exists to improve the quality of life of software developers in Orlando, FL. One of the ways we're able to fulfill that mission is to share an independent annual salary survey that sheds light on the salaries of software developers of various skill levels and years of tenure in our community.
 
-The Orlando Devs Annual Salary Survey has become an annual tradition, with 277 respondents in 2017 (a nearly 50% increase in responses compared to a higher number [than our 2016 survey](/blog/orlando-devs-salaries-in-2016/).
+The Orlando Devs Annual Salary Survey has become an annual tradition, with 277 respondents in 2017 (a nearly 50% increase in responses compared to a higher number [than our 2016 survey](/blog/orlando-devs-salaries-in-2016/)).
 
 ---
 
