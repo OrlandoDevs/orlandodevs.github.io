@@ -129,7 +129,7 @@ Below are the results of each question asked in this year’s developer survey.
 
 **Question 6:** Which parts of the Joel Test does your development work environment pass?
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-6.png" class="img-medium img-center" alt="Joel Test at Orlando, FL Companies in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-6.png" class="img-large img-center" alt="Joel Test at Orlando, FL Companies in 2017" />
 
 **Question 7:** Managers: How many direct reports do you have?
 
@@ -222,25 +222,25 @@ Below are the results of each question asked in this year’s developer survey.
 
 **Question 28:** Other benefits I have include:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-medium img-center" alt="Other benefits of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-28.png" class="img-large img-center" alt="Other benefits of programmers in Orlando in 2017" />
 
 **Question 29:** Non-monetary perks at my company include:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-medium img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-29.png" class="img-large img-center" alt="Non-monetary perks of programmers in Orlando in 2017" />
 
 ### Section 4: Company Details (Required)
 
 **Question 30:** The company I work for is best described as:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-30.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-30.png" class="img-medium img-center" alt="" />
 
 **Question 31:** Total number of employees at company:
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-31.png" class="img-medium img-center" alt="" />
 
 **Question 32:** Remote workers only: Check all that apply.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-32.png" class="img-medium img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-32.png" class="img-large img-center" alt="" />
 
 **Question 33:** If you are working for a startup, what round are you currently in for funding?
 <img src="/assets/authors/sergiocruz/2017-salaries/answer-33.png" class="img-medium img-center" alt="" />
@@ -249,7 +249,7 @@ Below are the results of each question asked in this year’s developer survey.
 
 **Question 34:** Age
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-34.png" class="img-large img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-34.png" class="img-medium img-center" alt="" />
 
 
 **Question 35:** Gender
@@ -258,7 +258,7 @@ Below are the results of each question asked in this year’s developer survey.
 
 **Question 36:** Check all that describe you.
 
-<img src="/assets/authors/sergiocruz/2017-salaries/answer-36.png" class="img-medium img-center" alt="" />
+<img src="/assets/authors/sergiocruz/2017-salaries/answer-36.png" class="img-large img-center" alt="" />
 
 
 **Question 37:** I consider myself a part of the LGBTQ+ Community:
