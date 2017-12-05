@@ -11,6 +11,24 @@ We do that by hanging out on the [Orlando Devs Slack channel]({{ site.baseurl }}
 
 <img src="/assets/bg.jpg" alt="Orlando Devs Meetup" class="img-border">
 
+
+**The Orlando Developers Board Members are as follows,**  
+
+Matt Burgess
+
+Sergio Cruz  
+
+Jacques Fu  
+
+Jorge Hernandez  
+
+Susanna Miller  
+
+Jenell Pizarro  
+
+Cassandra Wilcox
+
+  
 We hope that you will join us soon, be on the Orlando Devs Slack, Orlando Devs Meetup, or all the other software-related meetups happening in Orlando.
 
 Have a blast! 🚀
