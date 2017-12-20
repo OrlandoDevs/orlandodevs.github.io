@@ -32,7 +32,7 @@ Java/Groovy developer for Hortonworks. Working to support and enhance the commun
 Software Developer mainly focused on web and native mobile development. Committed to growing the Orlando Devs community by asking every developer he comes across (“are you familiar with Orlando Devs”). Also encouraging all age groups to get excited about the world of tech.
 
 **Jenell Pizarro**
-Software developer for IZEA and co-organizer of some pretty spiffy Meetups in the area. Supporter of community retention and champion for junior developers.
+Software developer at IZEA and co-organizer of some pretty spiffy Meetups in the area.
 
 **Cassandra Wilcox**
 JavaScript developer and instructor who runs the Orlando LadyDevs Meetup and Girl Develop It Orlando. Works to promote diversity in Orlando’s developer community, and especially to empower women and minorities.
