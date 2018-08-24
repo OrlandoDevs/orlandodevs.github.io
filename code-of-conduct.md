@@ -12,9 +12,9 @@ Our open source community strives to:
 * **Be welcoming**: We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to members of any race, ethnicity, culture, national origin, color, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
 * **Be considerate**: Your actions (and words) affect users and colleagues, and you should take those consequences into account. Remember that we're a very diverse community, so you might not be communicating in someone else's primary language.
 * **Be respectful**:  Not all of us will agree all the time, but disagreement is no excuse for poor behavior and poor manners. We might all experience some frustration now and then, but we cannot allow that frustration to turn into a personal attack. It’s important to remember that a community where people feel uncomfortable or threatened is not a productive one.
-* **Be careful in the words that we choose**: we are a community of professionals, and we conduct ourselves professionally. Be kind to others. Do not insult or put down other participants. Harassment and other exclusionary behavior aren't acceptable.
-* **Try to understand why we disagree**: Disagreements, both social and technical, happen all the time. It is important that we resolve disagreements and differing views constructively. Remember that we’re different. The strength of our community comes from its diversity, people from a wide range of backgrounds. Different people have different perspectives on issues. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to err and blaming each other doesn’t get us anywhere. Instead, focus on helping to resolve issues and learning from mistakes.
-
+* **Be Kind: Harassment and other **exclusionary** behavior aren't acceptable.
+**Try to understand why we disagree**: Disagreements, both social and technical, happen all the time. It is important that we resolve disagreements and differing views constructively. Remember that we’re different. The strength of our community comes from its diversity, people from a wide range of backgrounds. Different people have different perspectives on issues. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to err and blaming each other doesn’t get us anywhere. Instead, focus on helping to resolve issues and learning from mistakes.
+* **It's juvinile to say non-threatening reactive things, but it's even more juvinile to allow those non-threatening words or phrases have any affect on you.  We're a group of professionals from many cultures with many different levels of maturity and genders.  Remember that the middle finger may be a compliment in other cultures.  The point here is to have fun, learn something and make a friend or two.
 ## Definitions
 
 Harassment includes, but is not limited to:
@@ -31,9 +31,10 @@ Harassment includes, but is not limited to:
 - Sustained disruption of discussion
 - Unwelcome sexual attention, including gratuitous or off-topic sexual images or behaviour
 - Pattern of inappropriate social contact, such as requesting/assuming inappropriate levels of intimacy with others
-- Continued one-on-one communication after requests to cease
+- ** Continued one-on-one communication after requests to cease **
 - Deliberate “outing” of any aspect of a person’s identity without their consent except as necessary to protect others from intentional abuse
 - Publication of non-harassing private communication
+- No gender segragation ( this includes you ladies and gents ) No women or men only channels private or public.  Remember this is a community not a resort.
 
 
 ### Diversity Statement
@@ -60,3 +61,12 @@ After filing a report, a representative will contact you personally, review the 
 ### Attribution & Acknowledgements
 
 The Orlando Devs Community has joined other community leaders (such as [Django](https://www.djangoproject.com/conduct/reporting/), [Python](https://www.python.org/community/diversity/), [Ubuntu](http://www.ubuntu.com/about/about-ubuntu/conduct), [etc](http://todogroup.org/opencodeofconduct/#attribution--acknowledgements)) in implementing a slightly modified version of the [Open Code of Conduct Project](http://todogroup.org/opencodeofconduct/) created by the [TODO Group](http://todogroup.org/). We cannot thank enough everyone who has helped this Code of Conduct become a reality.
+
+> Below are Code of Conduct which board members must follow.
+## Boards Members Code of Conduct or BMCC
+* MAY NOT belong to any Private channels within the ODev Slack.
+* MAY HAVE an extra alias account which may be used anonymously if they so chooses.
+* WILL NOT have any protections against the community for leaking private 1-1 conversations.
+* MUST NEVER edit any message but may clarify in a thread.
+* MUST BE VOTED IN BY COMMUNITY.
+* MAY BE REMOVED BY PEERS simply by anyone challenging and getting 10% member signatures of the "total active unique user" count, for that month.
