@@ -15,6 +15,14 @@ og:
   image: /assets/odevs-helmet.png
 
 # Build settings
+exclude:
+  - "vendor/"
+  - "CONTRIBUTING.md"
+  - "README.md"
+  - "LICENSE"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "ensure_env_bootstrapped.sh"
 markdown: kramdown
 
 kramdown:
