@@ -50,12 +50,12 @@
 
 .oc-welcome .oc-welcome-btns {
   @include media-query($on-palm) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
     .oc-btn {
-      margin: 0 .1rem;
+      padding: .75rem .5rem;
+      margin: .2rem .25em;
       text-align: center;
     }
   }
