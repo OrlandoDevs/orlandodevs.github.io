@@ -1,3 +1,7 @@
-_site
-.sass-cache
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
 .idea/
+vendor/
+.bash_profile
