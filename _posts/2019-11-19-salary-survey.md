@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How much software developers get paid in Orlando, FL - 2019 Edition"
+title:  "How much software developers get paid in Orlando, FL - 2018 Edition"
 categories: salary-survey
 author: csndra0504
 ---
@@ -11,7 +11,7 @@ Ever since Orlando Devs started in 2015, smart and passionate members of our com
 
 This year’s survey was special to us in more ways than one. For starters, we received more responses than ever from local Central Florida developers! Another reason is that this year we reused all or most of the same questions from the previous year in an effort to create a benchmark for our annual survey. We are excited by the amount of insight we were able to gain from the responses. 
 
-Additionally, we look to the improvements planned for the survey in 2019. In an effort to better represent our entire developer community, we will be refactoring our survey to conform to changes seen in the developer market in recent years. 
+Additionally, we look forward to the improvements planned for the survey in 2020. In an effort to better represent our entire developer community, we will be refactoring our survey to conform to changes seen in the developer market in recent years. 
 
 Preparing the survey questions, analyzing the data, producing the visualizations, and creating this post was no small feat. It wouldn’t have been possible without everyone who contributed, including Matt Burgess, Sergio Cruz, Jorge Hernandez, Jacques Fu, Cassandra  Wilcox, Emily Trosper, and probably others that we don’t have the names of. We also thank the Orlando Developers community as a whole for always providing amazing feedback and support!
 
