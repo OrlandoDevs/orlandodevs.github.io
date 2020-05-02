@@ -8,9 +8,10 @@ disableKinds:
 - taxonomy
 - taxonomyTerm
 markup:
+  defaultMarkdownHandler: goldmark
   goldmark:
     renderer:
-      unsafe: true # Allows you to write raw html in your md files
+      unsafe: true
 
 params:
   # Open graph allows easy social sharing. If you don't want it you can set it to false or just delete the variable
@@ -28,11 +29,11 @@ params:
     # Main hero title
     title: We are Orlando Developers
     # Hero subtitle (optional)
-    subtitle: We're a community of software developers in Orlando, Florida. Whether you love writing code or are just getting started, you are welcome here!
+    subtitle: OrlandoDevs is a not-for-profit organization maintaining a network of meetups and community resources for developers in the Orlando, Florida, area.
     # Button text
-    buttontext: Join Our Meetup
+    buttontext: Join Our Slack
     # Where the main hero button links to
-    buttonlink: "https://orlandodevs.com/meetup"
+    buttonlink: "/slack"
     # Hero image (from static/images/___)
     image: illustrations/worker.svg
     # Footer logos (from static/images/logos/clients/___.svg)
@@ -44,21 +45,31 @@ params:
     - gutwork
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
-  - title: Features
+  - title: About
+    url: /about
+  - title: Blog
     url: /
-  - title: Pricing
-    url: /
-  - title: Dropdown
+  - title: Our Meetups
     sublinks:
-    - title: Dropdown item
+    - title: OrlandoDevs Meetup
+      url: https://www.meetup.com/OrlandoDevs/
+    - title: Lean Startup Orlando
+      url: https://www.meetup.com/Lean-Startup-Practitioners/
+    - title: Project Codex
+      url: https://www.meetup.com/orlando-juniors/
+    - title: Android Developers Group
+      url: https://www.meetup.com/Central-Florida-Android-Developers-Group/
+  - title: Community
+    sublinks:
+    - title: Meetup
       url: /
-    - title: Dropdown item
+    - title: Slack
+      url: /slack
+    - title: Become a Patron
       url: /
-    - title: Dropdown item
+    - title: Contribute Code
       url: /
-  - title: Log in
-    url: /
-  - title: Sign up
+  - title: Support Us
     url: /
     button: true
   section1:

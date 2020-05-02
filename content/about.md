@@ -1,17 +1,11 @@
 ---
-layout: page
-permalink: /about/
 title: Who are the Orlando Devs?
 description: We are the Orlando Devs, a community of software developers in Orlando who are life-long learners and love being around like-minded people all day.
 ---
 
 We are the Orlando Devs, a community of software developers in Orlando who are life-long learners and love being around like-minded people all day.
 
-We do that by hanging out on the [Orlando Devs Slack channel]({{ site.baseurl }}/slack) every day, and by going to multiple meetups throughout the month. We even have [our own monthly meetup]({{ site.baseurl }}/meetup) where we cover a wide array of topics that are related to software development.
-
-<img src="/assets/bg.jpg" alt="Orlando Devs Meetup" class="img-border">
-
----
+We do that by hanging out on the [Orlando Devs Slack channel](/slack) every day, and by going to multiple meetups throughout the month. We even have [our own monthly meetup]({{ site.baseurl }}/meetup) where we cover a wide array of topics that are related to software development.
 
 ## Orlando Devs Board of Directors
 
