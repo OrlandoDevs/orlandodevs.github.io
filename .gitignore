@@ -1,7 +1,3 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-.idea/
-vendor/
-.bash_profile
+
+themes/.DS_Store
+.DS_Store
