@@ -109,7 +109,7 @@ In this blog we use the `kramdown` flavor of markdown, but it's pretty similar t
 
 You'll need to install Jekyll on your machine to preview your blog post. Be sure to preview your post before making a pull request. This is a community-based blog and we expect you to bullet-proof your article before making a pull request. By bullet-proofing we mean making sure that your content is properly formatted, etc.
 
-- Learn how to install [Jekyll for GitHug Pages](https://help.github.com/articles/using-jekyll-with-pages)
+- Learn how to install [Jekyll for GitHub Pages](https://help.github.com/articles/using-jekyll-with-pages)
 
 - Serve Jekyll locally by running this command on your terminal: `bundle exec jekyll serve --drafts`
 
